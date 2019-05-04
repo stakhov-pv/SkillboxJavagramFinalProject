@@ -26,7 +26,7 @@ public class LoginPhoneForm {
             @Override
             protected void paintComponent(Graphics graphics) {
                 super.paintComponent(graphics);
-                graphics.drawImage(background,0,0, null);
+                graphics.drawImage(background,0,0, rootPanel.getWidth(), rootPanel.getHeight(),null);
             }
         };
     }
