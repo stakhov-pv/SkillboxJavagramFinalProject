@@ -14,8 +14,11 @@ public class LoaderGui {
         frame.add(button);
         */
 
-        Form form = new Form();
-        frame.setContentPane(form.getRootPanel());
+        //Form form = new Form();
+        //frame.setContentPane(form.getRootPanel());
+
+        LoginPhoneForm login = new LoginPhoneForm();
+        frame.setContentPane(login.getRootPanel());
 
         //form.getClickMeButton().addActionListener(new ActionListener() {
         //    @Override
@@ -24,8 +27,8 @@ public class LoaderGui {
         //    }
         //});
 
-        frame.setTitle("GUI basics");
-        frame.setSize(800,600);
+        //frame.setTitle("GUI basics");
+        frame.setSize(900,630);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);

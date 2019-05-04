@@ -9,32 +9,55 @@ import java.io.InputStreamReader;
 
 public class Loader {
     public static void main(String[] args) throws IOException {
-        //String hostAddr = "149.154.167.40:443";
-        String hostAddr = "149.154.167.50:443";
-        Integer appId = 57190;
-        String appHash = "967ac20acae40702f3c31e5041048f59";
+        try {
+            String testAddr = "149.154.167.40:443";
+            String workAddr = "149.154.167.50:443";
+            String hostAddr = testAddr;
 
-        TelegramApiBridge bridge = new TelegramApiBridge(hostAddr, appId, appHash);
-        AuthCheckedPhone authCheckedPhone = bridge.authCheckPhone("+79024096439");
-        //AuthCheckedPhone authCheckedPhone = bridge.authCheckPhone("+9996624444");
-        System.out.println("Is invited? "+authCheckedPhone.isInvited());
-        System.out.println("Is registered? "+authCheckedPhone.isRegistered());
+            String testPhoneNumber = "+9996624444";
+            String realPhoneNumber = "+79024096439";
+            String phoneNumber = testPhoneNumber;
 
-        if (authCheckedPhone.isRegistered()) {
-            System.out.println("Sending request for sms code...");
-            bridge.authSendCode("+79024096439");
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            System.out.print("Enter sms code:");
-            String code = br.readLine();
-            AuthAuthorization authorization = bridge.authSignIn(code);
-            System.out.println("Authorization: "+authorization);
-            User user = authorization.getUser();
-            System.out.println("UserFirstName: "+user.getFirstName()
-                    +", UserLastName: "+user.getLastName()
-                    +", UserID: "+user.getId()
-                    +", UserPhone: "+user.getPhone());
+            //My data
+            //Integer appId = 57190;
+            //String appHash = "967ac20acae40702f3c31e5041048f59";
+
+            //From tdlib
+            Integer appId = 94575;
+            String appHash = "a3406de8d171bb422bb6ddf3bbd800e2";
+
+            TelegramApiBridge bridge = new TelegramApiBridge(hostAddr, appId, appHash);
+
+            AuthCheckedPhone authCheckedPhone = bridge.authCheckPhone(phoneNumber);
+            System.out.println("Is invited? "+authCheckedPhone.isInvited());
+            System.out.println("Is registered? "+authCheckedPhone.isRegistered());
+
+            if (authCheckedPhone.isRegistered()) {
+                System.out.println("Sending request for sms code...");
+                bridge.authSendCode(phoneNumber);
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                System.out.print("Enter sms code:");
+                String code = br.readLine();
+                AuthAuthorization authorization = bridge.authSignIn(code);
+                System.out.println("Authorization: "+authorization);
+                User user = authorization.getUser();
+                System.out.println("UserFirstName: "+user.getFirstName()
+                        +", UserLastName: "+user.getLastName()
+                        +", UserID: "+user.getId()
+                        +", UserPhone: "+user.getPhone());
+            }
+
+            System.out.println("===>Wait 100sec and close app");
+            try {
+                Thread.sleep(10000);
+            } catch (Exception e) {
+
+            }
+
+            bridge.authLogOut();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        //bridge.authLogOut();
+        System.exit(0);
     }
 }
