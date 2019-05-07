@@ -1,6 +1,8 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -8,16 +10,25 @@ import java.io.IOException;
 public class LoginPhoneForm {
     private JPanel rootPanel;
     private JPanel logoPanel;
+    private JButton bTest;
     private BufferedImage background;
     private BufferedImage logo;
+    private LoginFormListener listener;
 
-    public LoginPhoneForm() {
+    public LoginPhoneForm(LoginFormListener listener) {
+        this.listener = listener;
         try {
             background = ImageIO.read(new File("res/background.png"));
             logo = ImageIO.read(new File("res/logo.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        bTest.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (listener!=null) listener.onTestButtonPressed();
+            }
+        });
     }
 
     public JPanel getRootPanel() {
@@ -45,6 +56,10 @@ public class LoginPhoneForm {
 
         logoPanel = new JPanelImage("res/logo.png");
 
+    }
+
+    interface LoginFormListener {
+        void onTestButtonPressed();
     }
 
 }

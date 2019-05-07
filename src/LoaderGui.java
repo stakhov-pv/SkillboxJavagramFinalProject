@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoaderGui {
+    static Form form;
+    static LoginPhoneForm login;
+
     public static void main(String[] args) {
         JFrame frame = new JFrame();
 
@@ -14,10 +17,16 @@ public class LoaderGui {
         frame.add(button);
         */
 
-        //Form form = new Form();
+        form = new Form();
         //frame.setContentPane(form.getRootPanel());
 
-        LoginPhoneForm login = new LoginPhoneForm();
+        login = new LoginPhoneForm(new LoginPhoneForm.LoginFormListener() {
+            @Override
+            public void onTestButtonPressed() {
+                frame.setContentPane(form.getRootPanel());
+                frame.validate();
+            }
+        });
         frame.setContentPane(login.getRootPanel());
 
         //form.getClickMeButton().addActionListener(new ActionListener() {
