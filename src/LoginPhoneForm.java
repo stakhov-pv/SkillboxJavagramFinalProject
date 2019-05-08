@@ -11,6 +11,8 @@ public class LoginPhoneForm {
     private JPanel rootPanel;
     private JPanel logoPanel;
     private JButton bTest;
+    private JPanel phoneIcon;
+    private JTextField phoneValue;
     private BufferedImage background;
     private BufferedImage logo;
     private LoginFormListener listener;
@@ -19,7 +21,7 @@ public class LoginPhoneForm {
         this.listener = listener;
         try {
             background = ImageIO.read(new File("res/background.png"));
-            logo = ImageIO.read(new File("res/logo.png"));
+            //logo = ImageIO.read(new File("res/logo.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,6 +57,8 @@ public class LoginPhoneForm {
         //};
 
         logoPanel = new JPanelImage("res/logo.png");
+        //phoneIcon = new JPanelImage("res/icon-phone.png");
+        phoneIcon = new JPanelImage("res/your-face.png");
 
     }
 
