@@ -15,6 +15,7 @@ public class LoginPhoneForm {
     private JTextField phoneValue;
     private JPanel headerPanel;
     private JPanel backgroundPanel;
+    private JButton continueButton;
     private BufferedImage logo;
     private LoginFormListener listener;
 
@@ -47,6 +48,11 @@ public class LoginPhoneForm {
         phoneIcon = new JPanelImage("res/icon-phone.png");
         //phoneIcon = new JPanelImage("res/your-face.png");
         backgroundPanel = new JPanelImage("res/background.png");
+        //continueButton = new JButtonImage("res/button-background.png");
+        ImageIcon imageForOne = new ImageIcon("res/button-background.png");
+        continueButton = new JButton(imageForOne);
+        continueButton.setBorderPainted(false);
+
 
     }
 
