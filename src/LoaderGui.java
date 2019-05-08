@@ -37,6 +37,7 @@ public class LoaderGui {
         //});
 
         //frame.setTitle("GUI basics");
+        frame.setUndecorated(true);
         frame.setSize(900,630);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

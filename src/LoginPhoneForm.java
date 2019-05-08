@@ -13,18 +13,13 @@ public class LoginPhoneForm {
     private JButton bTest;
     private JPanel phoneIcon;
     private JTextField phoneValue;
-    private BufferedImage background;
+    private JPanel headerPanel;
+    private JPanel backgroundPanel;
     private BufferedImage logo;
     private LoginFormListener listener;
 
     public LoginPhoneForm(LoginFormListener listener) {
         this.listener = listener;
-        try {
-            background = ImageIO.read(new File("res/background.png"));
-            //logo = ImageIO.read(new File("res/logo.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         bTest.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -38,14 +33,6 @@ public class LoginPhoneForm {
     }
 
     private void createUIComponents() {
-        rootPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics graphics) {
-                super.paintComponent(graphics);
-                graphics.drawImage(background,0,0, rootPanel.getWidth(), rootPanel.getHeight(),null);
-            }
-        };
-
         //ImageIcon ic = new ImageIcon(logo);
         //logoLabel = new JLabel(ic);
         //logoPanel = new JPanel() {
@@ -57,8 +44,9 @@ public class LoginPhoneForm {
         //};
 
         logoPanel = new JPanelImage("res/logo.png");
-        //phoneIcon = new JPanelImage("res/icon-phone.png");
-        phoneIcon = new JPanelImage("res/your-face.png");
+        phoneIcon = new JPanelImage("res/icon-phone.png");
+        //phoneIcon = new JPanelImage("res/your-face.png");
+        backgroundPanel = new JPanelImage("res/background.png");
 
     }
 
