@@ -19,6 +19,8 @@ public class LoginPhoneForm {
     private JButton continueButton;
     private JLabel label1;
     private JPanel phonePanel;
+    private JButton closeButton;
+    private JButton minimiseButton;
     private BufferedImage logo;
     private LoginFormListener listener;
 
@@ -75,15 +77,29 @@ public class LoginPhoneForm {
         continueButton.setBorderPainted(false);
         continueButton.setContentAreaFilled(false);
         continueButton.setFocusable(false);
-        continueButton.setFont(lightFont.deriveFont(28f));
+        continueButton.setFont(lightFont.deriveFont(25f));
+
+
+        closeButton = new JButton(new ImageIcon("res/icon-close.png"));
+        closeButton.setBorderPainted(false);
+        closeButton.setContentAreaFilled(false);
+        closeButton.setFocusable(false);
+        closeButton.setFont(lightFont.deriveFont(25f));
+
+
+        minimiseButton = new JButton(new ImageIcon("res/icon-hide.png"));
+        minimiseButton.setBorderPainted(false);
+        minimiseButton.setContentAreaFilled(false);
+        minimiseButton.setFocusable(false);
+        minimiseButton.setFont(lightFont.deriveFont(25f));
 
         phoneValue = new JTextField();
         phoneValue.setBorder(javax.swing.BorderFactory.createEmptyBorder());
         //phoneValue.setText("+7");
-        phoneValue.setFont(lightFont.deriveFont(44f));
+        phoneValue.setFont(lightFont.deriveFont(42f));
 
         label1 = new JLabel();
-        label1.setFont(lightFont.deriveFont(18f));
+        label1.setFont(lightFont.deriveFont(17f));
 
     }
 
