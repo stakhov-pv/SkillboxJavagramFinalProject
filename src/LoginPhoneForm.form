@@ -25,11 +25,13 @@
         </constraints>
         <properties>
           <background color="-1644826"/>
+          <enabled value="true"/>
           <focusable value="false"/>
           <foreground color="-1644826"/>
           <opaque value="true"/>
           <requestFocusEnabled value="false"/>
           <verifyInputWhenFocusTarget value="false"/>
+          <visible value="true"/>
         </properties>
         <border type="none">
           <color color="-14079703"/>
@@ -79,47 +81,198 @@
           </hspacer>
         </children>
       </grid>
-      <grid id="5185" binding="backgroundPanel" custom-create="true" layout-manager="GridLayoutManager" row-count="9" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="8649b" binding="backgroundPanel" custom-create="true" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties>
-          <focusable value="false"/>
-          <opaque value="false"/>
-          <requestFocusEnabled value="false"/>
-          <verifyInputWhenFocusTarget value="false"/>
-        </properties>
+        <properties/>
         <border type="none"/>
         <children>
-          <grid id="95fa9" binding="logoPanel" custom-create="true" layout-manager="GridBagLayout">
+          <grid id="5185" binding="phoneState" custom-create="true" layout-manager="GridLayoutManager" row-count="9" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <maximumSize width="512" height="512"/>
+              <focusable value="false"/>
               <opaque value="false"/>
+              <requestFocusEnabled value="false"/>
+              <verifyInputWhenFocusTarget value="false"/>
+              <visible value="false"/>
             </properties>
             <border type="none"/>
-            <children/>
-          </grid>
-          <grid id="ac7fb" binding="phonePanel" custom-create="true" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
-            <margin top="0" left="16" bottom="0" right="16"/>
-            <constraints>
-              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="417" height="-1"/>
-                <maximum-size width="417" height="-1"/>
+            <children>
+              <grid id="95fa9" binding="bigLogoPanel" custom-create="true" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="512" height="512"/>
+                  <opaque value="false"/>
+                </properties>
+                <border type="none"/>
+                <children/>
               </grid>
+              <grid id="ac7fb" binding="phonePanel" custom-create="true" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
+                <margin top="0" left="16" bottom="0" right="16"/>
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="417" height="-1"/>
+                    <maximum-size width="417" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <opaque value="false"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="b939f" binding="phoneIcon" custom-create="true" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <opaque value="false"/>
+                    </properties>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                  <component id="fb9c3" class="javax.swing.JTextField" binding="phoneValue" custom-create="true">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <caretColor color="-66307"/>
+                      <focusTraversalPolicyProvider value="false"/>
+                      <focusable value="true"/>
+                      <font/>
+                      <foreground color="-1"/>
+                      <inheritsPopupMenu value="false"/>
+                      <margin top="2" left="5" bottom="2" right="5"/>
+                      <opaque value="false"/>
+                      <selectionEnd value="12"/>
+                      <selectionStart value="12"/>
+                      <text value="+71234567788"/>
+                    </properties>
+                    <clientProperties>
+                      <html.disable class="java.lang.Boolean" value="true"/>
+                    </clientProperties>
+                  </component>
+                  <hspacer id="77f5">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="16" height="-1"/>
+                        <preferred-size width="16" height="-1"/>
+                        <maximum-size width="16" height="-1"/>
+                      </grid>
+                    </constraints>
+                  </hspacer>
+                </children>
+              </grid>
+              <component id="e7632" class="javax.swing.JLabel" binding="label1" custom-create="true">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-16777216"/>
+                  <foreground color="-66307"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="&lt;html&gt;&lt;center&gt;Введите код страны и номер&lt;br&gt;вашего мобильного телефона&lt;/center&gt;&lt;/html&gt;"/>
+                </properties>
+              </component>
+              <component id="bde7d" class="javax.swing.JButton" binding="bTest">
+                <constraints>
+                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Button"/>
+                </properties>
+              </component>
+              <vspacer id="2aee6">
+                <constraints>
+                  <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="3194" class="javax.swing.JButton" binding="continueButton" custom-create="true">
+                <constraints>
+                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <alignmentY value="1.0"/>
+                  <background color="-394241"/>
+                  <borderPainted value="false"/>
+                  <focusable value="false"/>
+                  <foreground color="-14079703"/>
+                  <horizontalTextPosition value="0"/>
+                  <label value="&lt;html&gt;&lt;font color=&quot;white&quot;&gt;ПРОДОЛЖИТЬ&lt;/font&gt;&lt;/html&gt;"/>
+                  <margin top="0" left="0" bottom="0" right="0"/>
+                  <text value="&lt;html&gt;&lt;font color=&quot;white&quot;&gt;ПРОДОЛЖИТЬ&lt;/font&gt;&lt;/html&gt;"/>
+                  <verticalAlignment value="0"/>
+                  <verticalTextPosition value="0"/>
+                </properties>
+              </component>
+              <vspacer id="f03e7">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="50"/>
+                    <preferred-size width="-1" height="50"/>
+                    <maximum-size width="-1" height="50"/>
+                  </grid>
+                </constraints>
+              </vspacer>
+              <vspacer id="e90b3">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="68"/>
+                    <preferred-size width="-1" height="68"/>
+                    <maximum-size width="-1" height="68"/>
+                  </grid>
+                </constraints>
+              </vspacer>
+              <vspacer id="2529e">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="37"/>
+                    <preferred-size width="-1" height="37"/>
+                    <maximum-size width="-1" height="37"/>
+                  </grid>
+                </constraints>
+              </vspacer>
+              <hspacer id="39f2e">
+                <constraints>
+                  <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="c63d9">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+            </children>
+          </grid>
+          <grid id="bb021" binding="codeState" layout-manager="GridLayoutManager" row-count="10" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <opaque value="false"/>
             </properties>
             <border type="none"/>
             <children>
-              <grid id="b939f" binding="phoneIcon" custom-create="true" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <vspacer id="a8f7d">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <grid id="e63be" binding="codeLogo" custom-create="true" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <opaque value="false"/>
@@ -127,120 +280,92 @@
                 <border type="none"/>
                 <children/>
               </grid>
-              <component id="fb9c3" class="javax.swing.JTextField" binding="phoneValue" custom-create="true">
+              <vspacer id="4224f">
                 <constraints>
-                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="3f917" class="javax.swing.JLabel" binding="codePhoneLabel" custom-create="true">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <caretColor color="-66307"/>
-                  <focusTraversalPolicyProvider value="false"/>
-                  <focusable value="true"/>
-                  <font/>
-                  <foreground color="-1"/>
-                  <inheritsPopupMenu value="false"/>
-                  <margin top="2" left="5" bottom="2" right="5"/>
-                  <opaque value="false"/>
-                  <selectionEnd value="12"/>
-                  <selectionStart value="12"/>
-                  <text value="+71234567788"/>
+                  <foreground color="-66307"/>
+                  <text value="+7 900 078-59-29"/>
                 </properties>
-                <clientProperties>
-                  <html.disable class="java.lang.Boolean" value="true"/>
-                </clientProperties>
               </component>
-              <hspacer id="77f5">
+              <vspacer id="3529f">
                 <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <minimum-size width="16" height="-1"/>
-                    <preferred-size width="16" height="-1"/>
-                    <maximum-size width="16" height="-1"/>
-                  </grid>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
-              </hspacer>
+              </vspacer>
+              <component id="96ead" class="javax.swing.JLabel" binding="codeInfoLabel" custom-create="true">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <foreground color="-66307"/>
+                  <text value="&lt;html&gt;&lt;center&gt;На данный номер телефона было отправлено&lt;br/&gt;SMS сообщение с кодом подтверждения.&lt;br/&gt; Пожалуйста, введите этот код в поле ниже:&lt;/center&gt;&lt;/html&gt;"/>
+                </properties>
+              </component>
+              <grid id="4754f" binding="codePanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <grid id="1b5ea" binding="lockIcon" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                  <component id="8de19" class="javax.swing.JTextField" binding="codeValue">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                </children>
+              </grid>
+              <vspacer id="888b0">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="9f501" class="javax.swing.JButton" binding="codeButton">
+                <constraints>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Button"/>
+                </properties>
+              </component>
+              <vspacer id="e30f8">
+                <constraints>
+                  <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
             </children>
           </grid>
-          <component id="e7632" class="javax.swing.JLabel" binding="label1" custom-create="true">
+          <grid id="7f955" binding="nameState" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-16777216"/>
-              <foreground color="-66307"/>
-              <horizontalAlignment value="0"/>
-              <horizontalTextPosition value="0"/>
-              <text value="&lt;html&gt;&lt;center&gt;Введите код страны и номер&lt;br&gt;вашего мобильного телефона&lt;/center&gt;&lt;/html&gt;"/>
+              <opaque value="false"/>
             </properties>
-          </component>
-          <component id="bde7d" class="javax.swing.JButton" binding="bTest">
-            <constraints>
-              <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Button"/>
-            </properties>
-          </component>
-          <vspacer id="2aee6">
-            <constraints>
-              <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
-          <component id="3194" class="javax.swing.JButton" binding="continueButton" custom-create="true">
-            <constraints>
-              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <alignmentY value="1.0"/>
-              <background color="-394241"/>
-              <borderPainted value="false"/>
-              <focusable value="false"/>
-              <foreground color="-14079703"/>
-              <horizontalTextPosition value="0"/>
-              <label value="&lt;html&gt;&lt;font color=&quot;white&quot;&gt;ПРОДОЛЖИТЬ&lt;/font&gt;&lt;/html&gt;"/>
-              <margin top="0" left="0" bottom="0" right="0"/>
-              <text value="&lt;html&gt;&lt;font color=&quot;white&quot;&gt;ПРОДОЛЖИТЬ&lt;/font&gt;&lt;/html&gt;"/>
-              <verticalAlignment value="0"/>
-              <verticalTextPosition value="0"/>
-            </properties>
-          </component>
-          <vspacer id="f03e7">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-                <minimum-size width="-1" height="50"/>
-                <preferred-size width="-1" height="50"/>
-                <maximum-size width="-1" height="50"/>
-              </grid>
-            </constraints>
-          </vspacer>
-          <vspacer id="e90b3">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-                <minimum-size width="-1" height="68"/>
-                <preferred-size width="-1" height="68"/>
-                <maximum-size width="-1" height="68"/>
-              </grid>
-            </constraints>
-          </vspacer>
-          <vspacer id="2529e">
-            <constraints>
-              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-                <minimum-size width="-1" height="37"/>
-                <preferred-size width="-1" height="37"/>
-                <maximum-size width="-1" height="37"/>
-              </grid>
-            </constraints>
-          </vspacer>
-          <hspacer id="39f2e">
-            <constraints>
-              <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </hspacer>
-          <hspacer id="c63d9">
-            <constraints>
-              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </hspacer>
+            <border type="none"/>
+            <children/>
+          </grid>
         </children>
       </grid>
     </children>
