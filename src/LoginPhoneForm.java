@@ -95,13 +95,17 @@ public class LoginPhoneForm {
 
         phoneValue = new JTextField();
         phoneValue.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-        //phoneValue.setText("+7");
         phoneValue.setFont(lightFont.deriveFont(42f));
+        //TODO: disable default text selection
+        //TODO: only phone (plus and digits) allowed
+        phoneValue.setCaretPosition(phoneValue.getText().length());
 
         label1 = new JLabel();
         label1.setFont(lightFont.deriveFont(17f));
 
     }
+
+
 
     interface LoginFormListener {
         void onTestButtonPressed();
