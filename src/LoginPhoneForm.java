@@ -23,7 +23,7 @@ public class LoginPhoneForm {
     private JPanel backgroundPanel;
     private JPanel codeState;
     private JPanel nameState;
-    private JTextField codeValue;
+    private JPasswordField codeValue;
     private JPanel lockIcon;
     private JPanel codePanel;
     private JButton codeButton;
@@ -87,11 +87,8 @@ public class LoginPhoneForm {
         Border phoneBorder = BorderFactory.createMatteBorder(0,0,2,0,Color.WHITE);
         phonePanel.setBorder(phoneBorder);
 
-        continueButton = new JButton(imageButton);
-        continueButton.setBorderPainted(false);
-        continueButton.setContentAreaFilled(false);
-        continueButton.setFocusable(false);
-        continueButton.setFont(lightFont.deriveFont(25f));
+        label1 = new JLabel();
+        label1.setFont(lightFont.deriveFont(17f));
 
         phoneValue = new JTextField();
         phoneValue.setBorder(javax.swing.BorderFactory.createEmptyBorder());
@@ -100,30 +97,39 @@ public class LoginPhoneForm {
         //TODO: only phone (plus and digits) allowed
         phoneValue.setCaretPosition(phoneValue.getText().length());
 
-        label1 = new JLabel();
-        label1.setFont(lightFont.deriveFont(17f));
-
-
-
-        codeLogo = new JPanelImage("res/logo-mini.png");
-        codePhoneLabel = new JLabel();
-        codePhoneLabel.setFont(lightFont.deriveFont(42f));
-
-        codeInfoLabel = new JLabel();
-        codeInfoLabel.setFont(lightFont.deriveFont(42f));
-
-        lockIcon = new JPanelImage("res/icon-lock.png");
-
-        codeValue = new JTextField();
-        phoneValue.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-        phoneValue.setFont(lightFont.deriveFont(42f));
-        phoneValue.setCaretPosition(phoneValue.getText().length());
-
-        codeButton = new JButton(imageButton);
+        continueButton = new JButton(imageButton);
         continueButton.setBorderPainted(false);
         continueButton.setContentAreaFilled(false);
         continueButton.setFocusable(false);
         continueButton.setFont(lightFont.deriveFont(25f));
+
+
+
+
+        codePanel = new JPanel();
+        Border codeBorder = BorderFactory.createMatteBorder(0,0,2,0,Color.WHITE);
+        codePanel.setBorder(codeBorder);
+
+        codeLogo = new JPanelImage("res/logo-mini.png");
+        codePhoneLabel = new JLabel();
+        codePhoneLabel.setFont(lightFont.deriveFont(41f));
+        codePhoneLabel.setForeground(new Color(195,191,190));
+
+        codeInfoLabel = new JLabel();
+        codeInfoLabel.setFont(lightFont.deriveFont(16f));
+
+        lockIcon = new JPanelImage("res/icon-lock.png");
+
+        codeValue = new JPasswordField();
+        codeValue.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        codeValue.setFont(lightFont.deriveFont(42f));
+        codeValue.setCaretPosition(phoneValue.getText().length());
+
+        codeButton = new JButton(imageButton);
+        codeButton.setBorderPainted(false);
+        codeButton.setContentAreaFilled(false);
+        codeButton.setFocusable(false);
+        codeButton.setFont(lightFont.deriveFont(25f));
 
 
     }
