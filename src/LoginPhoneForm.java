@@ -122,7 +122,9 @@ public class LoginPhoneForm {
 
         codeValue = new JPasswordField();
         codeValue.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-        codeValue.setFont(lightFont.deriveFont(42f));
+        //codeValue.setFont(lightFont.deriveFont(42f));
+        //Font codeFont = codeValue.getFont().deriveFont(22f);
+        //codeValue.setFont(codeFont);
         codeValue.setCaretPosition(phoneValue.getText().length());
 
         codeButton = new JButton(imageButton);
