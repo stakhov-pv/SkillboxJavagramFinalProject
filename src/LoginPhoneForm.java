@@ -30,6 +30,12 @@ public class LoginPhoneForm {
     private JPanel codeLogo;
     private JLabel codePhoneLabel;
     private JLabel codeInfoLabel;
+    private JButton nameButton;
+    private JPanel nameLogo;
+    private JLabel nameLabel;
+    private JTextField firstNameField;
+    private JTextField lastNameField;
+    private JPanel nameIcon;
     private ImageIcon imageButton;
 
 
@@ -132,6 +138,20 @@ public class LoginPhoneForm {
         codeButton.setContentAreaFilled(false);
         codeButton.setFocusable(false);
         codeButton.setFont(lightFont.deriveFont(25f));
+
+        nameLogo = codeLogo; //new JPanelImage("res/logo-mini.png");
+
+        nameLabel = new JLabel();
+        nameLabel.setFont(lightFont.deriveFont(16f));
+
+        nameIcon = new JPanelImage("res/your-face.png");
+
+        nameButton = new JButton(imageButton);
+        nameButton.setBorderPainted(false);
+        nameButton.setContentAreaFilled(false);
+        nameButton.setFocusable(false);
+        nameButton.setFont(lightFont.deriveFont(25f));
+
 
 
     }
