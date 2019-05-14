@@ -9,7 +9,11 @@ public class LoaderGui {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-
+        frame.setUndecorated(true);
+        frame.setSize(900,630);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setVisible(true);
 
         /*frame.setLayout(new FlowLayout());
         JButton button = new JButton();
@@ -20,6 +24,7 @@ public class LoaderGui {
         form = new Form();
         //frame.setContentPane(form.getRootPanel());
 
+        /*
         login = new LoginPhoneForm(new LoginPhoneForm.LoginFormListener() {
             @Override
             public void onTestButtonPressed() {
@@ -28,6 +33,11 @@ public class LoaderGui {
             }
         });
         frame.setContentPane(login.getRootPanel());
+         */
+
+        ConversationsForm conversationsForm = new ConversationsForm();
+        frame.setContentPane(conversationsForm.getRootPanel());
+        frame.validate();
 
         //form.getClickMeButton().addActionListener(new ActionListener() {
         //    @Override
@@ -37,10 +47,6 @@ public class LoaderGui {
         //});
 
         //frame.setTitle("GUI basics");
-        frame.setUndecorated(true);
-        frame.setSize(900,630);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+
     }
 }
