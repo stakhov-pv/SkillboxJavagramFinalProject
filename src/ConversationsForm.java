@@ -1,4 +1,7 @@
 import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class ConversationsForm {
     private JPanel rootPanel;
@@ -33,6 +36,25 @@ public class ConversationsForm {
     }
 
     private void createUIComponents() {
+        Font lightFont = null;
+        Font regularFont = null;
+        Font boldFont = null;
+        try {
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+
+            lightFont = Font.createFont(Font.TRUETYPE_FONT, new File("res/OpenSansLight.ttf"));
+            regularFont = Font.createFont(Font.TRUETYPE_FONT, new File("res/OpenSansRegular.ttf"));
+            boldFont = Font.createFont(Font.TRUETYPE_FONT, new File("res/OpenSansSemiBold.ttf"));
+
+            ge.registerFont(lightFont);
+            ge.registerFont(regularFont);
+            ge.registerFont(boldFont);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch(FontFormatException e) {
+            e.printStackTrace();
+        }
+
         closePanel = new JPanelImage("res/icon-close.png");
         minimisePanel = new JPanelImage("res/icon-hide.png");
 
@@ -41,6 +63,8 @@ public class ConversationsForm {
 
         accountIconPanel = new JPanelImage("res/your-face.png");
         accountSettingsIconPanel = new JPanelImage("res/icon-settings.png");
+        accountNameLabel = new JLabel();
+        accountNameLabel.setFont(regularFont.deriveFont(17f));
         partnerIconPanel = new JPanelImage("res/current-user.png");
         editPartnerPanel = new JPanelImage("res/icon-edit.png");
 
