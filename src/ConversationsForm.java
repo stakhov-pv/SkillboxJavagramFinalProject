@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -69,5 +70,12 @@ public class ConversationsForm {
         editPartnerPanel = new JPanelImage("res/icon-edit.png");
 
         user1AvatarPanel = new JPanelImage("res/user-avatar.png");
+
+        Border conversationsBottomBorder = BorderFactory.createMatteBorder(0,0,1,0,Color.BLACK);
+        user1 = new JPanel();
+        user1.setBorder(conversationsBottomBorder);
+        user2 = new JPanel();
+        user2.setBorder(conversationsBottomBorder);
+
     }
 }
