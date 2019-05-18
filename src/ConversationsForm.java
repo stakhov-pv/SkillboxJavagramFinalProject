@@ -42,6 +42,10 @@ public class ConversationsForm {
     private JPanel myMessageTopPanel;
     private JPanel myMessageBottomPanel;
     private JPanel myMessageTextPanel;
+    private JPanel inMessageTopPanel;
+    private JPanel inMessageBottomPanel;
+    private JPanel inMessageTextPanel;
+    private JPanel inMessageLeftPanel;
 
 
     public JPanel getRootPanel() {
@@ -117,10 +121,15 @@ public class ConversationsForm {
         partnerLabel.setFont(regularFont.deriveFont(14.0f));
 
         myMessageTopPanel = new JPanelImage("res/message-out-top.png");
+
         myMessageBottomPanel = new JPanelImage("res/message-out-bottom.png");
         myMessageArrowPanel = new JPanelImage("res/message-out-right.png");
 
         messageButtonPanel = new JPanelImage("res/button-send.png");
+
+        inMessageTopPanel = new JPanelImage("res/message-in-top.png");
+        inMessageBottomPanel = new JPanelImage("res/message-in-bottom.png");
+        inMessageLeftPanel = new JPanelImage("res/message-in-left.png");
 
 
     }
