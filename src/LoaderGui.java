@@ -36,7 +36,32 @@ public class LoaderGui {
          */
 
         ConversationsForm conversationsForm = new ConversationsForm();
-        frame.setContentPane(conversationsForm.getRootPanel());
+        //frame.setContentPane(conversationsForm.getRootPanel());
+        //frame.getLayeredPane().setLayer(conversationsForm.getRootPanel(),JLayeredPane.FRAME_CONTENT_LAYER);
+
+
+        JPanel transparentBackground = new JPanel();
+        transparentBackground.setLayout(new FlowLayout());
+        JLabel lab = new JLabel();
+        lab.setText("test text");
+        transparentBackground.add(lab);
+        transparentBackground.setBackground(new Color(0, 0, 0, 128));
+
+        //transparentBackground.setOpaque(true);
+
+        //layeredPane.add(transparentBackground,JLayeredPane.DEFAULT_LAYER);
+        //frame.setContentPane(layeredPane);
+
+        conversationsForm.getRootPanel().setBounds(0,0,frame.getWidth(), frame.getHeight());
+        frame.getLayeredPane().setLayer(conversationsForm.getRootPanel(),JLayeredPane.POPUP_LAYER-1);
+        frame.getLayeredPane().add(conversationsForm.getRootPanel());
+
+        transparentBackground.setBounds(0,0, frame.getWidth(),frame.getHeight());
+        frame.getLayeredPane().setLayer(transparentBackground,JLayeredPane.POPUP_LAYER);
+        frame.getLayeredPane().add(transparentBackground);
+        transparentBackground.setVisible(true);
+        //frame.getLayeredPane().revalidate();
+        //frame.setContentPane(transparentBackground);
         frame.validate();
 
         //form.getClickMeButton().addActionListener(new ActionListener() {
