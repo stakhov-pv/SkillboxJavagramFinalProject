@@ -8,15 +8,21 @@ import java.io.IOException;
 public class JPanelImage extends JPanel {
     private BufferedImage background;
 
+    public JPanelImage(BufferedImage image) {
+        this.background = image;
+        setPreferredSize(new Dimension(background.getWidth(), background.getHeight()));
+    }
+
     public JPanelImage(String imageFilename) {
         try {
             background = ImageIO.read(new File(imageFilename));
-            setPreferredSize(new Dimension(background.getWidth(), background.getHeight()));
         } catch (IOException e) {
             System.out.println("JPanelImage: Error on reading "+imageFilename);
             e.printStackTrace();
         }
-        this.background = background;
+        if (background!=null) {
+            setPreferredSize(new Dimension(background.getWidth(), background.getHeight()));
+        }
     }
 
     @Override

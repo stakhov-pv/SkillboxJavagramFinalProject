@@ -72,20 +72,20 @@ public class ConversationsForm {
             e.printStackTrace();
         }
 
-        closePanel = new JPanelImage("res/icon-close.png");
-        minimisePanel = new JPanelImage("res/icon-hide.png");
+        closePanel = new JPanelImage(Res.getImage("icon-close.png"));
+        minimisePanel = new JPanelImage(Res.getImage("icon-hide.png"));
 
-        logoPanel = new JPanelImage("res/logo-micro.png");
-        searchIconPanel = new JPanelImage("res/icon-search.png");
+        logoPanel = new JPanelImage(Res.getImage("logo-micro.png"));
+        searchIconPanel = new JPanelImage(Res.getImage("icon-search.png"));
 
-        accountIconPanel = new JPanelImage("res/your-face.png");
-        accountSettingsIconPanel = new JPanelImage("res/icon-settings.png");
+        accountIconPanel = new JPanelImage(Res.getImage("your-face.png"));
+        accountSettingsIconPanel = new JPanelImage(Res.getImage("icon-settings.png"));
         accountNameLabel = new JLabel();
         accountNameLabel.setFont(regularFont.deriveFont(14f));
-        partnerIconPanel = new JPanelImage("res/current-user.png");
-        editPartnerPanel = new JPanelImage("res/icon-edit.png");
+        partnerIconPanel = new JPanelImage(Res.getImage("current-user.png"));
+        editPartnerPanel = new JPanelImage(Res.getImage("icon-edit.png"));
 
-        user1AvatarPanel = new JPanelImage("res/user-avatar.png");
+        user1AvatarPanel = new JPanelImage(Res.getImage("user-avatar.png"));
 
         Border conversationsRightBorder = BorderFactory.createMatteBorder(0,0,0,1,new Color(219,219,219));
         conversationsListPanel = new JPanel();
@@ -120,16 +120,16 @@ public class ConversationsForm {
         partnerLabel = new JLabel();
         partnerLabel.setFont(regularFont.deriveFont(14.0f));
 
-        myMessageTopPanel = new JPanelImage("res/message-out-top.png");
+        myMessageTopPanel = new JPanelImage(Res.getImage("message-out-top.png"));
 
-        myMessageBottomPanel = new JPanelImage("res/message-out-bottom.png");
-        myMessageArrowPanel = new JPanelImage("res/message-out-right.png");
+        myMessageBottomPanel = new JPanelImage(Res.getImage("message-out-bottom.png"));
+        myMessageArrowPanel = new JPanelImage(Res.getImage("message-out-right.png"));
 
-        messageButtonPanel = new JPanelImage("res/button-send.png");
+        messageButtonPanel = new JPanelImage(Res.getImage("button-send.png"));
 
-        inMessageTopPanel = new JPanelImage("res/message-in-top.png");
-        inMessageBottomPanel = new JPanelImage("res/message-in-bottom.png");
-        inMessageLeftPanel = new JPanelImage("res/message-in-left.png");
+        inMessageTopPanel = new JPanelImage(Res.getImage("message-in-top.png"));
+        inMessageBottomPanel = new JPanelImage(Res.getImage("message-in-bottom.png"));
+        inMessageLeftPanel = new JPanelImage(Res.getImage("message-in-left.png"));
 
 
     }

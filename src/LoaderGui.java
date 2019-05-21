@@ -59,7 +59,7 @@ public class LoaderGui {
         transparentBackground.setBounds(0,0, frame.getWidth(),frame.getHeight());
         frame.getLayeredPane().setLayer(transparentBackground,JLayeredPane.POPUP_LAYER);
         frame.getLayeredPane().add(transparentBackground);
-        transparentBackground.setVisible(true);
+        transparentBackground.setVisible(false);
         //frame.getLayeredPane().revalidate();
         //frame.setContentPane(transparentBackground);
         frame.validate();

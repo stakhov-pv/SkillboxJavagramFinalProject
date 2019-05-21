@@ -81,13 +81,13 @@ public class LoginPhoneForm {
         minimiseButton.setContentAreaFilled(false);
         minimiseButton.setFocusable(false);
 
-        backgroundPanel = new JPanelImage("res/background.png");
+        backgroundPanel = new JPanelImage(Res.getImage("background.png"));
         imageButton = new ImageIcon("res/button-background.png");
 
         phoneState = new JPanel();
 
-        bigLogoPanel = new JPanelImage("res/logo.png");
-        phoneIcon = new JPanelImage("res/icon-phone.png");
+        bigLogoPanel = new JPanelImage(Res.getImage("logo.png"));
+        phoneIcon = new JPanelImage(Res.getImage("icon-phone.png"));
 
         phonePanel = new JPanel();
         Border phoneBorder = BorderFactory.createMatteBorder(0,0,2,0,Color.WHITE);
@@ -116,7 +116,7 @@ public class LoginPhoneForm {
         Border codeBorder = BorderFactory.createMatteBorder(0,0,2,0,Color.WHITE);
         codePanel.setBorder(codeBorder);
 
-        codeLogo = new JPanelImage("res/logo-mini.png");
+        codeLogo = new JPanelImage(Res.getImage("logo-mini.png"));
         codePhoneLabel = new JLabel();
         codePhoneLabel.setFont(lightFont.deriveFont(41f));
         codePhoneLabel.setForeground(new Color(195,191,190));
@@ -124,7 +124,7 @@ public class LoginPhoneForm {
         codeInfoLabel = new JLabel();
         codeInfoLabel.setFont(lightFont.deriveFont(16f));
 
-        lockIcon = new JPanelImage("res/icon-lock.png");
+        lockIcon = new JPanelImage(Res.getImage("icon-lock.png"));
 
         codeValue = new JPasswordField();
         codeValue.setBorder(javax.swing.BorderFactory.createEmptyBorder());
@@ -144,7 +144,7 @@ public class LoginPhoneForm {
         nameLabel = new JLabel();
         nameLabel.setFont(lightFont.deriveFont(16f));
 
-        nameIcon = new JPanelImage("res/your-face.png");
+        nameIcon = new JPanelImage(Res.getImage("your-face.png"));
 
         nameButton = new JButton(imageButton);
         nameButton.setBorderPainted(false);
