@@ -1,8 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class ConversationsForm {
     private JPanel rootPanel;
@@ -53,24 +51,6 @@ public class ConversationsForm {
     }
 
     private void createUIComponents() {
-        Font lightFont = null;
-        Font regularFont = null;
-        Font boldFont = null;
-        try {
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-
-            lightFont = Font.createFont(Font.TRUETYPE_FONT, new File("res/OpenSansLight.ttf"));
-            regularFont = Font.createFont(Font.TRUETYPE_FONT, new File("res/OpenSansRegular.ttf"));
-            boldFont = Font.createFont(Font.TRUETYPE_FONT, new File("res/OpenSansSemiBold.ttf"));
-
-            ge.registerFont(lightFont);
-            ge.registerFont(regularFont);
-            ge.registerFont(boldFont);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch(FontFormatException e) {
-            e.printStackTrace();
-        }
 
         closePanel = new JPanelImage(Res.getImage("icon-close.png"));
         minimisePanel = new JPanelImage(Res.getImage("icon-hide.png"));
@@ -81,7 +61,7 @@ public class ConversationsForm {
         accountIconPanel = new JPanelImage(Res.getImage("your-face.png"));
         accountSettingsIconPanel = new JPanelImage(Res.getImage("icon-settings.png"));
         accountNameLabel = new JLabel();
-        accountNameLabel.setFont(regularFont.deriveFont(14f));
+        accountNameLabel.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,14f));
         partnerIconPanel = new JPanelImage(Res.getImage("current-user.png"));
         editPartnerPanel = new JPanelImage(Res.getImage("icon-edit.png"));
 
@@ -96,7 +76,7 @@ public class ConversationsForm {
         searchPanel.setBorder(searchPanelRightBottomBorder);
 
         searchLabel = new JLabel();
-        searchLabel.setFont(regularFont.deriveFont(16.0f));
+        searchLabel.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,16f));
 
         Border chatPartnerBottomBorder = BorderFactory.createMatteBorder(0,0,1,0,new Color(237,237,227));
         chatPartnerPanel = new JPanel();
@@ -110,15 +90,15 @@ public class ConversationsForm {
         user2.setBorder(conversationsBottomBorder);
 
         user1Name = new JLabel();
-        user1Name.setFont(boldFont.deriveFont(16.0f));
+        user1Name.setFont(Res.getFont(Res.FONT_TYPE.SEMIBOLD_FONT,16f));
 
         user1LastMessage = new JLabel();
-        user1LastMessage.setFont(regularFont.deriveFont(12.0f));
+        user1LastMessage.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,12f));
         user1when = new JLabel();
-        user1when.setFont(regularFont.deriveFont(10.0f));
+        user1when.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,10f));
 
         partnerLabel = new JLabel();
-        partnerLabel.setFont(regularFont.deriveFont(14.0f));
+        partnerLabel.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,14f));
 
         myMessageTopPanel = new JPanelImage(Res.getImage("message-out-top.png"));
 

@@ -3,9 +3,6 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class LoginPhoneForm {
     private JPanel rootPanel;
@@ -58,19 +55,6 @@ public class LoginPhoneForm {
 
     private void createUIComponents() {
 
-        Font lightFont = null;
-        try {
-            //create the font to use. Specify the size!
-            lightFont = Font.createFont(Font.TRUETYPE_FONT, new File("res/OpenSansLight.ttf"));
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //register the font
-            ge.registerFont(lightFont);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch(FontFormatException e) {
-            e.printStackTrace();
-        }
-
         closeButton = new JButton(new ImageIcon("res/icon-close.png"));
         closeButton.setBorderPainted(false);
         closeButton.setContentAreaFilled(false);
@@ -94,11 +78,11 @@ public class LoginPhoneForm {
         phonePanel.setBorder(phoneBorder);
 
         label1 = new JLabel();
-        label1.setFont(lightFont.deriveFont(17f));
+        label1.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,17f));
 
         phoneValue = new JTextField();
         phoneValue.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-        phoneValue.setFont(lightFont.deriveFont(42f));
+        phoneValue.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,42f));
         //TODO: disable default text selection
         //TODO: only phone (plus and digits) allowed
         phoneValue.setCaretPosition(phoneValue.getText().length());
@@ -107,7 +91,7 @@ public class LoginPhoneForm {
         continueButton.setBorderPainted(false);
         continueButton.setContentAreaFilled(false);
         continueButton.setFocusable(false);
-        continueButton.setFont(lightFont.deriveFont(25f));
+        continueButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
 
 
 
@@ -118,11 +102,11 @@ public class LoginPhoneForm {
 
         codeLogo = new JPanelImage(Res.getImage("logo-mini.png"));
         codePhoneLabel = new JLabel();
-        codePhoneLabel.setFont(lightFont.deriveFont(41f));
+        codePhoneLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,41f));
         codePhoneLabel.setForeground(new Color(195,191,190));
 
         codeInfoLabel = new JLabel();
-        codeInfoLabel.setFont(lightFont.deriveFont(16f));
+        codeInfoLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,16f));
 
         lockIcon = new JPanelImage(Res.getImage("icon-lock.png"));
 
@@ -137,12 +121,12 @@ public class LoginPhoneForm {
         codeButton.setBorderPainted(false);
         codeButton.setContentAreaFilled(false);
         codeButton.setFocusable(false);
-        codeButton.setFont(lightFont.deriveFont(25f));
+        codeButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
 
         nameLogo = codeLogo; //new JPanelImage("res/logo-mini.png");
 
         nameLabel = new JLabel();
-        nameLabel.setFont(lightFont.deriveFont(16f));
+        nameLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,16f));
 
         nameIcon = new JPanelImage(Res.getImage("your-face.png"));
 
@@ -150,13 +134,9 @@ public class LoginPhoneForm {
         nameButton.setBorderPainted(false);
         nameButton.setContentAreaFilled(false);
         nameButton.setFocusable(false);
-        nameButton.setFont(lightFont.deriveFont(25f));
-
-
+        nameButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
 
     }
-
-
 
     interface LoginFormListener {
         void onTestButtonPressed();
