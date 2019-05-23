@@ -19,12 +19,13 @@ public class LoginView {
     private Listener listener;
 
     public interface Listener {
-
+        void onPhoneButtonPressed();
+        void onCodeButtonPressed();
+        void onNameButtonPressed();
     }
 
     private JPanel rootPanel;
     private JPanel bigLogoPanel;
-    private JButton bTest;
     private JPanel phoneIcon;
     private JTextField phoneValue;
     private JPanel headerPanel;
@@ -50,6 +51,7 @@ public class LoginView {
     private JTextField firstNameField;
     private JTextField lastNameField;
     private JPanel nameIcon;
+    private JPanel continuePanel;
     private ImageIcon imageButton;
 
     //private LoginFormListener listener;
@@ -103,12 +105,15 @@ public class LoginView {
         //TODO: only phone (plus and digits) allowed
         phoneValue.setCaretPosition(phoneValue.getText().length());
 
-        continueButton = new JButton(imageButton);
-        continueButton.setBorderPainted(false);
-        continueButton.setContentAreaFilled(false);
-        continueButton.setFocusable(false);
-        continueButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
-
+        continueButton = new JButton(new ImageIcon("res/button-background.png"));
+        //continueButton.setBorderPainted(false);
+        //continueButton.setContentAreaFilled(false);
+        //continueButton.setFocusable(false);
+        //continueButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
+        continuePanel = new JPanelImage(Res.getImage("button-background.png"));
+        JLabel continuePanelLabel = new JLabel("ПРОДОЛЖИТЬ");
+        continuePanelLabel.setForeground(Color.WHITE);
+        continuePanel.add(continuePanelLabel);
 
 
 
@@ -139,7 +144,7 @@ public class LoginView {
         codeButton.setFocusable(false);
         codeButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
 
-        nameLogo = codeLogo; //new JPanelImage("res/logo-mini.png");
+        nameLogo = new JPanelImage(Res.getImage("logo-mini.png"));
 
         nameLabel = new JLabel();
         nameLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,16f));
@@ -151,6 +156,27 @@ public class LoginView {
         nameButton.setContentAreaFilled(false);
         nameButton.setFocusable(false);
         nameButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
+
+        continueButton.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (listener!=null) listener.onPhoneButtonPressed();
+            }
+        });
+
+        codeButton.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (listener!=null) listener.onCodeButtonPressed();
+            }
+        });
+
+        nameButton.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (listener!=null) listener.onNameButtonPressed();
+            }
+        });
 
     }
 

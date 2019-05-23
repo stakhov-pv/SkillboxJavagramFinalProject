@@ -8,6 +8,7 @@ public class JPanelImage extends JPanel {
     public JPanelImage(BufferedImage image) {
         this.background = image;
         setPreferredSize(new Dimension(background.getWidth(), background.getHeight()));
+        setOpaque(false);
     }
 
     @Override
