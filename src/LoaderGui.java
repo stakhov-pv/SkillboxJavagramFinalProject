@@ -1,11 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LoaderGui {
     static Form form;
-    static LoginPhoneForm login;
+    static LoginView login;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();
@@ -25,7 +23,7 @@ public class LoaderGui {
         //frame.setContentPane(form.getRootPanel());
 
         /*
-        login = new LoginPhoneForm(new LoginPhoneForm.LoginFormListener() {
+        login = new LoginView(new LoginView.LoginFormListener() {
             @Override
             public void onTestButtonPressed() {
                 frame.setContentPane(form.getRootPanel());
