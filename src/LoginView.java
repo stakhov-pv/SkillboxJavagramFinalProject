@@ -4,7 +4,24 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginPhoneForm {
+public class LoginView {
+
+    public enum LoginState {
+        Init,
+        AskPhone,
+        ProcessingPhone,
+        AskCode,
+        ProcessingCode,
+        AskNewProfile,
+        ProcessingNewProfile,
+    }
+
+    private Listener listener;
+
+    public interface Listener {
+
+    }
+
     private JPanel rootPanel;
     private JPanel bigLogoPanel;
     private JButton bTest;
@@ -35,18 +52,17 @@ public class LoginPhoneForm {
     private JPanel nameIcon;
     private ImageIcon imageButton;
 
+    //private LoginFormListener listener;
 
-    private LoginFormListener listener;
 
-
-    public LoginPhoneForm(LoginFormListener listener) {
-        this.listener = listener;
-        bTest.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (listener!=null) listener.onTestButtonPressed();
-            }
-        });
+    public LoginView(/*LoginFormListener listener*/) {
+    //    this.listener = listener;
+    //    bTest.addActionListener(new ActionListener() {
+    //        @Override
+    //        public void actionPerformed(ActionEvent e) {
+    //            if (listener!=null) listener.onTestButtonPressed();
+    //        }
+    //    });
     }
 
     public JPanel getRootPanel() {
@@ -138,8 +154,51 @@ public class LoginPhoneForm {
 
     }
 
-    interface LoginFormListener {
-        void onTestButtonPressed();
+    //interface LoginFormListener {
+    //    void onTestButtonPressed();
+    //}
+
+    void attachListener(Listener listener) {
+        this.listener = listener;
     }
 
+    void detachListener() {
+        this.listener=null;
+    }
+
+    void show() {
+        Gui.getInstance().changePane(rootPanel);
+        showState(LoginState.AskPhone);
+    }
+
+    void showState(LoginState newState) {
+
+        phoneState.setVisible(false);
+        codeState.setVisible(false);
+        nameState.setVisible(false);
+        switch (newState) {
+            case Init:
+                break;
+            case AskPhone:
+                phoneState.setVisible(true);
+                break;
+            case ProcessingPhone:
+                phoneState.setVisible(true);
+                break;
+            case AskCode:
+                codeState.setVisible(true);
+                break;
+            case ProcessingCode:
+                codeState.setVisible(true);
+                break;
+            case AskNewProfile:
+                nameState.setVisible(true);
+                break;
+            case ProcessingNewProfile:
+                nameState.setVisible(true);
+                break;
+        }
+        Gui.getInstance().validate();
+
+    }
 }
