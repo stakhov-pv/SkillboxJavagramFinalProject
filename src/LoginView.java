@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class LoginView implements MouseListener {
+public class LoginView {
 
     public enum LoginState {
         Init,
@@ -26,15 +26,18 @@ public class LoginView implements MouseListener {
     }
 
     private JPanel rootPanel;
-    private JPanel bigLogoPanel;
-    private JPanel phoneIcon;
-    private JTextField phoneValue;
+
     private JPanel headerPanel;
-    private JPanel phoneState;
-    private JLabel label1;
-    private JPanel phonePanel;
     private JButton closeButton;
     private JButton minimiseButton;
+
+    private JPanel bigLogoPanel;
+    private JPanel phoneState;
+    private JLabel phoneMessageLabel;
+    private JPanel phonePanel;
+    private JPanel phoneIcon;
+    private JTextField phoneValue;
+
     private JPanel backgroundPanel;
     private JPanel codeState;
     private JPanel nameState;
@@ -51,9 +54,8 @@ public class LoginView implements MouseListener {
     private JTextField firstNameField;
     private JTextField lastNameField;
     private JPanel nameIcon;
-    private JPanel phoneButton;
-    private JLabel phoneButtonLabel;
-    //private ImageIcon imageButton;
+    private JPanel phoneButtonBackground;
+    private JButton phoneButton;
 
     public LoginView() {
     }
@@ -75,7 +77,6 @@ public class LoginView implements MouseListener {
         minimiseButton.setFocusable(false);
 
         backgroundPanel = new JImage(Res.getImage("background.png"));
-        //imageButton = new ImageIcon("res/button-background.png");
 
         phoneState = new JPanel();
 
@@ -86,8 +87,8 @@ public class LoginView implements MouseListener {
         Border phoneBorder = BorderFactory.createMatteBorder(0,0,2,0,Color.WHITE);
         phonePanel.setBorder(phoneBorder);
 
-        label1 = new JLabel();
-        label1.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,17f));
+        phoneMessageLabel = new JLabel();
+        phoneMessageLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,17f));
 
         phoneValue = new JTextField();
         phoneValue.setBorder(javax.swing.BorderFactory.createEmptyBorder());
@@ -96,10 +97,11 @@ public class LoginView implements MouseListener {
         //TODO: only phone (plus and digits) allowed
         phoneValue.setCaretPosition(phoneValue.getText().length());
 
-        phoneButton = new JImage(Res.getImage("button-background.png"));
-        phoneButtonLabel = new JLabel();
-        phoneButtonLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
-        phoneButtonLabel.setForeground(Color.WHITE);
+        phoneButtonBackground = new JImage(Res.getImage("button-background.png"));
+        phoneButton = new JButton();
+        phoneButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
+        phoneButton.setForeground(Color.WHITE);
+
 
         codePanel = new JPanel();
         Border codeBorder = BorderFactory.createMatteBorder(0,0,2,0,Color.WHITE);
@@ -141,7 +143,12 @@ public class LoginView implements MouseListener {
         nameButton.setFocusable(false);
         nameButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
 
-        phoneButton.addMouseListener(this);
+        phoneButton.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (listener!=null) listener.onPhoneButtonPressed();
+            }
+        });
 
         codeButton.setAction(new AbstractAction() {
             @Override
@@ -154,6 +161,20 @@ public class LoginView implements MouseListener {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (listener!=null) listener.onNameButtonPressed();
+            }
+        });
+
+        minimiseButton.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+            }
+        });
+
+        closeButton.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
             }
         });
 
@@ -202,24 +223,4 @@ public class LoginView implements MouseListener {
         Gui.getInstance().validate();
 
     }
-
-    @Override
-    public void mouseClicked(MouseEvent mouseEvent) {
-        Component source = mouseEvent.getComponent();
-        if (source==phoneButton) {
-            if (listener!=null) listener.onPhoneButtonPressed();
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent mouseEvent) { }
-
-    @Override
-    public void mouseReleased(MouseEvent mouseEvent) { }
-
-    @Override
-    public void mouseEntered(MouseEvent mouseEvent) { }
-
-    @Override
-    public void mouseExited(MouseEvent mouseEvent) { }
 }
