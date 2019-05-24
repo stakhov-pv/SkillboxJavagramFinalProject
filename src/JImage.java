@@ -7,7 +7,11 @@ public class JImage extends JPanel {
 
     public JImage(BufferedImage image) {
         this.background = image;
-        setPreferredSize(new Dimension(background.getWidth(), background.getHeight()));
+        Dimension size = new Dimension(background.getWidth(), background.getHeight());
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+
         setOpaque(false);
     }
 

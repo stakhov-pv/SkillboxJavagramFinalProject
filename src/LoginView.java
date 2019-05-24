@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class LoginView {
 
@@ -29,7 +31,6 @@ public class LoginView {
     private JTextField phoneValue;
     private JPanel headerPanel;
     private JPanel phoneState;
-    private JButton continueButton;
     private JLabel label1;
     private JPanel phonePanel;
     private JButton closeButton;
@@ -51,19 +52,10 @@ public class LoginView {
     private JTextField lastNameField;
     private JPanel nameIcon;
     private JPanel continuePanel;
+    private JLabel continuePanelLabel;
     private ImageIcon imageButton;
 
-    //private LoginFormListener listener;
-
-
-    public LoginView(/*LoginFormListener listener*/) {
-    //    this.listener = listener;
-    //    bTest.addActionListener(new ActionListener() {
-    //        @Override
-    //        public void actionPerformed(ActionEvent e) {
-    //            if (listener!=null) listener.onTestButtonPressed();
-    //        }
-    //    });
+    public LoginView() {
     }
 
     public JPanel getRootPanel() {
@@ -104,18 +96,10 @@ public class LoginView {
         //TODO: only phone (plus and digits) allowed
         phoneValue.setCaretPosition(phoneValue.getText().length());
 
-        continueButton = new JButton(new ImageIcon("res/button-background.png"));
-        continueButton.setBorderPainted(false);
-        continueButton.setContentAreaFilled(false);
-        continueButton.setFocusable(false);
-        continueButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
-        continueButton.validate();
         continuePanel = new JImage(Res.getImage("button-background.png"));
-        JLabel continuePanelLabel = new JLabel("ПРОДОЛЖИТЬ");
+        continuePanelLabel = new JLabel();
+        continuePanelLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
         continuePanelLabel.setForeground(Color.WHITE);
-        continuePanel.add(continuePanelLabel);
-
-
 
         codePanel = new JPanel();
         Border codeBorder = BorderFactory.createMatteBorder(0,0,2,0,Color.WHITE);
@@ -157,10 +141,30 @@ public class LoginView {
         nameButton.setFocusable(false);
         nameButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
 
-        continueButton.setAction(new AbstractAction() {
+        continuePanel.addMouseListener(new MouseListener() {
             @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+            public void mouseClicked(MouseEvent e) {
                 if (listener!=null) listener.onPhoneButtonPressed();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
             }
         });
 
@@ -179,10 +183,6 @@ public class LoginView {
         });
 
     }
-
-    //interface LoginFormListener {
-    //    void onTestButtonPressed();
-    //}
 
     void attachListener(Listener listener) {
         this.listener = listener;
