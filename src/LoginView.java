@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class LoginView {
+public class LoginView implements MouseListener {
 
     public enum LoginState {
         Init,
@@ -51,9 +51,9 @@ public class LoginView {
     private JTextField firstNameField;
     private JTextField lastNameField;
     private JPanel nameIcon;
-    private JPanel continuePanel;
-    private JLabel continuePanelLabel;
-    private ImageIcon imageButton;
+    private JPanel phoneButton;
+    private JLabel phoneButtonLabel;
+    //private ImageIcon imageButton;
 
     public LoginView() {
     }
@@ -75,7 +75,7 @@ public class LoginView {
         minimiseButton.setFocusable(false);
 
         backgroundPanel = new JImage(Res.getImage("background.png"));
-        imageButton = new ImageIcon("res/button-background.png");
+        //imageButton = new ImageIcon("res/button-background.png");
 
         phoneState = new JPanel();
 
@@ -96,10 +96,10 @@ public class LoginView {
         //TODO: only phone (plus and digits) allowed
         phoneValue.setCaretPosition(phoneValue.getText().length());
 
-        continuePanel = new JImage(Res.getImage("button-background.png"));
-        continuePanelLabel = new JLabel();
-        continuePanelLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
-        continuePanelLabel.setForeground(Color.WHITE);
+        phoneButton = new JImage(Res.getImage("button-background.png"));
+        phoneButtonLabel = new JLabel();
+        phoneButtonLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
+        phoneButtonLabel.setForeground(Color.WHITE);
 
         codePanel = new JPanel();
         Border codeBorder = BorderFactory.createMatteBorder(0,0,2,0,Color.WHITE);
@@ -122,7 +122,7 @@ public class LoginView {
         //codeValue.setFont(codeFont);
         codeValue.setCaretPosition(phoneValue.getText().length());
 
-        codeButton = new JButton(imageButton);
+        codeButton = new JButton(new ImageIcon("res/button-background.png"));
         codeButton.setBorderPainted(false);
         codeButton.setContentAreaFilled(false);
         codeButton.setFocusable(false);
@@ -135,38 +135,13 @@ public class LoginView {
 
         nameIcon = new JImage(Res.getImage("your-face.png"));
 
-        nameButton = new JButton(imageButton);
+        nameButton = new JButton(new ImageIcon("res/button-background.png"));
         nameButton.setBorderPainted(false);
         nameButton.setContentAreaFilled(false);
         nameButton.setFocusable(false);
         nameButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
 
-        continuePanel.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (listener!=null) listener.onPhoneButtonPressed();
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
+        phoneButton.addMouseListener(this);
 
         codeButton.setAction(new AbstractAction() {
             @Override
@@ -227,4 +202,24 @@ public class LoginView {
         Gui.getInstance().validate();
 
     }
+
+    @Override
+    public void mouseClicked(MouseEvent mouseEvent) {
+        Component source = mouseEvent.getComponent();
+        if (source==phoneButton) {
+            if (listener!=null) listener.onPhoneButtonPressed();
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) { }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) { }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) { }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) { }
 }
