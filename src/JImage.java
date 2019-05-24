@@ -2,10 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class JPanelImage extends JPanel {
+public class JImage extends JPanel {
     private BufferedImage background;
 
-    public JPanelImage(BufferedImage image) {
+    public JImage(BufferedImage image) {
         this.background = image;
         setPreferredSize(new Dimension(background.getWidth(), background.getHeight()));
         setOpaque(false);

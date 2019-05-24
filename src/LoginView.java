@@ -2,7 +2,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LoginView {
 
@@ -83,13 +82,13 @@ public class LoginView {
         minimiseButton.setContentAreaFilled(false);
         minimiseButton.setFocusable(false);
 
-        backgroundPanel = new JPanelImage(Res.getImage("background.png"));
+        backgroundPanel = new JImage(Res.getImage("background.png"));
         imageButton = new ImageIcon("res/button-background.png");
 
         phoneState = new JPanel();
 
-        bigLogoPanel = new JPanelImage(Res.getImage("logo.png"));
-        phoneIcon = new JPanelImage(Res.getImage("icon-phone.png"));
+        bigLogoPanel = new JImage(Res.getImage("logo.png"));
+        phoneIcon = new JImage(Res.getImage("icon-phone.png"));
 
         phonePanel = new JPanel();
         Border phoneBorder = BorderFactory.createMatteBorder(0,0,2,0,Color.WHITE);
@@ -106,11 +105,12 @@ public class LoginView {
         phoneValue.setCaretPosition(phoneValue.getText().length());
 
         continueButton = new JButton(new ImageIcon("res/button-background.png"));
-        //continueButton.setBorderPainted(false);
-        //continueButton.setContentAreaFilled(false);
-        //continueButton.setFocusable(false);
-        //continueButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
-        continuePanel = new JPanelImage(Res.getImage("button-background.png"));
+        continueButton.setBorderPainted(false);
+        continueButton.setContentAreaFilled(false);
+        continueButton.setFocusable(false);
+        continueButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
+        continueButton.validate();
+        continuePanel = new JImage(Res.getImage("button-background.png"));
         JLabel continuePanelLabel = new JLabel("ПРОДОЛЖИТЬ");
         continuePanelLabel.setForeground(Color.WHITE);
         continuePanel.add(continuePanelLabel);
@@ -121,7 +121,7 @@ public class LoginView {
         Border codeBorder = BorderFactory.createMatteBorder(0,0,2,0,Color.WHITE);
         codePanel.setBorder(codeBorder);
 
-        codeLogo = new JPanelImage(Res.getImage("logo-mini.png"));
+        codeLogo = new JImage(Res.getImage("logo-mini.png"));
         codePhoneLabel = new JLabel();
         codePhoneLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,41f));
         codePhoneLabel.setForeground(new Color(195,191,190));
@@ -129,7 +129,7 @@ public class LoginView {
         codeInfoLabel = new JLabel();
         codeInfoLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,16f));
 
-        lockIcon = new JPanelImage(Res.getImage("icon-lock.png"));
+        lockIcon = new JImage(Res.getImage("icon-lock.png"));
 
         codeValue = new JPasswordField();
         codeValue.setBorder(javax.swing.BorderFactory.createEmptyBorder());
@@ -144,12 +144,12 @@ public class LoginView {
         codeButton.setFocusable(false);
         codeButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
 
-        nameLogo = new JPanelImage(Res.getImage("logo-mini.png"));
+        nameLogo = new JImage(Res.getImage("logo-mini.png"));
 
         nameLabel = new JLabel();
         nameLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,16f));
 
-        nameIcon = new JPanelImage(Res.getImage("your-face.png"));
+        nameIcon = new JImage(Res.getImage("your-face.png"));
 
         nameButton = new JButton(imageButton);
         nameButton.setBorderPainted(false);
