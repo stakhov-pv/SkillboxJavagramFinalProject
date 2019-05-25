@@ -46,10 +46,11 @@
               </grid>
             </constraints>
             <properties>
-              <focusPainted value="false"/>
+              <focusPainted value="true"/>
               <horizontalAlignment value="0"/>
               <label value=""/>
               <text value=""/>
+              <visible value="true"/>
             </properties>
           </component>
           <component id="784c6" class="javax.swing.JButton" binding="minimiseButton" custom-create="true">
@@ -63,6 +64,7 @@
             <properties>
               <horizontalAlignment value="0"/>
               <text value=""/>
+              <verifyInputWhenFocusTarget value="false"/>
             </properties>
           </component>
           <hspacer id="78e15">
@@ -233,7 +235,7 @@
                 <properties>
                   <alignmentX value="0.0"/>
                   <alignmentY value="0.0"/>
-                  <enabled value="true"/>
+                  <enabled value="false"/>
                   <focusCycleRoot value="true"/>
                   <focusable value="true"/>
                   <opaque value="false"/>
@@ -246,6 +248,8 @@
                       <alignmentY value="0.0"/>
                       <borderPainted value="false"/>
                       <contentAreaFilled value="false"/>
+                      <doubleBuffered value="false"/>
+                      <enabled value="true"/>
                       <foreground color="-1"/>
                       <horizontalAlignment value="0"/>
                       <horizontalTextPosition value="0"/>

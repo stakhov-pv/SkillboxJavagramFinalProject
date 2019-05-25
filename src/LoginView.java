@@ -66,12 +66,12 @@ public class LoginView {
 
     private void createUIComponents() {
 
-        closeButton = new JButton(new ImageIcon("res/icon-close.png"));
+        closeButton = new JButton();
         closeButton.setBorderPainted(false);
         closeButton.setContentAreaFilled(false);
         closeButton.setFocusable(false);
 
-        minimiseButton = new JButton(new ImageIcon("res/icon-hide.png"));
+        minimiseButton = new JButton();
         minimiseButton.setBorderPainted(false);
         minimiseButton.setContentAreaFilled(false);
         minimiseButton.setFocusable(false);
@@ -164,19 +164,21 @@ public class LoginView {
             }
         });
 
-        minimiseButton.setAction(new AbstractAction() {
+        minimiseButton.setAction(new AbstractAction(null,new ImageIcon("res/icon-hide.png")) {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                Gui.getInstance().doMinimize();
             }
         });
 
-        closeButton.setAction(new AbstractAction() {
+        closeButton.setAction(new AbstractAction(null, new ImageIcon("res/icon-close.png")) {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                Gui.getInstance().doClose();
             }
         });
+
+
 
     }
 
@@ -203,9 +205,13 @@ public class LoginView {
                 break;
             case AskPhone:
                 phoneState.setVisible(true);
+                phoneButton.setEnabled(true);
+                Gui.getInstance().validate();
                 break;
             case ProcessingPhone:
                 phoneState.setVisible(true);
+                phoneButton.setEnabled(false);
+                Gui.getInstance().validate();
                 break;
             case AskCode:
                 codeState.setVisible(true);
