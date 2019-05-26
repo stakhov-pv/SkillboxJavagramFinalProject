@@ -206,24 +206,26 @@ public class LoginView {
             case AskPhone:
                 phoneState.setVisible(true);
                 phoneButton.setEnabled(true);
-                Gui.getInstance().validate();
                 break;
             case ProcessingPhone:
                 phoneState.setVisible(true);
                 phoneButton.setEnabled(false);
-                Gui.getInstance().validate();
                 break;
             case AskCode:
                 codeState.setVisible(true);
+                codeButton.setEnabled(true);
                 break;
             case ProcessingCode:
                 codeState.setVisible(true);
+                codeButton.setEnabled(false);
                 break;
             case AskNewProfile:
                 nameState.setVisible(true);
+                nameButton.setEnabled(true);
                 break;
             case ProcessingNewProfile:
                 nameState.setVisible(true);
+                nameButton.setEnabled(false);
                 break;
         }
         Gui.getInstance().validate();
