@@ -1,3 +1,5 @@
+import org.javagram.response.AuthAuthorization;
+
 public class LoginPresenter implements LoginView.Listener {
     LoginView view;
     LoginModel model;
@@ -29,36 +31,69 @@ public class LoginPresenter implements LoginView.Listener {
 
     @Override
     public void onPhoneButtonPressed() {
+        String desiredPhone = view.getPhoneValue();
+        //TODO: check phone number for consistency
+        model.setPhoneNumber(desiredPhone);
         setState(LoginView.LoginState.ProcessingPhone);
-        model.fakeGetData(new LoginModel.FakeDataReady() {
-            @Override
-            public void dataReadyListener() {
+        try {
+            boolean registered = model.getRegisteredStatus(desiredPhone);
+            if (registered) {
                 setState(LoginView.LoginState.AskCode);
+                model.sendCode(model.getPhoneNumber());
+            } else {
+                setState(LoginView.LoginState.AskNewProfile);
+
             }
-        });
+        } catch (Exception e) {
+            //TODO: show error
+        }
     }
 
     @Override
     public void onCodeButtonPressed() {
+        String code = view.getCodeValue();
+        //TODO: check code for consistency
         setState(LoginView.LoginState.ProcessingCode);
-        model.fakeGetData(new LoginModel.FakeDataReady() {
+        AuthAuthorization authorization=null;
+        try {
+            authorization = model.signIn(code);
+            if (authorization == null) setState(LoginView.LoginState.AskNewProfile);
+            else startMessenger();
+        } catch (Exception e) {
+            //TODO: show error
+            e.printStackTrace();
+            //TODO: PHONE_CODE_INVALID may be user error - need to give one more chance to user - reask and retype code
+            if ("PHONE_CODE_INVALID".equals(e.getMessage())) {
+                setState(LoginView.LoginState.AskNewProfile);
+            } else if ("PHONE_NUMBER_INVALID".equals(e.getMessage())) {
+                setState(LoginView.LoginState.AskPhone);
+            }
+        }
+        /*
+        model.fakeGetData(new LoginModel.DataReady() {
             @Override
-            public void dataReadyListener() {
+            public void dataReadyListener(Object result) {
                 setState(LoginView.LoginState.AskNewProfile);
             }
-        });
+        });*/
 
     }
 
     @Override
     public void onNameButtonPressed() {
         setState(LoginView.LoginState.ProcessingNewProfile);
-        model.fakeGetData(new LoginModel.FakeDataReady() {
+        model.fakeGetData(new LoginModel.DataReady() {
             @Override
-            public void dataReadyListener() {
+            public void dataReadyListener(Object result) {
                 setState(LoginView.LoginState.AskPhone);
             }
         });
+    }
+
+    void startMessenger() {
+        ConversationsForm conversations = new ConversationsForm();
+        Gui.getInstance().changePane(conversations.getRootPanel());
+        dispose();
     }
 
 }
