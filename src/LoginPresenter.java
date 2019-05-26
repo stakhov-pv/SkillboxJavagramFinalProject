@@ -30,27 +30,35 @@ public class LoginPresenter implements LoginView.Listener {
     @Override
     public void onPhoneButtonPressed() {
         setState(LoginView.LoginState.ProcessingPhone);
-        /*try {
-            Thread.sleep(2000);
-        } catch (Exception e) {
-
-        }
-        setState(LoginView.LoginState.AskCode);
-
-         */
-
+        model.fakeGetData(new LoginModel.FakeDataReady() {
+            @Override
+            public void dataReadyListener() {
+                setState(LoginView.LoginState.AskCode);
+            }
+        });
     }
 
     @Override
     public void onCodeButtonPressed() {
-        setState(LoginView.LoginState.AskNewProfile);
+        setState(LoginView.LoginState.ProcessingCode);
+        model.fakeGetData(new LoginModel.FakeDataReady() {
+            @Override
+            public void dataReadyListener() {
+                setState(LoginView.LoginState.AskNewProfile);
+            }
+        });
 
     }
 
     @Override
     public void onNameButtonPressed() {
-        setState(LoginView.LoginState.AskPhone);
-
+        setState(LoginView.LoginState.ProcessingNewProfile);
+        model.fakeGetData(new LoginModel.FakeDataReady() {
+            @Override
+            public void dataReadyListener() {
+                setState(LoginView.LoginState.AskPhone);
+            }
+        });
     }
 
 }
