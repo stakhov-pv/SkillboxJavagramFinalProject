@@ -40,19 +40,7 @@ public class Gui implements WindowListener {
     }
 
     public void doMinimize() {
-        frame.setVisible(false);
-        frame.setUndecorated(false);
         frame.setState(Frame.ICONIFIED);
-        frame.setUndecorated(true);
-        frame.setVisible(true);
-
-        //frame.setExtendedState(JFrame.ICONIFIED);
-        //frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_ICONIFIED));
-
-        //WindowEvent wev = new WindowEvent(frame, WindowEvent.WINDOW_ICONIFIED);
-        //Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
-        //frame.setVisible(false);
-        //frame.revalidate();
     }
 
     public void doClose() {
