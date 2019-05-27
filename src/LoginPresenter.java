@@ -91,7 +91,7 @@ public class LoginPresenter implements LoginView.Listener {
     }
 
     void startMessenger() {
-        ConversationsForm conversations = new ConversationsForm();
+        MessengerView conversations = new MessengerView();
         Gui.getInstance().changePane(conversations.getRootPanel());
         dispose();
     }

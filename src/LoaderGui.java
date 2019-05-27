@@ -33,9 +33,9 @@ public class LoaderGui {
         frame.setContentPane(login.getRootPanel());
          */
 
-        ConversationsForm conversationsForm = new ConversationsForm();
-        //frame.setContentPane(conversationsForm.getRootPanel());
-        //frame.getLayeredPane().setLayer(conversationsForm.getRootPanel(),JLayeredPane.FRAME_CONTENT_LAYER);
+        MessengerView messengerView = new MessengerView();
+        //frame.setContentPane(messengerView.getRootPanel());
+        //frame.getLayeredPane().setLayer(messengerView.getRootPanel(),JLayeredPane.FRAME_CONTENT_LAYER);
 
 
         JPanel transparentBackground = new JPanel();
@@ -50,9 +50,9 @@ public class LoaderGui {
         //layeredPane.add(transparentBackground,JLayeredPane.DEFAULT_LAYER);
         //frame.setContentPane(layeredPane);
 
-        conversationsForm.getRootPanel().setBounds(0,0,frame.getWidth(), frame.getHeight());
-        frame.getLayeredPane().setLayer(conversationsForm.getRootPanel(),JLayeredPane.POPUP_LAYER-1);
-        frame.getLayeredPane().add(conversationsForm.getRootPanel());
+        messengerView.getRootPanel().setBounds(0,0,frame.getWidth(), frame.getHeight());
+        frame.getLayeredPane().setLayer(messengerView.getRootPanel(),JLayeredPane.POPUP_LAYER-1);
+        frame.getLayeredPane().add(messengerView.getRootPanel());
 
         transparentBackground.setBounds(0,0, frame.getWidth(),frame.getHeight());
         frame.getLayeredPane().setLayer(transparentBackground,JLayeredPane.POPUP_LAYER);

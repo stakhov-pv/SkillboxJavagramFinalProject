@@ -2,7 +2,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-public class ConversationsForm {
+public class MessengerView {
     private JPanel rootPanel;
     private JPanel headerPanel;
     private JPanel logoAccountPanel;
