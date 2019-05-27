@@ -62,6 +62,7 @@ public class PhoneFormatter {
         return result;
     }
 
+    //TODO: remove spaces, minuses and other non digit and non + symbols
     public static String cutSymbols(String source) {
         return source.trim();
     }
