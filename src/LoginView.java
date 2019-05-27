@@ -54,6 +54,8 @@ public class LoginView {
     private JPanel nameIcon;
     private JPanel phoneButtonBackground;
     private JButton phoneButton;
+    private JPanel nameButtonBackground;
+    private JPanel codeButtonBackground;
 
     public LoginView() {
     }
@@ -132,10 +134,11 @@ public class LoginView {
         //codeValue.setFont(codeFont);
         codeValue.setCaretPosition(phoneValue.getText().length());
 
-        codeButton = new JButton(new ImageIcon("res/button-background.png"));
+        codeButtonBackground = new JImage(Res.getImage("button-background.png"));
+        codeButton = new JButton();
         codeButton.setBorderPainted(false);
         codeButton.setContentAreaFilled(false);
-        codeButton.setFocusable(false);
+        //codeButton.setFocusable(false);
         codeButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
 
         nameLogo = new JImage(Res.getImage("logo-mini.png"));
@@ -145,10 +148,11 @@ public class LoginView {
 
         nameIcon = new JImage(Res.getImage("your-face.png"));
 
-        nameButton = new JButton(new ImageIcon("res/button-background.png"));
+        nameButtonBackground = new JImage(Res.getImage("button-background.png"));
+        nameButton = new JButton();
         nameButton.setBorderPainted(false);
         nameButton.setContentAreaFilled(false);
-        nameButton.setFocusable(false);
+        //nameButton.setFocusable(false);
         nameButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
 
         phoneButton.setAction(new AbstractAction() {

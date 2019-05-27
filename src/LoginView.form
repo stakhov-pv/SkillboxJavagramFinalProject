@@ -3,14 +3,14 @@
   <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="900" height="630"/>
+      <xy x="20" y="20" width="900" height="1630"/>
     </constraints>
     <properties>
       <alignmentX value="0.0"/>
       <alignmentY value="0.0"/>
-      <maximumSize width="900" height="630"/>
-      <minimumSize width="900" height="630"/>
-      <preferredSize width="900" height="630"/>
+      <maximumSize width="900" height="1630"/>
+      <minimumSize width="900" height="1630"/>
+      <preferredSize width="900" height="1630"/>
     </properties>
     <border type="none"/>
     <children>
@@ -188,7 +188,11 @@
               </component>
               <vspacer id="2aee6">
                 <constraints>
-                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="95"/>
+                    <preferred-size width="-1" height="95"/>
+                    <maximum-size width="-1" height="95"/>
+                  </grid>
                 </constraints>
               </vspacer>
               <vspacer id="f03e7">
@@ -376,24 +380,12 @@
                   <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="9f501" class="javax.swing.JButton" binding="codeButton" custom-create="true">
-                <constraints>
-                  <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <borderPainted value="false"/>
-                  <focusable value="false"/>
-                  <horizontalTextPosition value="0"/>
-                  <text value="&lt;html&gt;&lt;font color=&quot;white&quot;&gt;ПРОДОЛЖИТЬ&lt;/font&gt;&lt;/html&gt;"/>
-                  <visible value="true"/>
-                </properties>
-              </component>
               <vspacer id="e30f8">
                 <constraints>
                   <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-                    <minimum-size width="-1" height="1"/>
-                    <preferred-size width="-1" height="1"/>
-                    <maximum-size width="-1" height="1"/>
+                    <minimum-size width="-1" height="95"/>
+                    <preferred-size width="-1" height="95"/>
+                    <maximum-size width="-1" height="95"/>
                   </grid>
                 </constraints>
               </vspacer>
@@ -402,6 +394,25 @@
                   <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
+              <grid id="97054" binding="codeButtonBackground" custom-create="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="9f501" class="javax.swing.JButton" binding="codeButton" custom-create="true">
+                    <constraints border-constraint="Center"/>
+                    <properties>
+                      <borderPainted value="false"/>
+                      <focusable value="false"/>
+                      <horizontalTextPosition value="0"/>
+                      <text value="&lt;html&gt;&lt;font color=&quot;white&quot;&gt;ПРОДОЛЖИТЬ&lt;/font&gt;&lt;/html&gt;"/>
+                      <visible value="true"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
             </children>
           </grid>
           <grid id="7f955" binding="nameState" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -535,19 +546,13 @@
                   <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="b143f" class="javax.swing.JButton" binding="nameButton" custom-create="true">
-                <constraints>
-                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <horizontalTextPosition value="0"/>
-                  <opaque value="false"/>
-                  <text value="&lt;html&gt;&lt;font color=&quot;white&quot;&gt;ЗАВЕРШИТЬ&lt;/font&gt;&lt;/html&gt;"/>
-                </properties>
-              </component>
               <vspacer id="6e681">
                 <constraints>
-                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="95"/>
+                    <preferred-size width="-1" height="95"/>
+                    <maximum-size width="-1" height="95"/>
+                  </grid>
                 </constraints>
               </vspacer>
               <vspacer id="8569">
@@ -555,6 +560,23 @@
                   <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
+              <grid id="cdf12" binding="nameButtonBackground" custom-create="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="b143f" class="javax.swing.JButton" binding="nameButton" custom-create="true">
+                    <constraints border-constraint="Center"/>
+                    <properties>
+                      <horizontalTextPosition value="0"/>
+                      <opaque value="false"/>
+                      <text value="&lt;html&gt;&lt;font color=&quot;white&quot;&gt;ЗАВЕРШИТЬ&lt;/font&gt;&lt;/html&gt;"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
             </children>
           </grid>
         </children>

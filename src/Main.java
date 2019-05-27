@@ -13,6 +13,7 @@ public class Main {
         TelegramApiBridge bridge = initBridge();
 
         LoginView loginView = new LoginView();
+        loginView.show();
         LoginModel loginModel = new LoginModel(bridge);
         LoginPresenter loginPresenter = new LoginPresenter(loginView, loginModel);
         loginPresenter.start();
