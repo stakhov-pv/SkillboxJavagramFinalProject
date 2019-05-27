@@ -24,4 +24,15 @@ public class JImage extends JPanel {
             graphics.fillRect(0,0,20,20);
         }
     }
+
+    public void replaceImage(BufferedImage image) {
+        this.background = image;
+        Dimension size = new Dimension(background.getWidth(), background.getHeight());
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+
+        setOpaque(false);
+        validate();
+    }
 }

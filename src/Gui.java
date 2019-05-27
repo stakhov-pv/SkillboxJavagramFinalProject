@@ -10,9 +10,11 @@ public class Gui {
     private JFrame frame;
     private static Gui instance;
 
-    public static synchronized Gui getInstance() {
+    public static Gui getInstance() {
         if (instance == null) {
-            instance = new Gui();
+            synchronized (Gui.class) {
+                instance = new Gui();
+            }
         }
         return instance;
     }

@@ -1,17 +1,14 @@
-import org.javagram.TelegramApiBridge;
 import org.javagram.response.AuthAuthorization;
-import org.javagram.response.AuthCheckedPhone;
 
 import java.io.IOException;
 
 public class LoginModel {
     private LoginView.LoginState state;
-    private TelegramApiBridge bridge;
     //TODO: save phone number in storage to remember in second start
     private String phoneNumber;
 
-    public LoginModel(TelegramApiBridge bridge) {
-        this.bridge = bridge;
+    public LoginModel() {
+
     }
 
     public LoginView.LoginState getState() {
@@ -48,17 +45,15 @@ public class LoginModel {
     }
 
     boolean getRegisteredStatus(String phoneNumber) throws IOException {
-        AuthCheckedPhone authCheckedPhone = bridge.authCheckPhone(phoneNumber);
-        return authCheckedPhone.isRegistered();
+        return TelegramProvider.getInstance().checkPhoneRegisteredStatus(phoneNumber);
     }
 
     void sendCode(String phoneNumber) throws IOException {
-        bridge.authSendCode(phoneNumber);
+        TelegramProvider.getInstance().requestCode(phoneNumber);
     }
 
-    AuthAuthorization signIn(String code) throws IOException {
-        AuthAuthorization authorization = bridge.authSignIn(code);
-        return authorization;
+    boolean signIn(String code) throws IOException {
+        return TelegramProvider.getInstance().signIn(code);
     }
 
 }

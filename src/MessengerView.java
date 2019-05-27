@@ -1,8 +1,23 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.nio.Buffer;
 
 public class MessengerView {
+
+    public enum MessengerState {
+        Init,
+        Messenger,
+    }
+
+    private Listener listener;
+
+    public interface Listener {
+        void onSendButtonPressed();
+        void onProfileButtonPressed();
+    }
+
     private JPanel rootPanel;
     private JPanel headerPanel;
     private JPanel logoAccountPanel;
@@ -112,5 +127,33 @@ public class MessengerView {
         inMessageLeftPanel = new JImage(Res.getImage("message-in-left.png"));
 
 
+    }
+
+    void attachListener(Listener listener) {
+        this.listener = listener;
+    }
+
+    void detachListener() {
+        this.listener=null;
+    }
+
+    void show() {
+        Gui.getInstance().changePane(rootPanel);
+        showState(MessengerState.Messenger);
+    }
+
+    void showState(MessengerState newState) {
+        switch (newState) {
+            case Init:
+                break;
+            case Messenger:
+                break;
+        }
+        Gui.getInstance().validate();
+    }
+
+    void setProfile(String name, BufferedImage smallPic) {
+        accountNameLabel.setText(name);
+        //((JImage)accountIconPanel).replaceImage(smallPic);
     }
 }

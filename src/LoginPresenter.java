@@ -1,3 +1,4 @@
+import org.javagram.TelegramApiBridge;
 import org.javagram.response.AuthAuthorization;
 import util.PhoneFormatter;
 
@@ -5,9 +6,9 @@ public class LoginPresenter implements LoginView.Listener {
     LoginView view;
     LoginModel model;
 
-    LoginPresenter(LoginView view, LoginModel model) {
-        this.view = view;
+    LoginPresenter(LoginModel model,LoginView view) {
         this.model = model;
+        this.view = view;
 
         model.setState(LoginView.LoginState.Init);
 
@@ -58,8 +59,8 @@ public class LoginPresenter implements LoginView.Listener {
         setState(LoginView.LoginState.ProcessingCode);
         AuthAuthorization authorization=null;
         try {
-            authorization = model.signIn(code);
-            if (authorization == null) setState(LoginView.LoginState.AskNewProfile);
+            boolean authorised = model.signIn(code);
+            if (!authorised) setState(LoginView.LoginState.AskNewProfile);
             else startMessenger();
         } catch (Exception e) {
             //TODO: show error
@@ -88,8 +89,11 @@ public class LoginPresenter implements LoginView.Listener {
     }
 
     void startMessenger() {
-        MessengerView conversations = new MessengerView();
-        Gui.getInstance().changePane(conversations.getRootPanel());
+        MessengerView messengerView = new MessengerView();
+        MessengerModel messengerModel = new MessengerModel();
+        MessengerPresenter messengerPresenter = new MessengerPresenter(messengerModel, messengerView);
+        messengerPresenter.start();
+
         dispose();
     }
 
