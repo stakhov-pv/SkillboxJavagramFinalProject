@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public class Gui implements WindowListener {
+public class Gui {
     private static final int WIDTH = 900;
     private static final int HEIGHT = 630;
 
@@ -27,7 +27,6 @@ public class Gui implements WindowListener {
         frame.setSize(WIDTH,HEIGHT);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        frame.addWindowListener(this);
         frame.setVisible(true);
     }
 
@@ -59,38 +58,4 @@ public class Gui implements WindowListener {
         System.exit(0);
     }
 
-    @Override
-    public void windowOpened(WindowEvent windowEvent) {
-
-    }
-
-    @Override
-    public void windowClosing(WindowEvent windowEvent) {
-
-    }
-
-    @Override
-    public void windowClosed(WindowEvent windowEvent) {
-
-    }
-
-    @Override
-    public void windowIconified(WindowEvent windowEvent) {
-        //frame.setVisible(false);
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent windowEvent) {
-        //frame.setVisible(true);
-    }
-
-    @Override
-    public void windowActivated(WindowEvent windowEvent) {
-
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent windowEvent) {
-
-    }
 }
