@@ -1,19 +1,13 @@
 import org.javagram.TelegramApiBridge;
-import org.javagram.response.AuthAuthorization;
-import org.javagram.response.AuthCheckedPhone;
-import org.javagram.response.object.User;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) {
 
+        //TODO: do it on another thread or in other place (very slow startup)
         TelegramApiBridge bridge = initBridge();
 
         LoginView loginView = new LoginView();
-        loginView.show();
         LoginModel loginModel = new LoginModel(bridge);
         LoginPresenter loginPresenter = new LoginPresenter(loginView, loginModel);
         loginPresenter.start();
