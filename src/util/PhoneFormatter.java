@@ -54,6 +54,7 @@ public class PhoneFormatter {
                         +afterCountry.substring(3,5)
                         +"-"
                         +afterCountry.substring(5);
+                break;
             default:
                 result = countryCode+"-"+afterCountry;
                 break;

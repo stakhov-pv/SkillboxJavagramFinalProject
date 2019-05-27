@@ -7,6 +7,7 @@ import java.io.IOException;
 public class LoginModel {
     private LoginView.LoginState state;
     private TelegramApiBridge bridge;
+    //TODO: save phone number in storage to remember in second start
     private String phoneNumber;
 
     public LoginModel(TelegramApiBridge bridge) {
