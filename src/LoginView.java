@@ -74,6 +74,10 @@ public class LoginView {
         return codeValue.getText();
     }
 
+    public void setCodePhoneLabel(String phone) {
+        codePhoneLabel.setText(phone);
+    }
+
     private void createUIComponents() {
 
         closeButton = new JButton();
@@ -224,6 +228,7 @@ public class LoginView {
                 phoneButton.setEnabled(false);
                 break;
             case AskCode:
+                codeValue.setText("");
                 codeState.setVisible(true);
                 codeButton.setEnabled(true);
                 break;

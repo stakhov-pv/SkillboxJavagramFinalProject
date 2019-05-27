@@ -1,4 +1,5 @@
 import org.javagram.response.AuthAuthorization;
+import util.PhoneFormatter;
 
 public class LoginPresenter implements LoginView.Listener {
     LoginView view;
@@ -31,13 +32,14 @@ public class LoginPresenter implements LoginView.Listener {
 
     @Override
     public void onPhoneButtonPressed() {
-        String desiredPhone = view.getPhoneValue();
+        String desiredPhone = view.getPhoneValue().trim();
         //TODO: check phone number for consistency
         model.setPhoneNumber(desiredPhone);
         setState(LoginView.LoginState.ProcessingPhone);
         try {
             boolean registered = model.getRegisteredStatus(desiredPhone);
             if (registered) {
+                view.setCodePhoneLabel(PhoneFormatter.humanReadable(desiredPhone));
                 setState(LoginView.LoginState.AskCode);
                 model.sendCode(model.getPhoneNumber());
             } else {
@@ -64,19 +66,14 @@ public class LoginPresenter implements LoginView.Listener {
             e.printStackTrace();
             //TODO: PHONE_CODE_INVALID may be user error - need to give one more chance to user - reask and retype code
             if ("PHONE_CODE_INVALID".equals(e.getMessage())) {
-                setState(LoginView.LoginState.AskNewProfile);
+                //TODO: show error
+                setState(LoginView.LoginState.AskPhone);
             } else if ("PHONE_NUMBER_INVALID".equals(e.getMessage())) {
                 setState(LoginView.LoginState.AskPhone);
-            }
-        }
-        /*
-        model.fakeGetData(new LoginModel.DataReady() {
-            @Override
-            public void dataReadyListener(Object result) {
+            } else if ("PHONE_NUMBER_UNOCCUPIED".equals(e.getMessage())) {
                 setState(LoginView.LoginState.AskNewProfile);
             }
-        });*/
-
+        }
     }
 
     @Override
