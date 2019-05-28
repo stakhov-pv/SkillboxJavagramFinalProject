@@ -1,7 +1,13 @@
+import org.javagram.response.object.Dialog;
+import org.javagram.response.object.Message;
+import org.javagram.response.object.User;
+
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class MessengerModel {
     private MessengerView.MessengerState state;
+    private ArrayList<ConversationModel> conversations;
 
     public MessengerModel() {
     }
@@ -22,8 +28,34 @@ public class MessengerModel {
         return TelegramProvider.getInstance().getUserSmallPic();
     }
 
+    public int getUserId() {
+        return TelegramProvider.getInstance().getUserId();
+    }
+
     public BufferedImage getUserPic() {
         return TelegramProvider.getInstance().getUserPic();
     }
 
+    public ArrayList<Dialog> getDialogs() {
+        ArrayList<Dialog> dialogs = TelegramProvider.getInstance().getDialogs();
+        return dialogs;
+    }
+
+    public ArrayList<Message> getMessages(ArrayList<Integer> messageIds) {
+        ArrayList<Message> messages = TelegramProvider.getInstance().getMessages(messageIds);
+        return messages;
+    }
+
+    public ArrayList<User> getUsers(ArrayList<Integer> userIds) {
+        ArrayList<User> users = TelegramProvider.getInstance().getUsers(userIds);
+        return users;
+    }
+
+    public ArrayList<ConversationModel> getConversations() {
+        return conversations;
+    }
+
+    public void setConversations(ArrayList<ConversationModel> conversations) {
+        this.conversations = conversations;
+    }
 }

@@ -1,3 +1,13 @@
+import org.javagram.response.object.Dialog;
+import org.javagram.response.object.Message;
+import org.javagram.response.object.User;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.ToIntFunction;
+import java.util.stream.Collectors;
+
 public class MessengerPresenter implements MessengerView.Listener {
     MessengerModel model;
     MessengerView view;
@@ -16,6 +26,8 @@ public class MessengerPresenter implements MessengerView.Listener {
 
         view.show();
         setState(MessengerView.MessengerState.Messenger);
+
+        loadDialogs();
     }
 
     void dispose() {
@@ -37,5 +49,24 @@ public class MessengerPresenter implements MessengerView.Listener {
     @Override
     public void onProfileButtonPressed() {
 
+    }
+
+    void loadDialogs() {
+        ArrayList<Dialog> dialogs = model.getDialogs();
+        ArrayList<Integer> messageIds = dialogs.stream()
+                .map(Dialog::getTopMessage)
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Message> messages = model.getMessages(messageIds);
+        ArrayList<Integer> userIds = messages.stream()
+                .map(message -> message.getFromId()!=model.getUserId()?message.getFromId():message.getToId())
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<User> usersList = model.getUsers(userIds);
+        Map<Integer,User> users = usersList.stream()
+                .collect(Collectors.toMap(User::getId, c -> c));
+        ArrayList<ConversationModel> conversations = new ArrayList<>();
+        for(int i=0;i<dialogs.size();i++) {
+            conversations.add(new ConversationModel(users.get(userIds.get(i)),messages.get(i)));
+        }
+        model.setConversations(conversations);
     }
 }
