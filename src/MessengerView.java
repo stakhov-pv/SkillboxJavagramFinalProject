@@ -3,6 +3,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.nio.Buffer;
+import java.util.ArrayList;
 
 public class MessengerView {
 
@@ -59,6 +60,7 @@ public class MessengerView {
     private JPanel inMessageBottomPanel;
     private JPanel inMessageTextPanel;
     private JPanel inMessageLeftPanel;
+    private JList conversationsList;
 
 
     public JPanel getRootPanel() {
@@ -126,6 +128,7 @@ public class MessengerView {
         inMessageBottomPanel = new JImage(Res.getImage("message-in-bottom.png"));
         inMessageLeftPanel = new JImage(Res.getImage("message-in-left.png"));
 
+        conversationsList = new JList();
 
     }
 
@@ -155,5 +158,11 @@ public class MessengerView {
     void setProfile(String name, BufferedImage smallPic) {
         accountNameLabel.setText(name);
         //((JImage)accountIconPanel).replaceImage(smallPic);
+    }
+
+    void setConversations(ArrayList<ConversationModel> conversations) {
+        DefaultListModel<ConversationModel> listModel = new DefaultListModel<>();
+        listModel.addAll(conversations);
+        conversationsList.setModel(listModel);
     }
 }

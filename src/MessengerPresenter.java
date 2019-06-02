@@ -28,6 +28,7 @@ public class MessengerPresenter implements MessengerView.Listener {
         setState(MessengerView.MessengerState.Messenger);
 
         loadDialogs();
+        view.setConversations(model.getConversations());
     }
 
     void dispose() {
