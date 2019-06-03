@@ -25,4 +25,11 @@ public class ConversationModel {
     public void setTopMessage(Message topMessage) {
         this.topMessage = topMessage;
     }
+
+    @Override
+    public String toString() {
+        return (user==null?"Null":(user.getFirstName()+" "+user.getLastName()))
+                +"> "
+                +topMessage.getMessage();
+    }
 }

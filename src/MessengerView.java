@@ -164,5 +164,6 @@ public class MessengerView {
         DefaultListModel<ConversationModel> listModel = new DefaultListModel<>();
         listModel.addAll(conversations);
         conversationsList.setModel(listModel);
+        conversationsList.setCellRenderer(new ConversationRenderer());
     }
 }
