@@ -89,11 +89,23 @@ public class LoginView {
         closeButton.setBorderPainted(false);
         closeButton.setContentAreaFilled(false);
         closeButton.setFocusable(false);
+        closeButton.setAction(new AbstractAction(null, new ImageIcon("res/icon-close.png")) {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Gui.getInstance().doClose();
+            }
+        });
 
         minimiseButton = new JButton();
         minimiseButton.setBorderPainted(false);
         minimiseButton.setContentAreaFilled(false);
         minimiseButton.setFocusable(false);
+        minimiseButton.setAction(new AbstractAction(null,new ImageIcon("res/icon-hide.png")) {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Gui.getInstance().doMinimize();
+            }
+        });
 
         backgroundPanel = new JImage(Res.getImage("background.png"));
 
@@ -120,7 +132,12 @@ public class LoginView {
         phoneButton = new JButton();
         phoneButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
         phoneButton.setForeground(Color.WHITE);
-
+        phoneButton.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (listener!=null) listener.onPhoneButtonPressed();
+            }
+        });
 
         codePanel = new JPanel();
         Border codeBorder = BorderFactory.createMatteBorder(0,0,2,0,Color.WHITE);
@@ -138,17 +155,19 @@ public class LoginView {
 
         codeValue = new JPasswordField();
         codeValue.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-        //codeValue.setFont(lightFont.deriveFont(42f));
-        //Font codeFont = codeValue.getFont().deriveFont(22f);
-        //codeValue.setFont(codeFont);
         codeValue.setCaretPosition(phoneValue.getText().length());
 
         codeButtonBackground = new JImage(Res.getImage("button-background.png"));
         codeButton = new JButton();
         codeButton.setBorderPainted(false);
         codeButton.setContentAreaFilled(false);
-        //codeButton.setFocusable(false);
         codeButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
+        codeButton.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (listener!=null) listener.onCodeButtonPressed();
+            }
+        });
 
         nameLogo = new JImage(Res.getImage("logo-mini.png"));
 
@@ -163,43 +182,12 @@ public class LoginView {
         nameButton.setContentAreaFilled(false);
         //nameButton.setFocusable(false);
         nameButton.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,25f));
-
-        phoneButton.setAction(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                if (listener!=null) listener.onPhoneButtonPressed();
-            }
-        });
-
-        codeButton.setAction(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                if (listener!=null) listener.onCodeButtonPressed();
-            }
-        });
-
         nameButton.setAction(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (listener!=null) listener.onNameButtonPressed();
             }
         });
-
-        minimiseButton.setAction(new AbstractAction(null,new ImageIcon("res/icon-hide.png")) {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                Gui.getInstance().doMinimize();
-            }
-        });
-
-        closeButton.setAction(new AbstractAction(null, new ImageIcon("res/icon-close.png")) {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                Gui.getInstance().doClose();
-            }
-        });
-
-
 
     }
 

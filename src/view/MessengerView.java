@@ -7,6 +7,7 @@ import provider.Res;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -37,8 +38,6 @@ public class MessengerView {
     private JPanel messageEditorPanel;
     private JPanel logoPanel;
     private JPanel accountPanel;
-    private JPanel closePanel;
-    private JPanel minimisePanel;
     private JPanel searchIconPanel;
     private JPanel accountSettingsIconPanel;
     private JLabel accountNameLabel;
@@ -66,6 +65,8 @@ public class MessengerView {
     private JPanel inMessageTextPanel;
     private JPanel inMessageLeftPanel;
     private JList conversationsList;
+    private JButton closeButton;
+    private JButton minimiseButton;
 
 
     public JPanel getRootPanel() {
@@ -74,8 +75,27 @@ public class MessengerView {
 
     private void createUIComponents() {
 
-        closePanel = new JImage(Res.getImage("icon-close.png"));
-        minimisePanel = new JImage(Res.getImage("icon-hide.png"));
+        closeButton = new JButton();
+        closeButton.setBorderPainted(false);
+        closeButton.setContentAreaFilled(false);
+        closeButton.setFocusable(false);
+        closeButton.setAction(new AbstractAction(null, new ImageIcon("res/icon-close.png")) {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Gui.getInstance().doClose();
+            }
+        });
+
+        minimiseButton = new JButton();
+        minimiseButton.setBorderPainted(false);
+        minimiseButton.setContentAreaFilled(false);
+        minimiseButton.setFocusable(false);
+        minimiseButton.setAction(new AbstractAction(null,new ImageIcon("res/icon-hide.png")) {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Gui.getInstance().doMinimize();
+            }
+        });
 
         logoPanel = new JImage(Res.getImage("logo-micro.png"));
         searchIconPanel = new JImage(Res.getImage("icon-search.png"));
