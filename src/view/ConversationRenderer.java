@@ -1,5 +1,9 @@
+package view;
+
+import model.ConversationModel;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.User;
+import provider.Res;
 
 import javax.swing.*;
 import java.awt.*;

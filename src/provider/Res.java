@@ -1,3 +1,5 @@
+package provider;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -8,7 +10,7 @@ import java.util.HashMap;
 public class Res {
     private static final String RESOURCES_PATH = "res/";
 
-    enum FONT_TYPE {
+    public enum FONT_TYPE {
         REGULAR_FONT,
         LIGHT_FONT,
         SEMIBOLD_FONT

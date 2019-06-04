@@ -1,4 +1,7 @@
-import org.javagram.response.AuthAuthorization;
+package model;
+
+import provider.TelegramProvider;
+import view.LoginView;
 
 import java.io.IOException;
 
@@ -44,15 +47,15 @@ public class LoginModel {
         void dataReadyListener(Object result);
     }
 
-    boolean getRegisteredStatus(String phoneNumber) throws IOException {
+    public boolean getRegisteredStatus(String phoneNumber) throws IOException {
         return TelegramProvider.getInstance().checkPhoneRegisteredStatus(phoneNumber);
     }
 
-    void sendCode(String phoneNumber) throws IOException {
+    public void sendCode(String phoneNumber) throws IOException {
         TelegramProvider.getInstance().requestCode(phoneNumber);
     }
 
-    boolean signIn(String code) throws IOException {
+    public boolean signIn(String code) throws IOException {
         return TelegramProvider.getInstance().signIn(code);
     }
 

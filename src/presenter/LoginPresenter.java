@@ -1,12 +1,17 @@
-import org.javagram.TelegramApiBridge;
+package presenter;
+
+import model.LoginModel;
+import model.MessengerModel;
 import org.javagram.response.AuthAuthorization;
 import util.PhoneFormatter;
+import view.LoginView;
+import view.MessengerView;
 
 public class LoginPresenter implements LoginView.Listener {
-    LoginView view;
-    LoginModel model;
+    private LoginView view;
+    private LoginModel model;
 
-    LoginPresenter(LoginModel model,LoginView view) {
+    public LoginPresenter(LoginModel model, LoginView view) {
         this.model = model;
         this.view = view;
 
@@ -15,18 +20,18 @@ public class LoginPresenter implements LoginView.Listener {
         view.attachListener(this);
     }
 
-    void start() {
+    public void start() {
         view.show();
         setState(LoginView.LoginState.AskPhone);
     }
 
-    void dispose() {
+    public void dispose() {
         view.detachListener();
         view = null;
         model = null;
     }
 
-    void setState(LoginView.LoginState newState) {
+    public void setState(LoginView.LoginState newState) {
         model.setState(newState);
         view.showState(model.getState());
     }
@@ -88,7 +93,7 @@ public class LoginPresenter implements LoginView.Listener {
         });
     }
 
-    void startMessenger() {
+    private void startMessenger() {
         MessengerView messengerView = new MessengerView();
         MessengerModel messengerModel = new MessengerModel();
         MessengerPresenter messengerPresenter = new MessengerPresenter(messengerModel, messengerView);

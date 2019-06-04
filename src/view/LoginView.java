@@ -1,3 +1,8 @@
+package view;
+
+import provider.Gui;
+import provider.Res;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -198,20 +203,20 @@ public class LoginView {
 
     }
 
-    void attachListener(Listener listener) {
+    public void attachListener(Listener listener) {
         this.listener = listener;
     }
 
-    void detachListener() {
+    public void detachListener() {
         this.listener=null;
     }
 
-    void show() {
+    public void show() {
         Gui.getInstance().changePane(rootPanel);
         showState(LoginState.AskPhone);
     }
 
-    void showState(LoginState newState) {
+    public void showState(LoginState newState) {
 
         phoneState.setVisible(false);
         codeState.setVisible(false);

@@ -1,6 +1,10 @@
+package model;
+
 import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.User;
+import provider.TelegramProvider;
+import view.MessengerView;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

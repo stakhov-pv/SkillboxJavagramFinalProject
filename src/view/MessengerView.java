@@ -1,8 +1,13 @@
+package view;
+
+import model.ConversationModel;
+import provider.Gui;
+import provider.Res;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.nio.Buffer;
 import java.util.ArrayList;
 
 public class MessengerView {
@@ -132,20 +137,20 @@ public class MessengerView {
 
     }
 
-    void attachListener(Listener listener) {
+    public void attachListener(Listener listener) {
         this.listener = listener;
     }
 
-    void detachListener() {
+    public void detachListener() {
         this.listener=null;
     }
 
-    void show() {
+    public void show() {
         Gui.getInstance().changePane(rootPanel);
         showState(MessengerState.Messenger);
     }
 
-    void showState(MessengerState newState) {
+    public void showState(MessengerState newState) {
         switch (newState) {
             case Init:
                 break;
@@ -155,12 +160,12 @@ public class MessengerView {
         Gui.getInstance().validate();
     }
 
-    void setProfile(String name, BufferedImage smallPic) {
+    public void setProfile(String name, BufferedImage smallPic) {
         accountNameLabel.setText(name);
-        //((JImage)accountIconPanel).replaceImage(smallPic);
+        //((view.JImage)accountIconPanel).replaceImage(smallPic);
     }
 
-    void setConversations(ArrayList<ConversationModel> conversations) {
+    public void setConversations(ArrayList<ConversationModel> conversations) {
         DefaultListModel<ConversationModel> listModel = new DefaultListModel<>();
         listModel.addAll(conversations);
         conversationsList.setModel(listModel);

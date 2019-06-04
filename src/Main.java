@@ -1,5 +1,6 @@
-import org.javagram.TelegramApiBridge;
-import java.io.IOException;
+import model.LoginModel;
+import presenter.LoginPresenter;
+import view.LoginView;
 
 public class Main {
     public static void main(String[] args) {

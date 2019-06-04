@@ -1,11 +1,14 @@
+package presenter;
+
+import model.ConversationModel;
+import model.MessengerModel;
 import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.User;
+import view.MessengerView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
 public class MessengerPresenter implements MessengerView.Listener {
