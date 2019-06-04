@@ -93,6 +93,16 @@ public class LoginPresenter implements LoginView.Listener {
         });
     }
 
+    @Override
+    public void onMinimiseButtonPressed() {
+        view.minimiseApp();
+    }
+
+    @Override
+    public void onCloseButtonPressed() {
+        view.closeApp();
+    }
+
     private void startMessenger() {
         MessengerView messengerView = new MessengerView();
         MessengerModel messengerModel = new MessengerModel();

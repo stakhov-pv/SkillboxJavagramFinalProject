@@ -55,6 +55,17 @@ public class MessengerPresenter implements MessengerView.Listener {
 
     }
 
+    @Override
+    public void onMinimiseButtonPressed() {
+        view.minimiseApp();
+    }
+
+    @Override
+    public void onCloseButtonPressed() {
+        view.closeApp();
+    }
+
+
     void loadDialogs() {
         ArrayList<Dialog> dialogs = model.getDialogs();
         ArrayList<Integer> messageIds = dialogs.stream()

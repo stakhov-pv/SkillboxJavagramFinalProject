@@ -26,6 +26,8 @@ public class LoginView {
         void onPhoneButtonPressed();
         void onCodeButtonPressed();
         void onNameButtonPressed();
+        void onMinimiseButtonPressed();
+        void onCloseButtonPressed();
     }
 
     private JPanel rootPanel;
@@ -92,7 +94,7 @@ public class LoginView {
         closeButton.setAction(new AbstractAction(null, new ImageIcon("res/icon-close.png")) {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Gui.getInstance().doClose();
+                if (listener!=null) listener.onCloseButtonPressed();
             }
         });
 
@@ -103,7 +105,7 @@ public class LoginView {
         minimiseButton.setAction(new AbstractAction(null,new ImageIcon("res/icon-hide.png")) {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Gui.getInstance().doMinimize();
+                if (listener!=null) listener.onMinimiseButtonPressed();;
             }
         });
 
@@ -240,5 +242,13 @@ public class LoginView {
         }
         Gui.getInstance().validate();
 
+    }
+
+    public void minimiseApp() {
+        Gui.getInstance().doMinimize();
+    }
+
+    public void closeApp() {
+        Gui.getInstance().doClose();
     }
 }
