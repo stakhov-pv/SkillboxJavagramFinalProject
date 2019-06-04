@@ -1,6 +1,6 @@
 package view;
 
-import model.ConversationModel;
+import model.ConversationTopic;
 import provider.Gui;
 import provider.Res;
 
@@ -187,11 +187,11 @@ public class MessengerView {
         //((view.JImage)accountIconPanel).replaceImage(smallPic);
     }
 
-    public void setConversations(ArrayList<ConversationModel> conversations) {
-        DefaultListModel<ConversationModel> listModel = new DefaultListModel<>();
+    public void setConversations(ArrayList<ConversationTopic> conversations) {
+        DefaultListModel<ConversationTopic> listModel = new DefaultListModel<>();
         listModel.addAll(conversations);
         conversationsList.setModel(listModel);
-        conversationsList.setCellRenderer(new ConversationRenderer());
+        conversationsList.setCellRenderer(new ConversationTopicRenderer());
     }
 
     public void minimiseApp() {

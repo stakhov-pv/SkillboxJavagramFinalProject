@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class MessengerModel {
     private MessengerView.MessengerState state;
-    private ArrayList<ConversationModel> conversations;
+    private ArrayList<ConversationTopic> conversations;
 
     public MessengerModel() {
     }
@@ -55,11 +55,11 @@ public class MessengerModel {
         return users;
     }
 
-    public ArrayList<ConversationModel> getConversations() {
+    public ArrayList<ConversationTopic> getConversations() {
         return conversations;
     }
 
-    public void setConversations(ArrayList<ConversationModel> conversations) {
+    public void setConversations(ArrayList<ConversationTopic> conversations) {
         this.conversations = conversations;
     }
 }

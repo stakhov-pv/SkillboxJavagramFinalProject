@@ -3,11 +3,11 @@ package model;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.User;
 
-public class ConversationModel {
+public class ConversationTopic {
     private User user;
     private Message topMessage;
 
-    public ConversationModel(User user, Message topMessage) {
+    public ConversationTopic(User user, Message topMessage) {
         this.user = user;
         this.topMessage = topMessage;
     }

@@ -1,6 +1,6 @@
 package presenter;
 
-import model.ConversationModel;
+import model.ConversationTopic;
 import model.MessengerModel;
 import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
@@ -78,9 +78,9 @@ public class MessengerPresenter implements MessengerView.Listener {
         ArrayList<User> usersList = model.getUsers(userIds);
         Map<Integer,User> users = usersList.stream()
                 .collect(Collectors.toMap(User::getId, c -> c));
-        ArrayList<ConversationModel> conversations = new ArrayList<>();
+        ArrayList<ConversationTopic> conversations = new ArrayList<>();
         for(int i=0;i<dialogs.size();i++) {
-            conversations.add(new ConversationModel(users.get(userIds.get(i)),messages.get(i)));
+            conversations.add(new ConversationTopic(users.get(userIds.get(i)),messages.get(i)));
         }
         model.setConversations(conversations);
     }

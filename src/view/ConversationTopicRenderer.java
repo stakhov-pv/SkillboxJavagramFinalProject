@@ -1,6 +1,6 @@
 package view;
 
-import model.ConversationModel;
+import model.ConversationTopic;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.User;
 import provider.Res;
@@ -9,13 +9,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class ConversationRenderer extends JPanel implements ListCellRenderer<ConversationModel> {
+public class ConversationTopicRenderer extends JPanel implements ListCellRenderer<ConversationTopic> {
     private JLabel iconLabel = new JLabel();
     private JLabel nameLabel = new JLabel();
     private JLabel messageLabel = new JLabel();
     private JLabel dateLabel = new JLabel();
 
-    ConversationRenderer() {
+    ConversationTopicRenderer() {
         setLayout(new BorderLayout());
 
         add(iconLabel, BorderLayout.WEST);
@@ -33,10 +33,10 @@ public class ConversationRenderer extends JPanel implements ListCellRenderer<Con
     }
 
     @Override
-    public Component getListCellRendererComponent(JList<? extends ConversationModel> jList, ConversationModel conversationModel,
+    public Component getListCellRendererComponent(JList<? extends ConversationTopic> jList, ConversationTopic conversationTopic,
                                                   int i, boolean isSelected, boolean cellHasFocus) {
-        User user = conversationModel.getUser();
-        Message messageData = conversationModel.getTopMessage();
+        User user = conversationTopic.getUser();
+        Message messageData = conversationTopic.getTopMessage();
 
         if (isSelected) {
             setBackground(new Color(255, 255, 255));
@@ -46,7 +46,7 @@ public class ConversationRenderer extends JPanel implements ListCellRenderer<Con
         ImageIcon image = null;
         try {
             if (user!=null) {
-                byte[] imageArray = conversationModel.getUser().getPhoto(false);
+                byte[] imageArray = conversationTopic.getUser().getPhoto(false);
                 if (imageArray!=null) image = new ImageIcon(imageArray);
             }
 
@@ -62,7 +62,7 @@ public class ConversationRenderer extends JPanel implements ListCellRenderer<Con
                 user==null? "User deleted"
                         :user.getFirstName()+" "+user.getFirstName()
         );
-        messageLabel.setText(conversationModel.getTopMessage().getMessage());
+        messageLabel.setText(conversationTopic.getTopMessage().getMessage());
         dateLabel.setText(String.valueOf(messageData.getDate()));
         return this;
     }
