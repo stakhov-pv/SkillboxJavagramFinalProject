@@ -1,11 +1,15 @@
 package view;
 
 import model.ConversationTopic;
+import org.javagram.response.object.Message;
+import org.javagram.response.object.User;
 import provider.Gui;
 import provider.Res;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -25,6 +29,7 @@ public class MessengerView {
         void onProfileButtonPressed();
         void onMinimiseButtonPressed();
         void onCloseButtonPressed();
+        void onSelectConversation(int index);
     }
 
     private JPanel rootPanel;
@@ -155,7 +160,15 @@ public class MessengerView {
         inMessageBottomPanel = new JImage(Res.getImage("message-in-bottom.png"));
         inMessageLeftPanel = new JImage(Res.getImage("message-in-left.png"));
 
-        conversationsList = new JList();
+        conversationsList = new JList<ConversationTopic>();
+        conversationsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        conversationsList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                int index = conversationsList.getSelectedIndex();
+                listener.onSelectConversation(index);
+            }
+        });
 
     }
 
@@ -187,11 +200,19 @@ public class MessengerView {
         //((view.JImage)accountIconPanel).replaceImage(smallPic);
     }
 
-    public void setConversations(ArrayList<ConversationTopic> conversations) {
+    public void showConversationTopics(ArrayList<ConversationTopic> conversations) {
         DefaultListModel<ConversationTopic> listModel = new DefaultListModel<>();
         listModel.addAll(conversations);
         conversationsList.setModel(listModel);
         conversationsList.setCellRenderer(new ConversationTopicRenderer());
+    }
+
+    public void showChatPartner(User user) {
+
+    }
+
+    public void showConversationMessages(ArrayList<Message> messages) {
+
     }
 
     public void minimiseApp() {

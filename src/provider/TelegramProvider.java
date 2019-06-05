@@ -1,11 +1,16 @@
 package provider;
 
 import org.javagram.TelegramApiBridge;
+import org.javagram.core.StaticContainer;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
 import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.User;
+import org.telegram.api.TLAbsMessage;
+import org.telegram.api.TLInputPeerContact;
+import org.telegram.api.requests.TLRequestMessagesGetHistory;
+import org.telegram.tl.TLVector;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -20,6 +25,7 @@ public class TelegramProvider {
     private BufferedImage userSmallPic;
     private BufferedImage userPic;
     private String userName;
+    private ArrayList<Message> messages;
 
     public static TelegramProvider getInstance() {
         if (instance==null) {
@@ -132,6 +138,22 @@ public class TelegramProvider {
             try {
                 return bridge.usersGetUsers(userIds);
             } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public ArrayList<Message> getConversationsMessages(int userId) {
+        for (;;) {
+            try {
+                TLRequestMessagesGetHistory request = new TLRequestMessagesGetHistory(new TLInputPeerContact(userId), 0, Integer.MAX_VALUE, Integer.MAX_VALUE);
+                TLVector<TLAbsMessage> tlAbsMessages = StaticContainer.getTelegramApi().doRpcCall(request).getMessages();
+                ArrayList<Message> messages = new ArrayList<>();
+                for (TLAbsMessage tlMsg : tlAbsMessages) {
+                    messages.add(new Message(tlMsg));
+                }
+                return messages;
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

@@ -62,4 +62,10 @@ public class MessengerModel {
     public void setConversations(ArrayList<ConversationTopic> conversations) {
         this.conversations = conversations;
     }
+
+    public ArrayList<Message> getConversationMessages(ConversationTopic conversation) {
+        ArrayList<Message> messages = TelegramProvider.getInstance().getConversationsMessages(conversation.getUserId());
+        return messages;
+    }
+
 }

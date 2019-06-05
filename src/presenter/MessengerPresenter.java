@@ -5,6 +5,7 @@ import model.MessengerModel;
 import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.User;
+import provider.TelegramProvider;
 import view.MessengerView;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class MessengerPresenter implements MessengerView.Listener {
         setState(MessengerView.MessengerState.Messenger);
 
         loadDialogs();
-        view.setConversations(model.getConversations());
+        view.showConversationTopics(model.getConversations());
     }
 
     void dispose() {
@@ -65,8 +66,17 @@ public class MessengerPresenter implements MessengerView.Listener {
         view.closeApp();
     }
 
+    @Override
+    public void onSelectConversation(int index) {
+        if (model.getConversations()!=null && index<model.getConversations().size()) {
+            ConversationTopic conversationTopic = model.getConversations().get(index);
+            view.showChatPartner(conversationTopic.getUser());
+            view.showConversationMessages(model.getConversationMessages(conversationTopic));
+        }
+    }
 
-    void loadDialogs() {
+
+    public void loadDialogs() {
         ArrayList<Dialog> dialogs = model.getDialogs();
         ArrayList<Integer> messageIds = dialogs.stream()
                 .map(Dialog::getTopMessage)
@@ -80,8 +90,12 @@ public class MessengerPresenter implements MessengerView.Listener {
                 .collect(Collectors.toMap(User::getId, c -> c));
         ArrayList<ConversationTopic> conversations = new ArrayList<>();
         for(int i=0;i<dialogs.size();i++) {
-            conversations.add(new ConversationTopic(users.get(userIds.get(i)),messages.get(i)));
+            conversations.add(new ConversationTopic(userIds.get(i), users.get(userIds.get(i)),messages.get(i)));
         }
         model.setConversations(conversations);
+    }
+
+    public ArrayList<Message> getConversationMessages(ConversationTopic conversationTopic) {
+        return model.getConversationMessages(conversationTopic);
     }
 }
