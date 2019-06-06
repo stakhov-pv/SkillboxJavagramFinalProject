@@ -74,6 +74,7 @@ public class MessengerView {
     private JList conversationsList;
     private JButton closeButton;
     private JButton minimiseButton;
+    private JList messagesList;
 
 
     public JPanel getRootPanel() {
@@ -161,6 +162,7 @@ public class MessengerView {
         inMessageLeftPanel = new JImage(Res.getImage("message-in-left.png"));
 
         conversationsList = new JList<ConversationTopic>();
+        conversationsList.setCellRenderer(new ConversationTopicRenderer());
         conversationsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         conversationsList.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -169,6 +171,10 @@ public class MessengerView {
                 listener.onSelectConversation(index);
             }
         });
+
+        messagesList = new JList<Message>();
+        messagesList.setCellRenderer(new MessageRenderer());
+        messagesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
     }
 
@@ -204,7 +210,6 @@ public class MessengerView {
         DefaultListModel<ConversationTopic> listModel = new DefaultListModel<>();
         listModel.addAll(conversations);
         conversationsList.setModel(listModel);
-        conversationsList.setCellRenderer(new ConversationTopicRenderer());
     }
 
     public void showChatPartner(User user) {
@@ -212,7 +217,9 @@ public class MessengerView {
     }
 
     public void showConversationMessages(ArrayList<Message> messages) {
-
+        DefaultListModel<Message> messageModel = new DefaultListModel<>();
+        messageModel.addAll(messages);
+        messagesList.setModel(messageModel);
     }
 
     public void minimiseApp() {

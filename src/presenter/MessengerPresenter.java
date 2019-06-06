@@ -95,7 +95,4 @@ public class MessengerPresenter implements MessengerView.Listener {
         model.setConversations(conversations);
     }
 
-    public ArrayList<Message> getConversationMessages(ConversationTopic conversationTopic) {
-        return model.getConversationMessages(conversationTopic);
-    }
 }
