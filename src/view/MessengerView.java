@@ -14,6 +14,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MessengerView {
 
@@ -216,7 +217,7 @@ public class MessengerView {
 
     }
 
-    public void showConversationMessages(ArrayList<Message> messages) {
+    public void showConversationMessages(List<Message> messages) {
         DefaultListModel<Message> messageModel = new DefaultListModel<>();
         messageModel.addAll(messages);
         messagesList.setModel(messageModel);

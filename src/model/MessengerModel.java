@@ -8,6 +8,7 @@ import view.MessengerView;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MessengerModel {
     private MessengerView.MessengerState state;
@@ -40,8 +41,8 @@ public class MessengerModel {
         return TelegramProvider.getInstance().getUserPic();
     }
 
-    public ArrayList<Dialog> getDialogs() {
-        ArrayList<Dialog> dialogs = TelegramProvider.getInstance().getDialogs();
+    public List<Dialog> getDialogs() {
+        List<Dialog> dialogs = TelegramProvider.getInstance().getDialogs();
         return dialogs;
     }
 
@@ -63,8 +64,8 @@ public class MessengerModel {
         this.conversations = conversations;
     }
 
-    public ArrayList<Message> getConversationMessages(ConversationTopic conversation) {
-        ArrayList<Message> messages = TelegramProvider.getInstance().getConversationsMessages(conversation.getUserId());
+    public List<Message> getConversationMessages(ConversationTopic conversation) {
+        List<Message> messages = TelegramProvider.getInstance().getConversationsMessages(conversation.getUserId());
         return messages;
     }
 

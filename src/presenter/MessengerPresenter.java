@@ -9,6 +9,7 @@ import provider.TelegramProvider;
 import view.MessengerView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -77,7 +78,7 @@ public class MessengerPresenter implements MessengerView.Listener {
 
 
     public void loadDialogs() {
-        ArrayList<Dialog> dialogs = model.getDialogs();
+        List<Dialog> dialogs = model.getDialogs();
         ArrayList<Integer> messageIds = dialogs.stream()
                 .map(Dialog::getTopMessage)
                 .collect(Collectors.toCollection(ArrayList::new));

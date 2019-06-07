@@ -17,6 +17,8 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class TelegramProvider {
     private static TelegramProvider instance;
@@ -25,7 +27,6 @@ public class TelegramProvider {
     private BufferedImage userSmallPic;
     private BufferedImage userPic;
     private String userName;
-    private ArrayList<Message> messages;
 
     public static TelegramProvider getInstance() {
         if (instance==null) {
@@ -107,7 +108,7 @@ public class TelegramProvider {
         return userSmallPic;
     }
 
-    public ArrayList<Dialog> getDialogs() {
+    public List<Dialog> getDialogs() {
         for (;;) {
             try {
                 ArrayList<Dialog> dialogs = bridge.messagesGetDialogs(0, Integer.MAX_VALUE, Integer.MAX_VALUE);
@@ -115,11 +116,9 @@ public class TelegramProvider {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e) {
-            }
+            waitBeforeRepeat();
         }
+
     }
 
     public ArrayList<Message> getMessages(ArrayList<Integer> messageIds) {
@@ -130,6 +129,7 @@ public class TelegramProvider {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            waitBeforeRepeat();
         }
     }
 
@@ -140,23 +140,31 @@ public class TelegramProvider {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            waitBeforeRepeat();
         }
     }
 
-    public ArrayList<Message> getConversationsMessages(int userId) {
+    public List<Message> getConversationsMessages(int userId) {
         for (;;) {
             try {
                 TLRequestMessagesGetHistory request = new TLRequestMessagesGetHistory(new TLInputPeerContact(userId), 0, Integer.MAX_VALUE, Integer.MAX_VALUE);
                 TLVector<TLAbsMessage> tlAbsMessages = StaticContainer.getTelegramApi().doRpcCall(request).getMessages();
-                ArrayList<Message> messages = new ArrayList<>();
+                List<Message> messages = new LinkedList<>();
                 for (TLAbsMessage tlMsg : tlAbsMessages) {
-                    messages.add(new Message(tlMsg));
+                    messages.add(0, new Message(tlMsg));
                 }
                 return messages;
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            waitBeforeRepeat();
         }
+    }
+
+    private void waitBeforeRepeat() {
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e1) {}
     }
 
 }
