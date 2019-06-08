@@ -26,7 +26,6 @@ public class TelegramProvider {
     private User user;
     private BufferedImage userSmallPic;
     private BufferedImage userPic;
-    private String userName;
 
     public static TelegramProvider getInstance() {
         if (instance==null) {
@@ -88,7 +87,6 @@ public class TelegramProvider {
         user = authorization.getUser();
         userSmallPic = ImageIO.read(new ByteArrayInputStream(user.getPhoto(true)));
         userPic = ImageIO.read(new ByteArrayInputStream(user.getPhoto(false)));
-        userName = (user.getFirstName()+" "+user.getLastName()).trim();
         return true;
     }
 
@@ -109,7 +107,7 @@ public class TelegramProvider {
     }
 
     public String getUserName() {
-        return userName;
+        return (user.getFirstName()+" "+user.getLastName()).trim();
     }
 
     public BufferedImage getUserPic() {
@@ -123,7 +121,8 @@ public class TelegramProvider {
     public void updateProfile(String firstName, String lastName) {
         for (;;) {
             try {
-                bridge.accountUpdateProfile(firstName, lastName);
+                User updatedUser = bridge.accountUpdateProfile(firstName, lastName);
+                user = updatedUser;
                 return;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -167,6 +166,16 @@ public class TelegramProvider {
             waitBeforeRepeat();
         }
     }
+
+    /*
+    public User getUser(int userId) {
+        ArrayList<Integer> userToGet = new ArrayList<>();
+        userToGet.add(userId);
+        List<User> users = getUsers(userToGet);
+        if (users.size()==1) return users.get(0);
+        else return null;
+    }
+     */
 
     public List<Message> getConversationsMessages(int userId) {
         for (;;) {

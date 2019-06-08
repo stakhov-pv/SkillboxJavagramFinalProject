@@ -77,6 +77,7 @@ public class MessengerPresenter implements MessengerView.Listener {
     @Override
     public void onSaveProfileEditor(String firstName, String lastName) {
         model.updateUserProfile(firstName,lastName);
+        view.setProfile(model.getUserName(),model.getUserSmallPic());
     }
 
     @Override
