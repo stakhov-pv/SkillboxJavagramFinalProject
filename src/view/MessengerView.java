@@ -280,14 +280,16 @@ public class MessengerView {
         //inputPanel.setLayout(new );
         JTextField firstNameTextField = new JTextField(firstName);
         JTextField lastNameTextField = new JTextField(lastName);
-        JButton logoffButton = new JButton("Logoff from "+phone);
+        JButton logoffButton = new JButton();
         logoffButton.setAction(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 //TODO: close dialog?
+
                 if (listener!=null) listener.onLogoff();
             }
         });
+        logoffButton.setText("Logoff from "+phone);
         inputPanel.add(new JLabel("First name:"));
         inputPanel.add(firstNameTextField);
         inputPanel.add(new JLabel("Last name:"));
