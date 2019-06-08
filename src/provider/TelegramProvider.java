@@ -96,6 +96,18 @@ public class TelegramProvider {
         return user.getId();
     }
 
+    public String getUserFirstName() {
+        return user.getFirstName();
+    }
+
+    public String getUserLastName() {
+        return user.getLastName();
+    }
+
+    public String getUserPhone() {
+        return user.getPhone();
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -106,6 +118,18 @@ public class TelegramProvider {
 
     public BufferedImage getUserSmallPic() {
         return userSmallPic;
+    }
+
+    public void updateProfile(String firstName, String lastName) {
+        for (;;) {
+            try {
+                bridge.accountUpdateProfile(firstName, lastName);
+                return;
+            } catch (Exception e) {
+                e.printStackTrace();
+                waitBeforeRepeat();
+            }
+        }
     }
 
     public List<Dialog> getDialogs() {
@@ -166,5 +190,14 @@ public class TelegramProvider {
             Thread.sleep(1000);
         } catch (Exception e1) {}
     }
+
+    public void logoff() {
+        try {
+            bridge.authLogOut();
+        } catch (Exception e) {
+            //TODO: need repeat???
+        }
+    }
+
 
 }

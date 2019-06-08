@@ -29,6 +29,22 @@ public class MessengerModel {
         return TelegramProvider.getInstance().getUserName();
     }
 
+    public String getUserFirstName() {
+        return TelegramProvider.getInstance().getUserFirstName();
+    }
+
+    public String getUserLastName() {
+        return TelegramProvider.getInstance().getUserLastName();
+    }
+
+    public String getUserPhone() {
+        return TelegramProvider.getInstance().getUserPhone();
+    }
+
+    public void updateUserProfile(String firstName, String lastName) {
+        TelegramProvider.getInstance().updateProfile(firstName,lastName);
+    }
+
     public BufferedImage getUserSmallPic() {
         return TelegramProvider.getInstance().getUserSmallPic();
     }

@@ -6,6 +6,7 @@ import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.User;
 import provider.TelegramProvider;
+import view.LoginView;
 import view.MessengerView;
 
 import java.util.ArrayList;
@@ -54,7 +55,47 @@ public class MessengerPresenter implements MessengerView.Listener {
 
     @Override
     public void onProfileButtonPressed() {
+        view.showProfileEdit(model.getUserFirstName(), model.getUserLastName(), model.getUserPhone());
+    }
 
+    @Override
+    public void onEditUserButtonPressed() {
+
+    }
+
+    @Override
+    public void onAddUserButtonPressed() {
+
+    }
+
+
+    @Override
+    public void onCloseProfileEditor() {
+        //TODO: realy need this method?
+    }
+
+    @Override
+    public void onSaveProfileEditor(String firstName, String lastName) {
+        model.updateUserProfile(firstName,lastName);
+    }
+
+    @Override
+    public void onCloseUserEditor() {
+
+    }
+
+    @Override
+    public void onSaveUserEditor(String firstName, String lastName) {
+
+    }
+
+    @Override
+    public void onLogoff() {
+        TelegramProvider.getInstance().logoff();
+
+        dispose();
+
+        LoginView.createAndRun();
     }
 
     @Override
@@ -75,7 +116,6 @@ public class MessengerPresenter implements MessengerView.Listener {
             view.showConversationMessages(model.getConversationMessages(conversationTopic));
         }
     }
-
 
     public void loadDialogs() {
         List<Dialog> dialogs = model.getDialogs();

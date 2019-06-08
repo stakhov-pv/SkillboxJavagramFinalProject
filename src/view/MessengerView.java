@@ -12,7 +12,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,9 +31,16 @@ public class MessengerView {
     public interface Listener {
         void onSendButtonPressed();
         void onProfileButtonPressed();
+        void onEditUserButtonPressed();
+        void onAddUserButtonPressed();
         void onMinimiseButtonPressed();
         void onCloseButtonPressed();
         void onSelectConversation(int index);
+        void onCloseProfileEditor();
+        void onSaveProfileEditor(String firstName, String lastName);
+        void onCloseUserEditor();
+        void onSaveUserEditor(String firstName, String lastName);
+        void onLogoff();
     }
 
     private JPanel rootPanel;
@@ -109,6 +119,9 @@ public class MessengerView {
         logoPanel = new JImage(Res.getImage("logo-micro.png"));
         searchIconPanel = new JImage(Res.getImage("icon-search.png"));
 
+        accountPanel = new JPanel();
+        accountPanel.addMouseListener(new PanelClickListener( ()->listener.onProfileButtonPressed() ));
+
         accountIconPanel = new JImage(Res.getImage("your-face.png"));
         accountSettingsIconPanel = new JImage(Res.getImage("icon-settings.png"));
         accountNameLabel = new JLabel();
@@ -132,7 +145,7 @@ public class MessengerView {
         Border chatPartnerBottomBorder = BorderFactory.createMatteBorder(0,0,1,0,new Color(237,237,227));
         chatPartnerPanel = new JPanel();
         chatPartnerPanel.setBorder(chatPartnerBottomBorder);
-
+        chatPartnerPanel.addMouseListener(new PanelClickListener( () -> listener.onEditUserButtonPressed() ));
 
         Border conversationsBottomBorder = BorderFactory.createMatteBorder(0,0,1,0,new Color(219,219,219));
         user1 = new JPanel();
@@ -230,4 +243,75 @@ public class MessengerView {
     public void closeApp() {
         Gui.getInstance().doClose();
     }
+
+    class PanelClickListener implements MouseListener {
+        PanelListener listener;
+
+        public PanelClickListener(PanelListener listener) {
+            this.listener = listener;
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent mouseEvent) {
+            if (listener!=null) listener.onPanelClicked();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent mouseEvent) { }
+
+        @Override
+        public void mouseReleased(MouseEvent mouseEvent) { }
+
+        @Override
+        public void mouseEntered(MouseEvent mouseEvent) { }
+
+        @Override
+        public void mouseExited(MouseEvent mouseEvent) { }
+
+
+    }
+
+    public interface PanelListener {
+        void onPanelClicked();
+    }
+
+    public void showProfileEdit(String firstName, String lastName, String phone) {
+        JPanel inputPanel = new JPanel();
+        //inputPanel.setLayout(new );
+        JTextField firstNameTextField = new JTextField(firstName);
+        JTextField lastNameTextField = new JTextField(lastName);
+        JButton logoffButton = new JButton("Logoff from "+phone);
+        logoffButton.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO: close dialog?
+                if (listener!=null) listener.onLogoff();
+            }
+        });
+        inputPanel.add(new JLabel("First name:"));
+        inputPanel.add(firstNameTextField);
+        inputPanel.add(new JLabel("Last name:"));
+        inputPanel.add(lastNameTextField);
+        inputPanel.add(logoffButton);
+
+        if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(
+                rootPanel, inputPanel, "Enter your data", JOptionPane.OK_CANCEL_OPTION)) {
+
+            String updatedFirstName = firstNameTextField.getText();
+            String updatedLastName = lastNameTextField.getText();
+            if (listener!=null) listener.onSaveProfileEditor(updatedFirstName, updatedLastName);
+
+        } else {
+
+            //TODO:
+
+        }
+        listener.onCloseProfileEditor();
+    }
+
+    public void showEditUser(String firstName, String lastName, String userId, String phone) {
+
+    }
+
+
 }

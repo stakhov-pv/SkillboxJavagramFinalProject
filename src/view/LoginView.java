@@ -1,5 +1,7 @@
 package view;
 
+import model.LoginModel;
+import presenter.LoginPresenter;
 import provider.Gui;
 import provider.Res;
 
@@ -63,6 +65,13 @@ public class LoginView {
     private JButton phoneButton;
     private JPanel nameButtonBackground;
     private JPanel codeButtonBackground;
+
+    public static void createAndRun() {
+        LoginView loginView = new LoginView();
+        LoginModel loginModel = new LoginModel();
+        LoginPresenter loginPresenter = new LoginPresenter(loginModel,loginView);
+        loginPresenter.start();
+    }
 
     public LoginView() {
     }
