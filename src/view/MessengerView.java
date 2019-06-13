@@ -284,8 +284,7 @@ public class MessengerView {
         logoffButton.setAction(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO: close dialog?
-
+                //TODO: how to close dialog?
                 if (listener!=null) listener.onLogoff();
             }
         });
@@ -312,8 +311,37 @@ public class MessengerView {
     }
 
     public void showEditUser(String firstName, String lastName, String userId, String phone) {
+        JPanel inputPanel = new JPanel();
+        //inputPanel.setLayout(new );
+        JTextField firstNameTextField = new JTextField(firstName);
+        JTextField lastNameTextField = new JTextField(lastName);
+        JButton logoffButton = new JButton();
+        logoffButton.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO: how to close dialog?
+                if (listener!=null) listener.onLogoff();
+            }
+        });
+        logoffButton.setText("Logoff from "+phone);
+        inputPanel.add(new JLabel("First name:"));
+        inputPanel.add(firstNameTextField);
+        inputPanel.add(new JLabel("Last name:"));
+        inputPanel.add(lastNameTextField);
+        inputPanel.add(logoffButton);
 
+        if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(
+                rootPanel, inputPanel, "Enter your data", JOptionPane.OK_CANCEL_OPTION)) {
+
+            String updatedFirstName = firstNameTextField.getText();
+            String updatedLastName = lastNameTextField.getText();
+            if (listener!=null) listener.onSaveProfileEditor(updatedFirstName, updatedLastName);
+
+        } else {
+
+            //TODO:
+
+        }
+        listener.onCloseProfileEditor();
     }
-
-
 }
