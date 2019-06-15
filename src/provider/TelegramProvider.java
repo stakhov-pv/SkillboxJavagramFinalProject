@@ -85,8 +85,26 @@ public class TelegramProvider {
         AuthAuthorization authorization = bridge.authSignIn(code);
         if (authorization==null) return false;
         user = authorization.getUser();
-        userSmallPic = ImageIO.read(new ByteArrayInputStream(user.getPhoto(true)));
-        userPic = ImageIO.read(new ByteArrayInputStream(user.getPhoto(false)));
+        getProfilePics();
+        return true;
+    }
+
+    private void getProfilePics() {
+        try {
+            userSmallPic = ImageIO.read(new ByteArrayInputStream(user.getPhoto(true)));
+            userPic = ImageIO.read(new ByteArrayInputStream(user.getPhoto(false)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            userSmallPic = Res.getImage("your-face.png");
+            userPic = Res.getImage("your-face.png");
+        }
+    }
+
+    public boolean signUp(String code, String firstName, String lastName) throws IOException {
+        AuthAuthorization authorization = bridge.authSignUp(code, firstName, lastName);
+        if (authorization==null) return false;
+        user = authorization.getUser();
+        getProfilePics();
         return true;
     }
 

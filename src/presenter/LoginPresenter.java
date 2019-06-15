@@ -2,7 +2,6 @@ package presenter;
 
 import model.LoginModel;
 import model.MessengerModel;
-import org.javagram.response.AuthAuthorization;
 import util.PhoneFormatter;
 import view.LoginView;
 import view.MessengerView;
@@ -62,10 +61,9 @@ public class LoginPresenter implements LoginView.Listener {
         String code = view.getCodeValue();
         //TODO: check code for consistency
         setState(LoginView.LoginState.ProcessingCode);
-        AuthAuthorization authorization=null;
         try {
             boolean authorised = model.signIn(code);
-            if (!authorised) setState(LoginView.LoginState.AskNewProfile);
+            if (!authorised) setState(LoginView.LoginState.AskPhone);
             else startMessenger();
         } catch (Exception e) {
             //TODO: show error
@@ -77,6 +75,7 @@ public class LoginPresenter implements LoginView.Listener {
             } else if ("PHONE_NUMBER_INVALID".equals(e.getMessage())) {
                 setState(LoginView.LoginState.AskPhone);
             } else if ("PHONE_NUMBER_UNOCCUPIED".equals(e.getMessage())) {
+                model.setSmsCode(code);
                 setState(LoginView.LoginState.AskNewProfile);
             }
         }
@@ -84,13 +83,18 @@ public class LoginPresenter implements LoginView.Listener {
 
     @Override
     public void onNameButtonPressed() {
+        String firstName = view.getFirstName();
+        String lastName = view.getLastName();
         setState(LoginView.LoginState.ProcessingNewProfile);
-        model.fakeGetData(new LoginModel.DataReady() {
-            @Override
-            public void dataReadyListener(Object result) {
-                setState(LoginView.LoginState.AskPhone);
-            }
-        });
+        try {
+            boolean authorised = model.signUp(model.getSmsCode(), firstName, lastName);
+            if (!authorised) setState(LoginView.LoginState.AskPhone);
+            else startMessenger();
+        } catch (Exception e) {
+            //TODO: show error
+            e.printStackTrace();
+            setState(LoginView.LoginState.AskPhone);
+        }
     }
 
     @Override

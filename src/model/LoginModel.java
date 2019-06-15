@@ -9,6 +9,7 @@ public class LoginModel {
     private LoginView.LoginState state;
     //TODO: save phone number in storage to remember in second start
     private String phoneNumber;
+    private String smsCode;
 
     public LoginModel() {
 
@@ -28,6 +29,14 @@ public class LoginModel {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getSmsCode() {
+        return smsCode;
+    }
+
+    public void setSmsCode(String smsCode) {
+        this.smsCode = smsCode;
     }
 
     public void fakeGetData(DataReady listener) {
@@ -57,6 +66,10 @@ public class LoginModel {
 
     public boolean signIn(String code) throws IOException {
         return TelegramProvider.getInstance().signIn(code);
+    }
+
+    public boolean signUp(String code, String firstName, String lastName) throws IOException {
+        return TelegramProvider.getInstance().signUp(code,firstName, lastName);
     }
 
 }

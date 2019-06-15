@@ -90,6 +90,16 @@ public class LoginView {
         return codeValue.getText();
     }
 
+    public String getFirstName() {
+        if (firstNameField==null) return "";
+        return firstNameField.getText();
+    }
+
+    public String getLastName() {
+        if (lastNameField==null) return "";
+        return lastNameField.getText();
+    }
+
     public void setCodePhoneLabel(String phone) {
         codePhoneLabel.setText(phone);
     }
