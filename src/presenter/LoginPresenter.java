@@ -68,15 +68,11 @@ public class LoginPresenter implements LoginView.Listener {
         } catch (Exception e) {
             //TODO: show error
             e.printStackTrace();
-            //TODO: PHONE_CODE_INVALID may be user error - need to give one more chance to user - reask and retype code
-            if ("PHONE_CODE_INVALID".equals(e.getMessage())) {
-                //TODO: show error
-                setState(LoginView.LoginState.AskPhone);
-            } else if ("PHONE_NUMBER_INVALID".equals(e.getMessage())) {
-                setState(LoginView.LoginState.AskPhone);
-            } else if ("PHONE_NUMBER_UNOCCUPIED".equals(e.getMessage())) {
+            if ("PHONE_NUMBER_UNOCCUPIED".equals(e.getMessage())) {
                 model.setSmsCode(code);
                 setState(LoginView.LoginState.AskNewProfile);
+            } else {
+                setState(LoginView.LoginState.AskPhone);
             }
         }
     }

@@ -89,6 +89,7 @@ public class TelegramProvider {
         return true;
     }
 
+    //TODO: maybe I don't need to load pictures here?
     private void getProfilePics() {
         try {
             userSmallPic = ImageIO.read(new ByteArrayInputStream(user.getPhoto(true)));
