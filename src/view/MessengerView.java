@@ -39,7 +39,8 @@ public class MessengerView {
         void onCloseProfileEditor();
         void onSaveProfileEditor(String firstName, String lastName);
         void onCloseUserEditor();
-        void onSaveUserEditor(String firstName, String lastName);
+        void onSaveUserEditor(int userId, String firstName, String lastName);
+        void onDeleteUserPressed(int userId);
         void onLogoff();
     }
 
@@ -227,7 +228,7 @@ public class MessengerView {
     }
 
     public void showChatPartner(User user) {
-
+        partnerLabel.setText(user.getFirstName()+" "+user.getLastName());
     }
 
     public void showConversationMessages(List<Message> messages) {
@@ -310,38 +311,47 @@ public class MessengerView {
         listener.onCloseProfileEditor();
     }
 
-    public void showEditUser(String firstName, String lastName, String userId, String phone) {
+    public void showEditUser(int userId, String firstName, String lastName, String phone) {
         JPanel inputPanel = new JPanel();
-        //inputPanel.setLayout(new );
-        JTextField firstNameTextField = new JTextField(firstName);
-        JTextField lastNameTextField = new JTextField(lastName);
-        JButton logoffButton = new JButton();
-        logoffButton.setAction(new AbstractAction() {
+        JTextField nameTextField = new JTextField(firstName+" "+lastName);
+        JButton deleteUserButton = new JButton();
+        deleteUserButton.setAction(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 //TODO: how to close dialog?
-                if (listener!=null) listener.onLogoff();
+                if (listener!=null) listener.onDeleteUserPressed(userId);
             }
         });
-        logoffButton.setText("Logoff from "+phone);
-        inputPanel.add(new JLabel("First name:"));
-        inputPanel.add(firstNameTextField);
-        inputPanel.add(new JLabel("Last name:"));
-        inputPanel.add(lastNameTextField);
-        inputPanel.add(logoffButton);
+        deleteUserButton.setText("Delete user: "+phone);
+        inputPanel.add(new JLabel("Name:"));
+        inputPanel.add(nameTextField);
+        inputPanel.add(deleteUserButton);
 
         if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(
-                rootPanel, inputPanel, "Enter your data", JOptionPane.OK_CANCEL_OPTION)) {
+                rootPanel, inputPanel, "Change user", JOptionPane.OK_CANCEL_OPTION)) {
 
-            String updatedFirstName = firstNameTextField.getText();
-            String updatedLastName = lastNameTextField.getText();
-            if (listener!=null) listener.onSaveProfileEditor(updatedFirstName, updatedLastName);
+            String updatedName = nameTextField.getText();
+            String[] splittedName = updatedName.trim().split("[ ]+");
+            String updatedFirstName="";
+            String updatedLastName="";
+            if (splittedName.length>0) updatedFirstName=splittedName[0];
+            if (splittedName.length>1) updatedLastName=splittedName[splittedName.length-1];
+            if (listener!=null) listener.onSaveUserEditor(userId, updatedFirstName, updatedLastName);
 
         } else {
 
             //TODO:
 
         }
-        listener.onCloseProfileEditor();
+        listener.onCloseUserEditor();
+    }
+
+    public void showNoRealisation() {
+        JOptionPane.showMessageDialog(
+                rootPanel,
+                "Еще не реализовано!",
+                "Ошибка",
+                JOptionPane.INFORMATION_MESSAGE
+        );
     }
 }

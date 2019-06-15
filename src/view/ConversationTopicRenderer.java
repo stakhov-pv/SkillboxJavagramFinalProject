@@ -60,7 +60,7 @@ public class ConversationTopicRenderer extends JPanel implements ListCellRendere
         iconLabel.setIcon(image);
         nameLabel.setText(
                 user==null? "User deleted"
-                        :user.getFirstName()+" "+user.getFirstName()
+                        :user.getFirstName()+" "+user.getLastName()
         );
         messageLabel.setText(conversationTopic.getTopMessage().getMessage());
         dateLabel.setText(String.valueOf(messageData.getDate()));

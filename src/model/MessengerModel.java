@@ -14,6 +14,8 @@ public class MessengerModel {
     private MessengerView.MessengerState state;
     private ArrayList<ConversationTopic> conversations;
 
+    private ConversationTopic selectedConversation;
+
     public MessengerModel() {
     }
 
@@ -83,6 +85,14 @@ public class MessengerModel {
     public List<Message> getConversationMessages(ConversationTopic conversation) {
         List<Message> messages = TelegramProvider.getInstance().getConversationsMessages(conversation.getUserId());
         return messages;
+    }
+
+    public ConversationTopic getSelectedConversation() {
+        return selectedConversation;
+    }
+
+    public void setSelectedConversation(ConversationTopic selectedConversation) {
+        this.selectedConversation = selectedConversation;
     }
 
 }

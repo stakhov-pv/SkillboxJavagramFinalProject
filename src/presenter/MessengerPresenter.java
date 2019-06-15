@@ -50,7 +50,8 @@ public class MessengerPresenter implements MessengerView.Listener {
 
     @Override
     public void onSendButtonPressed() {
-
+        //TODO: make it
+        view.showNoRealisation();
     }
 
     @Override
@@ -60,12 +61,18 @@ public class MessengerPresenter implements MessengerView.Listener {
 
     @Override
     public void onEditUserButtonPressed() {
-
+        ConversationTopic conversationTopic = model.getSelectedConversation();
+        if (conversationTopic!=null) {
+            view.showEditUser(conversationTopic.getUserId(),
+                    conversationTopic.getUser().getFirstName(), conversationTopic.getUser().getLastName(),
+                    conversationTopic.getUser().getPhone());
+        }
     }
 
     @Override
     public void onAddUserButtonPressed() {
-
+        //TODO: make it
+        view.showNoRealisation();
     }
 
 
@@ -82,12 +89,19 @@ public class MessengerPresenter implements MessengerView.Listener {
 
     @Override
     public void onCloseUserEditor() {
-
+        //TODO: realy need this method?
     }
 
     @Override
-    public void onSaveUserEditor(String firstName, String lastName) {
+    public void onSaveUserEditor(int userId, String firstName, String lastName) {
+        //TODO: make it
+        view.showNoRealisation();
+    }
 
+    @Override
+    public void onDeleteUserPressed(int userId) {
+        //TODO: make it
+        view.showNoRealisation();
     }
 
     @Override
@@ -113,6 +127,7 @@ public class MessengerPresenter implements MessengerView.Listener {
     public void onSelectConversation(int index) {
         if (model.getConversations()!=null && index<model.getConversations().size()) {
             ConversationTopic conversationTopic = model.getConversations().get(index);
+            model.setSelectedConversation(conversationTopic);
             view.showChatPartner(conversationTopic.getUser());
             view.showConversationMessages(model.getConversationMessages(conversationTopic));
         }
