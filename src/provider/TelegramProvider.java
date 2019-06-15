@@ -4,6 +4,7 @@ import org.javagram.TelegramApiBridge;
 import org.javagram.core.StaticContainer;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
+import org.javagram.response.MessagesSentMessage;
 import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.User;
@@ -211,6 +212,18 @@ public class TelegramProvider {
             }
             waitBeforeRepeat();
         }
+    }
+
+    public boolean sendMessage(int userId, String message) {
+        int randomInt = (int)(Math.random()*Integer.MAX_VALUE);
+        try {
+            MessagesSentMessage sent = bridge.messagesSendMessage(userId, message, randomInt);
+            return true;
+
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
     private void waitBeforeRepeat() {

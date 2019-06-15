@@ -15,7 +15,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class MessengerView {
     private Listener listener;
 
     public interface Listener {
-        void onSendButtonPressed();
+        void onSendButtonPressed(String message);
         void onProfileButtonPressed();
         void onEditUserButtonPressed();
         void onAddUserButtonPressed();
@@ -171,6 +170,7 @@ public class MessengerView {
         myMessageArrowPanel = new JImage(Res.getImage("message-out-right.png"));
 
         messageButtonPanel = new JImage(Res.getImage("button-send.png"));
+        messageButtonPanel.addMouseListener(new PanelClickListener( () -> listener.onSendButtonPressed(messageTextField.getText()) ));
 
         inMessageTopPanel = new JImage(Res.getImage("message-in-top.png"));
         inMessageBottomPanel = new JImage(Res.getImage("message-in-bottom.png"));
@@ -235,6 +235,10 @@ public class MessengerView {
         DefaultListModel<Message> messageModel = new DefaultListModel<>();
         messageModel.addAll(messages);
         messagesList.setModel(messageModel);
+    }
+
+    public void emptyMessageTextField() {
+        messageTextField.setText("");
     }
 
     public void minimiseApp() {

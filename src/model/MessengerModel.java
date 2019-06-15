@@ -95,4 +95,8 @@ public class MessengerModel {
         this.selectedConversation = selectedConversation;
     }
 
+    public boolean sendMessage(int userId, String message) {
+        return TelegramProvider.getInstance().sendMessage(userId, message);
+    }
+
 }

@@ -49,9 +49,13 @@ public class MessengerPresenter implements MessengerView.Listener {
     }
 
     @Override
-    public void onSendButtonPressed() {
-        //TODO: make it
-        view.showNoRealisation();
+    public void onSendButtonPressed(String message) {
+        if (message==null || message.length()==0) return;
+        if (model.sendMessage(model.getSelectedConversation().getUserId(),message)) {
+            view.emptyMessageTextField();
+        } else {
+            //some error with message sending
+        }
     }
 
     @Override
