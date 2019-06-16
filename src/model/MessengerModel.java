@@ -15,6 +15,7 @@ public class MessengerModel {
     private ArrayList<ConversationTopic> conversations;
 
     private ConversationTopic selectedConversation;
+    private List<Message> selectedConversationMessages;
 
     public MessengerModel() {
     }
@@ -55,6 +56,10 @@ public class MessengerModel {
         return TelegramProvider.getInstance().getUserId();
     }
 
+    public User getUser() {
+        return TelegramProvider.getInstance().getUser();
+    }
+
     public BufferedImage getUserPic() {
         return TelegramProvider.getInstance().getUserPic();
     }
@@ -82,9 +87,17 @@ public class MessengerModel {
         this.conversations = conversations;
     }
 
-    public List<Message> getConversationMessages(ConversationTopic conversation) {
-        List<Message> messages = TelegramProvider.getInstance().getConversationsMessages(conversation.getUserId());
-        return messages;
+    public List<Message> getSelectedConversationMessages() {
+        return selectedConversationMessages;
+    }
+
+    public List<Message> loadConversationMessages(ConversationTopic conversation) {
+        selectedConversationMessages = TelegramProvider.getInstance().getConversationsMessages(conversation.getUserId());
+        return selectedConversationMessages;
+    }
+
+    public void addMessageToSelectedConversationMessages(Message message) {
+        if (message!=null && selectedConversationMessages!=null) selectedConversationMessages.add(message);
     }
 
     public ConversationTopic getSelectedConversation() {
@@ -93,6 +106,7 @@ public class MessengerModel {
 
     public void setSelectedConversation(ConversationTopic selectedConversation) {
         this.selectedConversation = selectedConversation;
+        selectedConversationMessages = null;
     }
 
     public boolean sendMessage(int userId, String message) {

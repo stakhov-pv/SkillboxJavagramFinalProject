@@ -5,16 +5,16 @@ import model.MessengerModel;
 import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.User;
+import org.telegram.api.TLMessage;
+import org.telegram.api.TLPeerUser;
 import provider.TelegramProvider;
 import view.LoginView;
 import view.MessengerView;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public class MessengerPresenter implements MessengerView.Listener {
+public class MessengerPresenter implements MessengerView.Listener, TelegramProvider.IncomingMessageListener {
     MessengerModel model;
     MessengerView view;
 
@@ -33,14 +33,15 @@ public class MessengerPresenter implements MessengerView.Listener {
         view.show();
         setState(MessengerView.MessengerState.Messenger);
 
-        loadDialogs();
-        view.showConversationTopics(model.getConversations());
+        showDialogs();
+        TelegramProvider.getInstance().attachIncomingMessageListener(this);
     }
 
     void dispose() {
         view.detachListener();
         view = null;
         model = null;
+        TelegramProvider.getInstance().detachIncomingMessageListener();
     }
 
     void setState(MessengerView.MessengerState newState) {
@@ -49,13 +50,60 @@ public class MessengerPresenter implements MessengerView.Listener {
     }
 
     @Override
-    public void onSendButtonPressed(String message) {
-        if (message==null || message.length()==0) return;
-        if (model.sendMessage(model.getSelectedConversation().getUserId(),message)) {
+    public void onSendButtonPressed(String textMessage) {
+        if (textMessage==null || textMessage.length()==0) return;
+        ConversationTopic conversation = model.getSelectedConversation();
+        int toId = conversation.getUserId();
+        if (model.sendMessage(toId,textMessage)) {
             view.emptyMessageTextField();
+            Message message = createMessage(model.getUserId(), toId,  textMessage);
+            model.addMessageToSelectedConversationMessages(message);
+            view.showConversationMessages(model.getSelectedConversationMessages());
+            conversation.setTopMessage(message);
+            view.repaintConversationTopics();
         } else {
             //some error with message sending
         }
+    }
+
+    @Override
+    public void onIncomingMessage(int userId, String textMessage) {
+        Message message = createMessage(userId, model.getUserId(), textMessage);
+        ConversationTopic conversation = model.getSelectedConversation();
+        if (conversation!=null && conversation.getUserId()==userId) {
+            model.addMessageToSelectedConversationMessages(message);
+            view.showConversationMessages(model.getSelectedConversationMessages());
+        }
+
+        for (ConversationTopic conversationTopic:model.getConversations()) {
+            if (conversationTopic!=null && conversationTopic.getUserId()==userId) {
+                conversationTopic.setTopMessage(message);
+                view.repaintConversationTopics();
+                return;
+            }
+        }
+
+        //new dialog
+        showDialogs();
+    }
+
+    private void showDialogs() {
+        loadDialogs();
+        view.showConversationTopics(model.getConversations());
+    }
+
+    private Message createMessage(int fromId, int toId, String textMessage) {
+        int created = (int)(System.currentTimeMillis()/1000);
+        TLMessage mess = new TLMessage();
+        mess.setFromId(fromId);
+        mess.setMessage(textMessage);
+        mess.setUnread(true);
+        TLPeerUser peer = new TLPeerUser();
+        peer.setUserId(toId);
+        mess.setToId(peer);
+        mess.setDate(created);
+        Message message = new Message(mess);
+        return message;
     }
 
     @Override
@@ -133,7 +181,7 @@ public class MessengerPresenter implements MessengerView.Listener {
             ConversationTopic conversationTopic = model.getConversations().get(index);
             model.setSelectedConversation(conversationTopic);
             view.showChatPartner(conversationTopic.getUser());
-            view.showConversationMessages(model.getConversationMessages(conversationTopic));
+            view.showConversationMessages(model.loadConversationMessages(conversationTopic));
         }
     }
 
@@ -155,5 +203,4 @@ public class MessengerPresenter implements MessengerView.Listener {
         }
         model.setConversations(conversations);
     }
-
 }

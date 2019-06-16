@@ -68,7 +68,7 @@ public class MessageRenderer implements ListCellRenderer<Message> {
         boolean messageFromMe = message.getFromId()==TelegramProvider.getInstance().getUserId();
 
         if (messageFromMe) {
-            outMessageLabel.setText("<html><p>"+message.getMessage()+"</p></html>");
+            outMessageLabel.setText("<html><p>"+message.getMessage().replace("\n","<br/>")+"</p></html>");
             return outPanel;
         } else {
             inMessageLabel.setText(message.getMessage());

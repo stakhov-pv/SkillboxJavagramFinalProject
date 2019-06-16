@@ -2,6 +2,7 @@ package provider;
 
 import org.javagram.TelegramApiBridge;
 import org.javagram.core.StaticContainer;
+import org.javagram.handlers.IncomingMessageHandler;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
 import org.javagram.response.MessagesSentMessage;
@@ -27,6 +28,7 @@ public class TelegramProvider {
     private User user;
     private BufferedImage userSmallPic;
     private BufferedImage userPic;
+    private IncomingMessageListener incomingMessageListener;
 
     public static TelegramProvider getInstance() {
         if (instance==null) {
@@ -37,8 +39,21 @@ public class TelegramProvider {
         return instance;
     }
 
+    public interface IncomingMessageListener {
+        void onIncomingMessage(int userId, String message);
+    }
+
     private TelegramProvider() {
         bridge = initBridge();
+        bridge.setIncomingMessageHandler(new IncomingMessageHandler() {
+            @Override
+            public Object handle(int userId, String message) {
+                if (incomingMessageListener!=null) {
+                    incomingMessageListener.onIncomingMessage(userId, message);
+                }
+                return null;
+            }
+        });
     }
 
     private TelegramApiBridge initBridge() {
@@ -114,6 +129,10 @@ public class TelegramProvider {
         return user.getId();
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public String getUserFirstName() {
         return user.getFirstName();
     }
@@ -136,6 +155,14 @@ public class TelegramProvider {
 
     public BufferedImage getUserSmallPic() {
         return userSmallPic;
+    }
+
+    public void attachIncomingMessageListener(IncomingMessageListener incomingMessageListener) {
+        this.incomingMessageListener = incomingMessageListener;
+    }
+
+    public void detachIncomingMessageListener() {
+        incomingMessageListener = null;
     }
 
     public void updateProfile(String firstName, String lastName) {
@@ -187,16 +214,6 @@ public class TelegramProvider {
         }
     }
 
-    /*
-    public User getUser(int userId) {
-        ArrayList<Integer> userToGet = new ArrayList<>();
-        userToGet.add(userId);
-        List<User> users = getUsers(userToGet);
-        if (users.size()==1) return users.get(0);
-        else return null;
-    }
-     */
-
     public List<Message> getConversationsMessages(int userId) {
         for (;;) {
             try {
@@ -239,6 +256,5 @@ public class TelegramProvider {
             //TODO: need repeat???
         }
     }
-
 
 }

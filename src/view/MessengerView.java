@@ -227,6 +227,10 @@ public class MessengerView {
         conversationsList.setModel(listModel);
     }
 
+    public void repaintConversationTopics() {
+        conversationsList.repaint();
+    }
+
     public void showChatPartner(User user) {
         partnerLabel.setText(user.getFirstName()+" "+user.getLastName());
     }
@@ -235,6 +239,9 @@ public class MessengerView {
         DefaultListModel<Message> messageModel = new DefaultListModel<>();
         messageModel.addAll(messages);
         messagesList.setModel(messageModel);
+        if (messages.size()>0) {
+            messagesList.ensureIndexIsVisible(messages.size() - 1);
+        }
     }
 
     public void emptyMessageTextField() {
