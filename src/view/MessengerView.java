@@ -70,7 +70,7 @@ public class MessengerView {
     private JLabel user1Name;
     private JLabel user1LastMessage;
     private JLabel searchLabel;
-    private JTextField messageTextField;
+    private JTextArea messageTextField;
     private JPanel messageButtonPanel;
     private JPanel myMessagePanel;
     private JPanel theyMessagePanel;
@@ -187,6 +187,7 @@ public class MessengerView {
             }
         });
 
+        //TODO: show small list from bottom
         messagesList = new JList<Message>();
         messagesList.setCellRenderer(new MessageRenderer());
         messagesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

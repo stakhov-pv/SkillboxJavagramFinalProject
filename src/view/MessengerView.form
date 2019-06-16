@@ -886,7 +886,7 @@
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
                     <minimum-size width="-1" height="76"/>
                     <preferred-size width="-1" height="76"/>
-                    <maximum-size width="-1" height="76"/>
+                    <maximum-size width="-1" height="150"/>
                   </grid>
                 </constraints>
                 <properties>
@@ -935,7 +935,7 @@
                         <border type="none"/>
                         <children/>
                       </grid>
-                      <component id="2fbb4" class="javax.swing.JTextField" binding="messageTextField">
+                      <component id="b7c3e" class="javax.swing.JTextArea" binding="messageTextField">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
