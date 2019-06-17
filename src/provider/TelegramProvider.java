@@ -6,11 +6,9 @@ import org.javagram.handlers.IncomingMessageHandler;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
 import org.javagram.response.MessagesSentMessage;
-import org.javagram.response.object.Dialog;
-import org.javagram.response.object.Message;
-import org.javagram.response.object.User;
-import org.telegram.api.TLAbsMessage;
-import org.telegram.api.TLInputPeerContact;
+import org.javagram.response.object.*;
+import org.javagram.response.object.inputs.InputUserOrPeerContact;
+import org.telegram.api.*;
 import org.telegram.api.requests.TLRequestMessagesGetHistory;
 import org.telegram.tl.TLVector;
 
@@ -21,6 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TelegramProvider {
     private static TelegramProvider instance;
@@ -178,10 +177,10 @@ public class TelegramProvider {
         }
     }
 
-    public List<Dialog> getDialogs() {
+    public List<MessagesDialog> getDialogs() {
         for (;;) {
             try {
-                ArrayList<Dialog> dialogs = bridge.messagesGetDialogs(0, Integer.MAX_VALUE, Integer.MAX_VALUE);
+                ArrayList<MessagesDialog> dialogs = bridge.messagesGetDialogs();
                 return dialogs;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -206,7 +205,10 @@ public class TelegramProvider {
     public ArrayList<User> getUsers(ArrayList<Integer> userIds) {
         for (;;) {
             try {
-                return bridge.usersGetUsers(userIds);
+                ArrayList<InputUser> inputUsers = userIds.stream().map(InputUserOrPeerContact::new).
+                                        collect(Collectors.toCollection(ArrayList::new));
+                return bridge.usersGetUsers(inputUsers);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -233,8 +235,9 @@ public class TelegramProvider {
 
     public boolean sendMessage(int userId, String message) {
         int randomInt = (int)(Math.random()*Integer.MAX_VALUE);
+        InputPeer inputPeer = new InputUserOrPeerContact(userId);
         try {
-            MessagesSentMessage sent = bridge.messagesSendMessage(userId, message, randomInt);
+            MessagesSentMessage sent = bridge.messagesSendMessage(inputPeer, message, randomInt);
             return true;
 
         } catch (Exception e) {

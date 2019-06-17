@@ -44,16 +44,16 @@ public class ConversationTopicRenderer extends JPanel implements ListCellRendere
             setBackground(new Color(230, 230, 230));
         }
         ImageIcon image = null;
-        try {
+        //try {
             if (user!=null) {
                 byte[] imageArray = conversationTopic.getUser().getPhoto(false);
                 if (imageArray!=null) image = new ImageIcon(imageArray);
             }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            iconLabel.setIcon(new ImageIcon(Res.getImage("current-user.png")));
-        }
+        //} catch (IOException e) {
+        //    e.printStackTrace();
+        //    iconLabel.setIcon(new ImageIcon(Res.getImage("current-user.png")));
+        //}
         if (image==null) {
             image = new ImageIcon(Res.getImage("current-user.png"));
         }

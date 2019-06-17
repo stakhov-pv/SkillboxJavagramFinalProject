@@ -1,7 +1,7 @@
 package model;
 
-import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
+import org.javagram.response.object.MessagesDialog;
 import org.javagram.response.object.User;
 import provider.TelegramProvider;
 import view.MessengerView;
@@ -64,8 +64,8 @@ public class MessengerModel {
         return TelegramProvider.getInstance().getUserPic();
     }
 
-    public List<Dialog> getDialogs() {
-        List<Dialog> dialogs = TelegramProvider.getInstance().getDialogs();
+    public List<MessagesDialog> getDialogs() {
+        List<MessagesDialog> dialogs = TelegramProvider.getInstance().getDialogs();
         return dialogs;
     }
 

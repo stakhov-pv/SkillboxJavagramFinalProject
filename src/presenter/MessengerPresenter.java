@@ -2,8 +2,9 @@ package presenter;
 
 import model.ConversationTopic;
 import model.MessengerModel;
-import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
+import org.javagram.response.object.MessagesDialog;
+import org.javagram.response.object.MessagesMessage;
 import org.javagram.response.object.User;
 import org.telegram.api.TLMessage;
 import org.telegram.api.TLPeerUser;
@@ -186,13 +187,12 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
     }
 
     public void loadDialogs() {
-        List<Dialog> dialogs = model.getDialogs();
-        ArrayList<Integer> messageIds = dialogs.stream()
-                .map(Dialog::getTopMessage)
+        List<MessagesDialog> dialogs = model.getDialogs();
+        ArrayList<MessagesMessage> messages = dialogs.stream()
+                .map(MessagesDialog::getTopMessage)
                 .collect(Collectors.toCollection(ArrayList::new));
-        ArrayList<Message> messages = model.getMessages(messageIds);
         ArrayList<Integer> userIds = messages.stream()
-                .map(message -> message.getFromId()!=model.getUserId()?message.getFromId():message.getToId())
+                .map(message -> message.getFromId()!=model.getUserId()?message.getFromId():message.getToPeerUserId())
                 .collect(Collectors.toCollection(ArrayList::new));
         ArrayList<User> usersList = model.getUsers(userIds);
         Map<Integer,User> users = usersList.stream()
