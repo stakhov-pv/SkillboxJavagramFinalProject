@@ -38,7 +38,7 @@ public class MessengerView {
         void onCloseProfileEditor();
         void onSaveProfileEditor(String firstName, String lastName);
         void onCloseUserEditor();
-        void onSaveUserEditor(int userId, String firstName, String lastName);
+        void onSaveUserEditor(int userId, String phone, String firstName, String lastName);
         void onDeleteUserPressed(int userId);
         void onLogoff();
     }
@@ -348,7 +348,7 @@ public class MessengerView {
             String updatedLastName="";
             if (splittedName.length>0) updatedFirstName=splittedName[0];
             if (splittedName.length>1) updatedLastName=splittedName[splittedName.length-1];
-            if (listener!=null) listener.onSaveUserEditor(userId, updatedFirstName, updatedLastName);
+            if (listener!=null) listener.onSaveUserEditor(userId, phone, updatedFirstName, updatedLastName);
 
         } else {
 

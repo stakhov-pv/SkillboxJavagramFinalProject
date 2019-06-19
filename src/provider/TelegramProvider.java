@@ -7,8 +7,11 @@ import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
 import org.javagram.response.MessagesSentMessage;
 import org.javagram.response.object.*;
+import org.javagram.response.object.inputs.InputContact;
 import org.javagram.response.object.inputs.InputUserOrPeerContact;
 import org.telegram.api.*;
+import org.telegram.api.contacts.TLImportedContacts;
+import org.telegram.api.requests.TLRequestContactsImportContacts;
 import org.telegram.api.requests.TLRequestMessagesGetHistory;
 import org.telegram.tl.TLVector;
 
@@ -216,6 +219,14 @@ public class TelegramProvider {
         }
     }
 
+    public User getUser(int userId) {
+        ArrayList<Integer> userIds = new ArrayList<>();
+        userIds.add(userId);
+        ArrayList<User> users = getUsers(userIds);
+        if (users.size()>0) return users.get(0);
+        else return null;
+    }
+
     public List<Message> getConversationsMessages(int userId) {
         for (;;) {
             try {
@@ -244,6 +255,26 @@ public class TelegramProvider {
             return false;
         }
 
+    }
+
+    public Integer contactsImportContact(InputContact inputContact, boolean replace) {
+        for (;;) {
+            try {
+                TLVector<TLInputContact> inputContacts = new TLVector();
+                inputContacts.add(inputContact.createTLInputContact());
+                TLRequestContactsImportContacts tlRequestContactsImportContacts = new TLRequestContactsImportContacts(inputContacts, replace);
+                TLImportedContacts tlImportedContacts = (TLImportedContacts)StaticContainer.getTelegramApi().doRpcCall(tlRequestContactsImportContacts);
+                if (tlImportedContacts.getImported().size() == 0) {
+                    return null;
+                } else {
+                    TLImportedContact tlImportedContact = (TLImportedContact)tlImportedContacts.getImported().get(0);
+                    return tlImportedContact.getClientId() == inputContact.getClientId() ? tlImportedContact.getUserId() : null;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            waitBeforeRepeat();
+        }
     }
 
     private void waitBeforeRepeat() {

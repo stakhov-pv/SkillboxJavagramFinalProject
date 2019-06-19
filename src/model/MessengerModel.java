@@ -3,9 +3,11 @@ package model;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.MessagesDialog;
 import org.javagram.response.object.User;
+import org.javagram.response.object.inputs.InputContact;
 import provider.TelegramProvider;
 import view.MessengerView;
 
+import java.awt.im.InputContext;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -111,6 +113,10 @@ public class MessengerModel {
 
     public boolean sendMessage(int userId, String message) {
         return TelegramProvider.getInstance().sendMessage(userId, message);
+    }
+
+    public Integer contactsImportContact(InputContact inputContact, boolean replace) {
+        return TelegramProvider.getInstance().contactsImportContact(inputContact, replace);
     }
 
 }
