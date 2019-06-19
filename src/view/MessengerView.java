@@ -40,6 +40,8 @@ public class MessengerView {
         void onCloseUserEditor();
         void onSaveUserEditor(int userId, String phone, String firstName, String lastName);
         void onDeleteUserPressed(int userId);
+        void onImportContactPressed();
+        void onImportContactFilled(String firstName, String lastName, String phone);
         void onLogoff();
     }
 
@@ -86,6 +88,7 @@ public class MessengerView {
     private JButton closeButton;
     private JButton minimiseButton;
     private JList messagesList;
+    private JPanel importContactPanel;
 
 
     public JPanel getRootPanel() {
@@ -141,6 +144,9 @@ public class MessengerView {
 
         searchLabel = new JLabel();
         searchLabel.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,16f));
+
+        importContactPanel = new JImage(Res.getImage("icon-plus.png"));
+        importContactPanel.addMouseListener(new PanelClickListener( ()->listener.onImportContactPressed() ));
 
         Border chatPartnerBottomBorder = BorderFactory.createMatteBorder(0,0,1,0,new Color(237,237,227));
         chatPartnerPanel = new JPanel();
@@ -356,6 +362,35 @@ public class MessengerView {
 
         }
         listener.onCloseUserEditor();
+    }
+
+    public void showImportUser() {
+        JPanel inputPanel = new JPanel();
+        JTextField firstNameTextField = new JTextField();
+        JTextField lastNameTextField = new JTextField();
+        JTextField phoneTextField = new JTextField();
+
+        inputPanel.add(new JLabel("First name:"));
+        inputPanel.add(firstNameTextField);
+        inputPanel.add(new JLabel("Last name:"));
+        inputPanel.add(lastNameTextField);
+        inputPanel.add(new JLabel("Phone:"));
+        inputPanel.add(phoneTextField);
+
+        if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(
+                rootPanel, inputPanel, "Import contact", JOptionPane.OK_CANCEL_OPTION)) {
+
+            String firstName = firstNameTextField.getText();
+            String lastName = lastNameTextField.getText();
+            String phone = phoneTextField.getText();
+            if (listener!=null) listener.onImportContactFilled(firstName, lastName, phone);
+
+        } else {
+
+            //TODO:
+
+        }
+        //listener.onCloseProfileEditor();
     }
 
     public void showNoRealisation() {

@@ -9,7 +9,6 @@ import org.javagram.response.object.User;
 import org.javagram.response.object.inputs.InputContact;
 import org.telegram.api.TLMessage;
 import org.telegram.api.TLPeerUser;
-import org.telegram.api.TLUserContact;
 import provider.TelegramProvider;
 import view.LoginView;
 import view.MessengerView;
@@ -164,6 +163,26 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
     public void onDeleteUserPressed(int userId) {
         //TODO: make it
         view.showNoRealisation();
+    }
+
+    @Override
+    public void onImportContactPressed() {
+        view.showImportUser();
+    }
+
+    @Override
+    public void onImportContactFilled(String firstName, String lastName, String phone) {
+        long client_id = 0;
+        InputContact inputContact = new InputContact(client_id, phone, firstName, lastName);
+        Integer newUserId = model.contactsImportContact(inputContact,false);
+        if (newUserId==null) return;
+        User newUser = TelegramProvider.getInstance().getUser(newUserId);
+        if (newUser==null) return;
+        //model.getSelectedConversation().setUser(newUser);
+        model.getConversations().add(0,new ConversationTopic(newUserId,newUser,
+                createMessage(model.getUserId(), newUserId,  "Новый контакт")));
+        view.showConversationTopics(model.getConversations());
+        onSelectConversation(0);
     }
 
     @Override
