@@ -119,4 +119,8 @@ public class MessengerModel {
         return TelegramProvider.getInstance().contactsImportContact(inputContact, replace);
     }
 
-}
+    public boolean contactsDeleteContact(int userId) {
+        return TelegramProvider.getInstance().contactsDeleteContact(userId);
+    }
+
+    }

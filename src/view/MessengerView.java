@@ -189,7 +189,7 @@ public class MessengerView {
             @Override
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
                 int index = conversationsList.getSelectedIndex();
-                listener.onSelectConversation(index);
+                if (index>=0) listener.onSelectConversation(index);
             }
         });
 
@@ -239,7 +239,11 @@ public class MessengerView {
     }
 
     public void showChatPartner(User user) {
-        partnerLabel.setText(user.getFirstName()+" "+user.getLastName());
+        if (user!=null) {
+            partnerLabel.setText(user.getFirstName() + " " + user.getLastName());
+        } else {
+            partnerLabel.setText("User deleted");
+        }
     }
 
     public void showConversationMessages(List<Message> messages) {

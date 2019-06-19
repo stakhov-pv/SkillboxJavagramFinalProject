@@ -239,6 +239,7 @@ public class TelegramProvider {
                 return messages;
             } catch (IOException e) {
                 e.printStackTrace();
+                if ("PEER_ID_INVALID".equals(e.getMessage())) return new ArrayList<Message>();
             }
             waitBeforeRepeat();
         }
@@ -270,6 +271,17 @@ public class TelegramProvider {
                     TLImportedContact tlImportedContact = (TLImportedContact)tlImportedContacts.getImported().get(0);
                     return tlImportedContact.getClientId() == inputContact.getClientId() ? tlImportedContact.getUserId() : null;
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            waitBeforeRepeat();
+        }
+    }
+
+    public boolean contactsDeleteContact(int userId) {
+        for (;;) {
+            try {
+                return bridge.contactsDeleteContact(userId);
             } catch (IOException e) {
                 e.printStackTrace();
             }

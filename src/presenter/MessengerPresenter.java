@@ -161,8 +161,14 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
 
     @Override
     public void onDeleteUserPressed(int userId) {
-        //TODO: make it
-        view.showNoRealisation();
+        if (model.contactsDeleteContact(userId)) {
+            if (model.getSelectedConversation().getUserId()==userId) {
+                model.getConversations().remove(model.getSelectedConversation());
+            }
+            view.showConversationTopics(model.getConversations());
+            //TODO: сменить текущего пользователя
+        }
+
     }
 
     @Override
