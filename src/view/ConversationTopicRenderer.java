@@ -32,6 +32,7 @@ public class ConversationTopicRenderer implements ListCellRenderer<ConversationT
         } else {
             conversationTopicPanel.setBackground(new Color(230, 230, 230));
         }
+        conversationTopicView.getConversationSelected().setVisible(isSelected);
         BufferedImage image = null;
         if (user!=null) {
             image = TelegramProvider.getInstance().getUserPic(user,true);

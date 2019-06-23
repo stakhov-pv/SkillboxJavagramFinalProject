@@ -13,6 +13,7 @@ public class ConversationTopicView {
     private JLabel conversationUserName;
     private JLabel conversationLastMessage;
     private JLabel conversationLastMessageDate;
+    private JPanel conversationSelected;
 
     public JPanel getConversationPanel() {
         return conversationPanel;
@@ -32,6 +33,10 @@ public class ConversationTopicView {
 
     public JLabel getConversationLastMessageDate() {
         return conversationLastMessageDate;
+    }
+
+    public JPanel getConversationSelected() {
+        return conversationSelected;
     }
 
     private void createUIComponents() {
