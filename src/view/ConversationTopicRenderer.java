@@ -7,12 +7,9 @@ import provider.Res;
 import provider.TelegramProvider;
 import util.DateFormatter;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 
 public class ConversationTopicRenderer implements ListCellRenderer<ConversationTopic> {
     private ConversationTopicView conversationTopicView;
@@ -49,7 +46,9 @@ public class ConversationTopicRenderer implements ListCellRenderer<ConversationT
                 user==null? "User deleted"
                         :user.getFirstName()+" "+user.getLastName()
         );
-        conversationTopicView.getConversationLastMessage().setText(conversationTopic.getTopMessage().getMessage());
+        conversationTopicView.getConversationLastMessage().setText(
+                (messageData.isOut()?"Вы: ":"")+
+                conversationTopic.getTopMessage().getMessage());
         conversationTopicView.getConversationLastMessageDate().setText(date);
         return conversationTopicPanel;
     }
