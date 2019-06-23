@@ -14,7 +14,7 @@ public class MessageRenderer implements ListCellRenderer<Message> {
                                                   int i, boolean isSelected, boolean cellHasFocus) {
         boolean messageFromMe = message.getFromId()==TelegramProvider.getInstance().getUserId();
         String textMessage = "<html><p style=\"width:210px\">"+message.getMessage().replace("\n","<br/>")+"</p></html>";
-        String date = DateFormatter.relativeToString(message.getDate());
+        String date = DateFormatter.fullRelativeToString(message.getDate());
         if (messageFromMe) {
             OutMessageView outMessageView = new OutMessageView();
             outMessageView.getOutMessageLabel().setText(textMessage);

@@ -28,7 +28,7 @@ public class ConversationTopicRenderer implements ListCellRenderer<ConversationT
                                                   int i, boolean isSelected, boolean cellHasFocus) {
         User user = conversationTopic.getUser();
         Message messageData = conversationTopic.getTopMessage();
-        String date = DateFormatter.relativeToString(messageData.getDate());
+        String date = DateFormatter.shortRelativeToString(messageData.getDate());
 
         if (isSelected) {
             conversationTopicPanel.setBackground(new Color(255, 255, 255));
