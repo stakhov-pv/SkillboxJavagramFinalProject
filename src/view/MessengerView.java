@@ -5,6 +5,7 @@ import org.javagram.response.object.Message;
 import org.javagram.response.object.User;
 import provider.Gui;
 import provider.Res;
+import provider.TelegramProvider;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -244,6 +245,18 @@ public class MessengerView {
         } else {
             partnerLabel.setText("User deleted");
         }
+
+        BufferedImage image = null;
+        if (user!=null) {
+            image = TelegramProvider.getInstance().getUserPic(user,true);
+        }
+        if (image==null) {
+            image = Res.getImage("your-face.png");
+        }
+
+        JImage avatar = (JImage)partnerIconPanel;
+        avatar.replaceImage(image, new Dimension(29,29));
+
     }
 
     public void showConversationMessages(List<Message> messages) {
