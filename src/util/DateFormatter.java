@@ -46,7 +46,7 @@ public class DateFormatter {
             return "только что";
         } else if (hourAgo.before(then)) {
             int minutes = (int)((now.getTimeInMillis()-then.getTimeInMillis())/1000/60);
-            return " "+minuteCases(minutes)+" назад";
+            return " "+minutes+" "+minuteCases(minutes)+" назад";
         } else if (today.before(then)) {
             return "сегодня "+timeTodayFormat.format(date);
         } else if (yesterday.before(then)) {
@@ -70,7 +70,7 @@ public class DateFormatter {
         } else if (today.before(then)) {
             return timeTodayFormat.format(date);
         } else {
-            return fullDateFormat.format(date);
+            return shortDateFormat.format(date);
         }
     }
 

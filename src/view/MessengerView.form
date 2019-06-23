@@ -201,9 +201,9 @@
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <minimum-size width="256" height="-1"/>
-                <preferred-size width="256" height="-1"/>
-                <maximum-size width="256" height="-1"/>
+                <minimum-size width="272" height="-1"/>
+                <preferred-size width="272" height="-1"/>
+                <maximum-size width="272" height="-1"/>
               </grid>
             </constraints>
             <properties>
@@ -276,9 +276,9 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <minimum-size width="256" height="-1"/>
-                    <preferred-size width="256" height="-1"/>
-                    <maximum-size width="256" height="-1"/>
+                    <minimum-size width="272" height="-1"/>
+                    <preferred-size width="272" height="-1"/>
+                    <maximum-size width="272" height="-1"/>
                   </grid>
                 </constraints>
                 <properties>
@@ -443,8 +443,11 @@
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
-                    <properties/>
-                    <border type="none"/>
+                    <properties>
+                      <horizontalScrollBarPolicy value="31"/>
+                      <verticalScrollBarPolicy value="20"/>
+                    </properties>
+                    <border type="empty"/>
                     <children>
                       <component id="2bbef" class="javax.swing.JList" binding="conversationsList" custom-create="true">
                         <constraints/>
@@ -567,14 +570,18 @@
                 <children>
                   <scrollpane id="49bae">
                     <constraints border-constraint="Center"/>
-                    <properties/>
-                    <border type="none"/>
+                    <properties>
+                      <horizontalScrollBarPolicy value="31"/>
+                      <verticalScrollBarPolicy value="22"/>
+                    </properties>
+                    <border type="empty"/>
                     <children>
                       <component id="1764e" class="javax.swing.JList" binding="messagesList" custom-create="true">
                         <constraints/>
                         <properties>
                           <alignmentX value="0.0"/>
                           <alignmentY value="0.0"/>
+                          <selectionBackground color="-66307"/>
                           <selectionMode value="0"/>
                         </properties>
                       </component>

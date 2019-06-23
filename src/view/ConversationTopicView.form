@@ -61,9 +61,9 @@
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <minimum-size width="143" height="-1"/>
-                <preferred-size width="143" height="-1"/>
-                <maximum-size width="143" height="-1"/>
+                <minimum-size width="136" height="-1"/>
+                <preferred-size width="136" height="-1"/>
+                <maximum-size width="136" height="-1"/>
               </grid>
             </constraints>
             <properties>
@@ -107,9 +107,9 @@
           <component id="5ec6f" class="javax.swing.JLabel" binding="conversationLastMessageDate" custom-create="true">
             <constraints>
               <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false">
-                <minimum-size width="41" height="-1"/>
-                <preferred-size width="41" height="-1"/>
-                <maximum-size width="41" height="-1"/>
+                <minimum-size width="48" height="-1"/>
+                <preferred-size width="48" height="-1"/>
+                <maximum-size width="48" height="-1"/>
               </grid>
             </constraints>
             <properties>
@@ -122,9 +122,9 @@
           <hspacer id="5dedd">
             <constraints>
               <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="8" height="-1"/>
-                <preferred-size width="8" height="-1"/>
-                <maximum-size width="8" height="-1"/>
+                <minimum-size width="20" height="-1"/>
+                <preferred-size width="20" height="-1"/>
+                <maximum-size width="20" height="-1"/>
               </grid>
             </constraints>
           </hspacer>
