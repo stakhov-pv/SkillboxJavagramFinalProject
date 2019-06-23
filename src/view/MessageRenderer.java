@@ -31,15 +31,13 @@ public class MessageRenderer implements ListCellRenderer<Message> {
 
         if (messageFromMe) {
             outMessageView.getOutMessageLabel().setText(textMessage);
-            outMessageView.getOutMessagePanel().invalidate();
+            //outMessageView.getOutMessagePanel().invalidate();
             return outMessagePanel;
         } else {
-            inMessageView = new InMessageView();
-            inMessagePanel = inMessageView.getInMessagePanel();
             inMessageView.getInMessageLabel().setText(textMessage);
             //inMessageView.getInMessagePanel().invalidate();
-            inMessagePanel.setPreferredSize(null);
-            inMessageView.getInMessageLabel().setPreferredSize(null);
+            //inMessagePanel.setPreferredSize(null);
+            //inMessageView.getInMessageLabel().setPreferredSize(null);
             return inMessagePanel;
         }
     }

@@ -6,14 +6,26 @@ import java.awt.image.BufferedImage;
 
 public class JImage extends JPanel {
     private BufferedImage background;
+    private Dimension size;
 
     public JImage(BufferedImage image) {
+        init(image);
+    }
+
+    public JImage(BufferedImage image, Dimension size) {
+        init(image,size);
+    }
+
+    private void init(BufferedImage image) {
+        init(image, new Dimension(image.getWidth(), image.getHeight()));
+    }
+
+    private void init(BufferedImage image, Dimension size) {
         this.background = image;
-        Dimension size = new Dimension(background.getWidth(), background.getHeight());
+        this.size = size;
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
-
         setOpaque(false);
     }
 
@@ -21,20 +33,19 @@ public class JImage extends JPanel {
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         if (background!=null) {
-            graphics.drawImage(background, 0, 0, background.getWidth(), background.getHeight(), null);
+            graphics.drawImage(background, 0, 0, size.width, size.height, null);
         } else {
             graphics.fillRect(0,0,20,20);
         }
     }
 
     public void replaceImage(BufferedImage image) {
-        this.background = image;
-        Dimension size = new Dimension(background.getWidth(), background.getHeight());
-        setPreferredSize(size);
-        setMinimumSize(size);
-        setMaximumSize(size);
+        init(image);
+        validate();
+    }
 
-        setOpaque(false);
+    public void replaceImage(BufferedImage image, Dimension size) {
+        init(image,size);
         validate();
     }
 }
