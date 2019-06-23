@@ -11,6 +11,7 @@ public class InMessageView {
     private JPanel inMessageBottomPanel;
     private JPanel inMessageLeftPanel;
     private JLabel inMessageLabel;
+    private JLabel inMessageDateLabel;
 
     private void createUIComponents() {
         inMessageTopPanel = new JImage(Res.getImage("message-in-top.png"));
@@ -24,5 +25,9 @@ public class InMessageView {
 
     public JLabel getInMessageLabel() {
         return inMessageLabel;
+    }
+
+    public JLabel getInMessageDateLabel() {
+        return inMessageDateLabel;
     }
 }

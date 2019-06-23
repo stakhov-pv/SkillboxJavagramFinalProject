@@ -11,6 +11,7 @@ public class OutMessageView {
     private JPanel outMessageArrowPanel;
     private JPanel outMessagePanel;
     private JLabel outMessageLabel;
+    private JLabel outMessageDateLabel;
 
 
     private void createUIComponents() {
@@ -25,5 +26,9 @@ public class OutMessageView {
 
     public JLabel getOutMessageLabel() {
         return outMessageLabel;
+    }
+
+    public JLabel getOutMessageDateLabel() {
+        return outMessageDateLabel;
     }
 }

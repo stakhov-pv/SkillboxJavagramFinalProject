@@ -5,6 +5,7 @@ import org.javagram.response.object.Message;
 import org.javagram.response.object.User;
 import provider.Res;
 import provider.TelegramProvider;
+import util.DateFormatter;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -27,6 +28,7 @@ public class ConversationTopicRenderer implements ListCellRenderer<ConversationT
                                                   int i, boolean isSelected, boolean cellHasFocus) {
         User user = conversationTopic.getUser();
         Message messageData = conversationTopic.getTopMessage();
+        String date = DateFormatter.relativeToString(messageData.getDate());
 
         if (isSelected) {
             conversationTopicPanel.setBackground(new Color(255, 255, 255));
@@ -48,7 +50,7 @@ public class ConversationTopicRenderer implements ListCellRenderer<ConversationT
                         :user.getFirstName()+" "+user.getLastName()
         );
         conversationTopicView.getConversationLastMessage().setText(conversationTopic.getTopMessage().getMessage());
-        conversationTopicView.getConversationLastMessageDate().setText(String.valueOf(messageData.getDate()));
+        conversationTopicView.getConversationLastMessageDate().setText(date);
         return conversationTopicPanel;
     }
 }
