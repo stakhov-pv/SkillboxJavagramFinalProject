@@ -75,16 +75,6 @@ public class MessengerView {
     private JLabel searchLabel;
     private JTextArea messageTextField;
     private JPanel messageButtonPanel;
-    private JPanel myMessagePanel;
-    private JPanel theyMessagePanel;
-    private JPanel myMessageArrowPanel;
-    private JPanel myMessageTopPanel;
-    private JPanel myMessageBottomPanel;
-    private JPanel myMessageTextPanel;
-    private JPanel inMessageTopPanel;
-    private JPanel inMessageBottomPanel;
-    private JPanel inMessageTextPanel;
-    private JPanel inMessageLeftPanel;
     private JList conversationsList;
     private JButton closeButton;
     private JButton minimiseButton;
@@ -171,17 +161,8 @@ public class MessengerView {
         partnerLabel = new JLabel();
         partnerLabel.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,14f));
 
-        myMessageTopPanel = new JImage(Res.getImage("message-out-top.png"));
-
-        myMessageBottomPanel = new JImage(Res.getImage("message-out-bottom.png"));
-        myMessageArrowPanel = new JImage(Res.getImage("message-out-right.png"));
-
         messageButtonPanel = new JImage(Res.getImage("button-send.png"));
         messageButtonPanel.addMouseListener(new PanelClickListener( () -> listener.onSendButtonPressed(messageTextField.getText()) ));
-
-        inMessageTopPanel = new JImage(Res.getImage("message-in-top.png"));
-        inMessageBottomPanel = new JImage(Res.getImage("message-in-bottom.png"));
-        inMessageLeftPanel = new JImage(Res.getImage("message-in-left.png"));
 
         conversationsList = new JList<ConversationTopic>();
         conversationsList.setCellRenderer(new ConversationTopicRenderer());

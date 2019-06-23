@@ -12,11 +12,11 @@ public class MessageRenderer implements ListCellRenderer<Message> {
     public Component getListCellRendererComponent(JList<? extends Message> jList, Message message,
                                                   int i, boolean isSelected, boolean cellHasFocus) {
         boolean messageFromMe = message.getFromId()==TelegramProvider.getInstance().getUserId();
-        String textMessage = "<html><p>"+message.getMessage().replace("\n","<br/>")+"</p></html>";
-
+        String textMessage = "<html><p style=\"width:210px\">"+message.getMessage().replace("\n","<br/>")+"</p></html>";
         if (messageFromMe) {
             OutMessageView outMessageView = new OutMessageView();
             outMessageView.getOutMessageLabel().setText(textMessage);
+            outMessageView.getOutMessageLabel().setPreferredSize(null);
             return outMessageView.getOutMessagePanel();
         } else {
             InMessageView  inMessageView = new InMessageView();

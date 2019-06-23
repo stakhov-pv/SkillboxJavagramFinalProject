@@ -9,7 +9,7 @@
       <opaque value="false"/>
     </properties>
     <border type="empty">
-      <size top="0" left="0" bottom="16" right="0"/>
+      <size top="8" left="0" bottom="8" right="0"/>
     </border>
     <children>
       <grid id="27dc6" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -82,7 +82,9 @@
                       <foreground color="-1"/>
                       <horizontalAlignment value="2"/>
                       <horizontalTextPosition value="2"/>
-                      <maximumSize width="2147483647" height="-1"/>
+                      <maximumSize width="-1" height="-1"/>
+                      <minimumSize width="-1" height="-1"/>
+                      <opaque value="false"/>
                       <preferredSize width="-1" height="-1"/>
                       <text value="&lt;html&gt;&lt;p&gt;Тут очень много текста, который я вероятно отправил&lt;/p&gt;&lt;/html&gt;"/>
                       <verticalAlignment value="0"/>
