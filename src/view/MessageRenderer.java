@@ -8,21 +8,6 @@ import java.awt.*;
 
 public class MessageRenderer implements ListCellRenderer<Message> {
 
-    private InMessageView inMessageView;
-    private JPanel inMessagePanel;
-
-    private OutMessageView outMessageView;
-    private JPanel outMessagePanel;
-
-    public MessageRenderer() {
-        inMessageView = new InMessageView();
-        inMessagePanel = inMessageView.getInMessagePanel();
-
-        outMessageView = new OutMessageView();
-        outMessagePanel = outMessageView.getOutMessagePanel();
-
-    }
-
     @Override
     public Component getListCellRendererComponent(JList<? extends Message> jList, Message message,
                                                   int i, boolean isSelected, boolean cellHasFocus) {
@@ -30,15 +15,13 @@ public class MessageRenderer implements ListCellRenderer<Message> {
         String textMessage = "<html><p>"+message.getMessage().replace("\n","<br/>")+"</p></html>";
 
         if (messageFromMe) {
+            OutMessageView outMessageView = new OutMessageView();
             outMessageView.getOutMessageLabel().setText(textMessage);
-            //outMessageView.getOutMessagePanel().invalidate();
-            return outMessagePanel;
+            return outMessageView.getOutMessagePanel();
         } else {
+            InMessageView  inMessageView = new InMessageView();
             inMessageView.getInMessageLabel().setText(textMessage);
-            //inMessageView.getInMessagePanel().invalidate();
-            //inMessagePanel.setPreferredSize(null);
-            //inMessageView.getInMessageLabel().setPreferredSize(null);
-            return inMessagePanel;
+            return inMessageView.getInMessagePanel();
         }
     }
 }

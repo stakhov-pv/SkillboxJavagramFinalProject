@@ -716,7 +716,7 @@
                   </grid>
                   <vspacer id="e064a">
                     <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </vspacer>
                   <grid id="76864" binding="theyMessagePanel" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -883,7 +883,11 @@
                     <children>
                       <component id="1764e" class="javax.swing.JList" binding="messagesList" custom-create="true">
                         <constraints/>
-                        <properties/>
+                        <properties>
+                          <alignmentX value="0.0"/>
+                          <alignmentY value="0.0"/>
+                          <selectionMode value="0"/>
+                        </properties>
                       </component>
                     </children>
                   </scrollpane>
