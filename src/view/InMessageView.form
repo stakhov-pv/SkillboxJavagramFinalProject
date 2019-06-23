@@ -78,6 +78,7 @@
                       <background color="-12828863"/>
                       <focusTraversalPolicyProvider value="false"/>
                       <foreground color="-1"/>
+                      <horizontalTextPosition value="2"/>
                       <opaque value="false"/>
                       <text value="&lt;html&gt;&lt;p&gt;Тут очень много текста, который я вероятно отправил&lt;/p&gt;&lt;/html&gt;"/>
                     </properties>

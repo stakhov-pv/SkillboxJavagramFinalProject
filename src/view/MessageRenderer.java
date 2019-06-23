@@ -1,7 +1,6 @@
 package view;
 
 import org.javagram.response.object.Message;
-import provider.Res;
 import provider.TelegramProvider;
 
 import javax.swing.*;
@@ -28,12 +27,19 @@ public class MessageRenderer implements ListCellRenderer<Message> {
     public Component getListCellRendererComponent(JList<? extends Message> jList, Message message,
                                                   int i, boolean isSelected, boolean cellHasFocus) {
         boolean messageFromMe = message.getFromId()==TelegramProvider.getInstance().getUserId();
+        String textMessage = "<html><p>"+message.getMessage().replace("\n","<br/>")+"</p></html>";
 
         if (messageFromMe) {
-            outMessageView.getOutMessageLabel().setText("<html><p>"+message.getMessage().replace("\n","<br/>")+"</p></html>");
+            outMessageView.getOutMessageLabel().setText(textMessage);
+            outMessageView.getOutMessagePanel().invalidate();
             return outMessagePanel;
         } else {
-            inMessageView.getInMessageLabel().setText(message.getMessage());
+            inMessageView = new InMessageView();
+            inMessagePanel = inMessageView.getInMessagePanel();
+            inMessageView.getInMessageLabel().setText(textMessage);
+            //inMessageView.getInMessagePanel().invalidate();
+            inMessagePanel.setPreferredSize(null);
+            inMessageView.getInMessageLabel().setPreferredSize(null);
             return inMessagePanel;
         }
     }
