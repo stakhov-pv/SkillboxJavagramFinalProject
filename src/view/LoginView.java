@@ -65,6 +65,7 @@ public class LoginView {
     private JButton phoneButton;
     private JPanel nameButtonBackground;
     private JPanel codeButtonBackground;
+    private JLabel processLabel1;
 
     public static void createAndRun() {
         LoginView loginView = new LoginView();
@@ -160,6 +161,9 @@ public class LoginView {
             }
         });
 
+        processLabel1 = new JLabel();
+        processLabel1.setIcon(new ImageIcon("res/processing.gif"));
+
         codePanel = new JPanel();
         Border codeBorder = BorderFactory.createMatteBorder(0,0,2,0,Color.WHITE);
         codePanel.setBorder(codeBorder);
@@ -236,10 +240,15 @@ public class LoginView {
             case AskPhone:
                 phoneState.setVisible(true);
                 phoneButton.setEnabled(true);
+                processLabel1.setVisible(false);
+                phoneButtonBackground.setVisible(true);
                 break;
             case ProcessingPhone:
                 phoneState.setVisible(true);
                 phoneButton.setEnabled(false);
+                phoneButton.setVisible(false);
+                phoneButtonBackground.setVisible(false);
+                processLabel1.setVisible(true);
                 break;
             case AskCode:
                 codeValue.setText("");
