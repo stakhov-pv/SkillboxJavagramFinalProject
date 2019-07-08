@@ -77,28 +77,6 @@ public class LoginPresenter implements LoginView.Listener {
         }
     }
 
-    /*
-    @Override
-    public void onCodeButtonPressed() {
-        String code = view.getCodeValue();
-        setState(LoginView.LoginState.ProcessingCode);
-        try {
-            boolean authorised = model.signIn(code);
-            if (!authorised) setState(LoginView.LoginState.AskPhone);
-            else startMessenger();
-        } catch (Exception e) {
-            //TODO: show error
-            e.printStackTrace();
-            if ("PHONE_NUMBER_UNOCCUPIED".equals(e.getMessage())) {
-                model.setSmsCode(code);
-                setState(LoginView.LoginState.AskNewProfile);
-            } else {
-                setState(LoginView.LoginState.AskPhone);
-            }
-        }
-    }
-     */
-
     @Override
     public void onCodeButtonPressed() {
         String code = view.getCodeValue();
@@ -144,14 +122,36 @@ public class LoginPresenter implements LoginView.Listener {
         String firstName = view.getFirstName();
         String lastName = view.getLastName();
         setState(LoginView.LoginState.ProcessingNewProfile);
-        try {
+        AsyncRegisterNewUser asyncRegisterNewUser = new AsyncRegisterNewUser(firstName, lastName);
+        asyncRegisterNewUser.execute();
+    }
+
+    class AsyncRegisterNewUser extends SwingWorker<Boolean, Void> {
+        String firstName;
+        String lastName;
+
+        public AsyncRegisterNewUser(String firstName, String lastName) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
+
+        @Override
+        protected Boolean doInBackground() throws Exception {
             boolean authorised = model.signUp(model.getSmsCode(), firstName, lastName);
-            if (!authorised) setState(LoginView.LoginState.AskPhone);
-            else startMessenger();
-        } catch (Exception e) {
-            //TODO: show error
-            e.printStackTrace();
-            setState(LoginView.LoginState.AskPhone);
+            return authorised;
+        }
+
+        @Override
+        protected void done() {
+            try {
+                boolean authorised = get();
+                if (!authorised) setState(LoginView.LoginState.AskPhone);
+                else startMessenger();
+            } catch (Exception e) {
+                //TODO: show error
+                e.printStackTrace();
+                setState(LoginView.LoginState.AskPhone);
+            }
         }
     }
 

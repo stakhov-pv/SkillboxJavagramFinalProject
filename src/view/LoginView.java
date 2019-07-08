@@ -277,11 +277,15 @@ public class LoginView {
             case AskNewProfile:
                 nameState.setVisible(true);
                 nameButton.setEnabled(true);
+                nameButton.setVisible(true);
+                nameButtonBackground.setVisible(true);
                 nameProcessLabel.setVisible(false);
                 break;
             case ProcessingNewProfile:
                 nameState.setVisible(true);
                 nameButton.setEnabled(false);
+                nameButton.setVisible(false);
+                nameButtonBackground.setVisible(false);
                 nameProcessLabel.setVisible(true);
                 break;
         }
