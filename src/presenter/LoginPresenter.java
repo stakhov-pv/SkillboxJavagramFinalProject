@@ -37,29 +37,6 @@ public class LoginPresenter implements LoginView.Listener {
         view.showState(model.getState());
     }
 
-    /*
-    @Override
-    public void onPhoneButtonPressed() {
-        String desiredPhone = view.getPhoneValue().trim();
-        //TODO: check phone number for consistency
-        model.setPhoneNumber(desiredPhone);
-        setState(LoginView.LoginState.ProcessingPhone);
-        try {
-            boolean registered = model.getRegisteredStatus(desiredPhone);
-            if (registered) {
-                view.setCodePhoneLabel(PhoneFormatter.humanReadable(desiredPhone));
-                setState(LoginView.LoginState.AskCode);
-                model.sendCode(model.getPhoneNumber());
-            } else {
-                setState(LoginView.LoginState.AskNewProfile);
-
-            }
-        } catch (Exception e) {
-            //TODO: show error
-        }
-    }
-     */
-
     @Override
     public void onPhoneButtonPressed() {
         String desiredPhone = view.getPhoneValue().trim();
@@ -100,10 +77,10 @@ public class LoginPresenter implements LoginView.Listener {
         }
     }
 
+    /*
     @Override
     public void onCodeButtonPressed() {
         String code = view.getCodeValue();
-        //TODO: check code for consistency
         setState(LoginView.LoginState.ProcessingCode);
         try {
             boolean authorised = model.signIn(code);
@@ -117,6 +94,47 @@ public class LoginPresenter implements LoginView.Listener {
                 setState(LoginView.LoginState.AskNewProfile);
             } else {
                 setState(LoginView.LoginState.AskPhone);
+            }
+        }
+    }
+     */
+
+    @Override
+    public void onCodeButtonPressed() {
+        String code = view.getCodeValue();
+        setState(LoginView.LoginState.ProcessingCode);
+        AsyncCheckCode asyncCheckCode = new AsyncCheckCode(code);
+        asyncCheckCode.execute();
+    }
+
+    class AsyncCheckCode extends SwingWorker<Boolean, Void> {
+        String code;
+
+        public AsyncCheckCode(String code) {
+            this.code=code;
+        }
+
+        @Override
+        protected Boolean doInBackground() throws Exception {
+            boolean authorised = model.signIn(code);
+            return authorised;
+        }
+
+        @Override
+        protected void done() {
+            try {
+                boolean authorised = get();
+                if (!authorised) setState(LoginView.LoginState.AskPhone);
+                else startMessenger();
+            } catch (Exception e) {
+                //TODO: show error
+                e.printStackTrace();
+                if ("PHONE_NUMBER_UNOCCUPIED".equals(e.getMessage())) {
+                    model.setSmsCode(code);
+                    setState(LoginView.LoginState.AskNewProfile);
+                } else {
+                    setState(LoginView.LoginState.AskPhone);
+                }
             }
         }
     }

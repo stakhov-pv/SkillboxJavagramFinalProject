@@ -65,7 +65,9 @@ public class LoginView {
     private JButton phoneButton;
     private JPanel nameButtonBackground;
     private JPanel codeButtonBackground;
-    private JLabel processLabel1;
+    private JLabel phoneProcessLabel;
+    private JLabel codeProcessLabel;
+    private JLabel nameProcessLabel;
 
     public static void createAndRun() {
         LoginView loginView = new LoginView();
@@ -161,8 +163,8 @@ public class LoginView {
             }
         });
 
-        processLabel1 = new JLabel();
-        processLabel1.setIcon(new ImageIcon("res/processing.gif"));
+        phoneProcessLabel = new JLabel();
+        phoneProcessLabel.setIcon(new ImageIcon("res/processing.gif"));
 
         codePanel = new JPanel();
         Border codeBorder = BorderFactory.createMatteBorder(0,0,2,0,Color.WHITE);
@@ -194,6 +196,9 @@ public class LoginView {
             }
         });
 
+        codeProcessLabel = new JLabel();
+        codeProcessLabel.setIcon(new ImageIcon("res/processing.gif"));
+
         nameLogo = new JImage(Res.getImage("logo-mini.png"));
 
         nameLabel = new JLabel();
@@ -213,6 +218,9 @@ public class LoginView {
                 if (listener!=null) listener.onNameButtonPressed();
             }
         });
+
+        nameProcessLabel = new JLabel();
+        nameProcessLabel.setIcon(new ImageIcon("res/processing.gif"));
 
     }
 
@@ -240,32 +248,41 @@ public class LoginView {
             case AskPhone:
                 phoneState.setVisible(true);
                 phoneButton.setEnabled(true);
-                processLabel1.setVisible(false);
+                phoneButton.setVisible(true);
                 phoneButtonBackground.setVisible(true);
+                phoneProcessLabel.setVisible(false);
                 break;
             case ProcessingPhone:
                 phoneState.setVisible(true);
                 phoneButton.setEnabled(false);
                 phoneButton.setVisible(false);
                 phoneButtonBackground.setVisible(false);
-                processLabel1.setVisible(true);
+                phoneProcessLabel.setVisible(true);
                 break;
             case AskCode:
                 codeValue.setText("");
                 codeState.setVisible(true);
                 codeButton.setEnabled(true);
+                codeButton.setVisible(true);
+                codeButtonBackground.setVisible(true);
+                codeProcessLabel.setVisible(false);
                 break;
             case ProcessingCode:
                 codeState.setVisible(true);
                 codeButton.setEnabled(false);
+                codeButton.setVisible(false);
+                codeButtonBackground.setVisible(false);
+                codeProcessLabel.setVisible(true);
                 break;
             case AskNewProfile:
                 nameState.setVisible(true);
                 nameButton.setEnabled(true);
+                nameProcessLabel.setVisible(false);
                 break;
             case ProcessingNewProfile:
                 nameState.setVisible(true);
                 nameButton.setEnabled(false);
+                nameProcessLabel.setVisible(true);
                 break;
         }
         Gui.getInstance().validate();
