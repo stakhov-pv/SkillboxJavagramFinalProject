@@ -210,9 +210,17 @@ public class LoginView {
         firstNameField.setBorder(phoneBorder);
         firstNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,42f));
 
+        TextPrompt firstNameTextPrompt = new TextPrompt("Имя", firstNameField);
+        firstNameTextPrompt.setForeground( Color.WHITE );
+        firstNameTextPrompt.changeAlpha(0.5f);
+
         lastNameField = new JTextField();
         lastNameField.setBorder(phoneBorder);
         lastNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,42f));
+
+        TextPrompt lastNameTextPrompt = new TextPrompt("Фамилия", lastNameField);
+        lastNameTextPrompt.setForeground( Color.WHITE );
+        lastNameTextPrompt.changeAlpha(0.5f);
 
         nameButtonBackground = new JImage(Res.getImage("button-background.png"));
         nameButton = new JButton();
