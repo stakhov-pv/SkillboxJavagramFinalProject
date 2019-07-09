@@ -206,6 +206,14 @@ public class LoginView {
 
         nameIcon = new JImage(Res.getImage("your-face.png"));
 
+        firstNameField = new JTextField();
+        firstNameField.setBorder(phoneBorder);
+        firstNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,42f));
+
+        lastNameField = new JTextField();
+        lastNameField.setBorder(phoneBorder);
+        lastNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,42f));
+
         nameButtonBackground = new JImage(Res.getImage("button-background.png"));
         nameButton = new JButton();
         nameButton.setBorderPainted(false);
@@ -246,6 +254,7 @@ public class LoginView {
             case Init:
                 break;
             case AskPhone:
+                phoneValue.setEnabled(true);
                 phoneState.setVisible(true);
                 phoneButton.setEnabled(true);
                 phoneButton.setVisible(true);
@@ -253,6 +262,7 @@ public class LoginView {
                 phoneProcessLabel.setVisible(false);
                 break;
             case ProcessingPhone:
+                phoneValue.setEnabled(false);
                 phoneState.setVisible(true);
                 phoneButton.setEnabled(false);
                 phoneButton.setVisible(false);
@@ -261,6 +271,7 @@ public class LoginView {
                 break;
             case AskCode:
                 codeValue.setText("");
+                codeValue.setEnabled(true);
                 codeState.setVisible(true);
                 codeButton.setEnabled(true);
                 codeButton.setVisible(true);
@@ -269,6 +280,7 @@ public class LoginView {
                 break;
             case ProcessingCode:
                 codeState.setVisible(true);
+                codeValue.setEnabled(false);
                 codeButton.setEnabled(false);
                 codeButton.setVisible(false);
                 codeButtonBackground.setVisible(false);
@@ -276,6 +288,8 @@ public class LoginView {
                 break;
             case AskNewProfile:
                 nameState.setVisible(true);
+                firstNameField.setEnabled(true);
+                lastNameField.setEnabled(true);
                 nameButton.setEnabled(true);
                 nameButton.setVisible(true);
                 nameButtonBackground.setVisible(true);
@@ -283,6 +297,8 @@ public class LoginView {
                 break;
             case ProcessingNewProfile:
                 nameState.setVisible(true);
+                firstNameField.setEnabled(false);
+                lastNameField.setEnabled(false);
                 nameButton.setEnabled(false);
                 nameButton.setVisible(false);
                 nameButtonBackground.setVisible(false);
