@@ -80,6 +80,7 @@ public class MessengerView {
     private JButton minimiseButton;
     private JList messagesList;
     private JPanel importContactPanel;
+    private JPanel layeredPanel;
 
 
     public JPanel getRootPanel() {
@@ -109,6 +110,12 @@ public class MessengerView {
                 if (listener!=null) listener.onMinimiseButtonPressed();
             }
         });
+
+        layeredPanel = new JPanel();
+        //JLayeredPane jLayeredPane = rootPanel.getRootPane().getLayeredPane();
+        EditProfileView editProfileView = new EditProfileView();
+        //jLayeredPane.add(editProfileView.getEditProfilePanel(), JLayeredPane.POPUP_LAYER);
+        layeredPanel.add(editProfileView.getEditProfilePanel(), JLayeredPane.POPUP_LAYER);
 
         logoPanel = new JImage(Res.getImage("logo-micro.png"));
         searchIconPanel = new JImage(Res.getImage("icon-search.png"));
@@ -293,6 +300,12 @@ public class MessengerView {
     }
 
     public void showProfileEdit(String firstName, String lastName, String phone) {
+        JLayeredPane jLayeredPane = rootPanel.getRootPane().getLayeredPane();
+        EditProfileView editProfileView = new EditProfileView();
+        jLayeredPane.add(editProfileView.getEditProfilePanel(), JLayeredPane.POPUP_LAYER);
+
+        if (true) return;
+
         JPanel inputPanel = new JPanel();
         //inputPanel.setLayout(new );
         JTextField firstNameTextField = new JTextField(firstName);
