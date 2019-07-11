@@ -10,7 +10,9 @@ public class TestGfx {
         view.showState(MessengerView.MessengerState.Messenger);
 
         EditProfileView editProfileView = new EditProfileView();
+        //Gui.getInstance().changePane(editProfileView.getEditProfilePanel());
         Gui.getInstance().showPopup(editProfileView.getEditProfilePanel());
+        Gui.getInstance().hidePopup();
 
         /*
         layeredPanel = new JPanel();

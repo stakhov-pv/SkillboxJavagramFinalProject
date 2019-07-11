@@ -10,7 +10,9 @@ public class Gui {
 
     private JFrame frame;
     private static Gui instance;
-    private Component popup;
+    private Container popup;
+    private Container contentPane;
+    //private JLayeredPane layeredPane;
 
     public static Gui getInstance() {
         if (instance == null) {
@@ -32,20 +34,34 @@ public class Gui {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         frame.setVisible(true);
+        //layeredPane = new JLayeredPane();
+        //layeredPane.setLayout(null);
+        //layeredPane.setPreferredSize(new Dimension(600,400));
+        //layeredPane.setBounds(0, 0, 600, 400);
+        //frame.setContentPane(layeredPane);
+        //frame.pack();
     }
 
     public void changePane(Container container) {
-        frame.setContentPane(container);
+        contentPane = container;
+        //layeredPane.setLayer(container,JLayeredPane.DEFAULT_LAYER);
+        frame.setContentPane(contentPane);
     }
 
-    public void showPopup(Component newPopup) {
+    public void showPopup(Container newPopup) {
         if (popup!=null) hidePopup();
-        frame.getLayeredPane().add(newPopup, JLayeredPane.POPUP_LAYER);
+        //layeredPane.add(newPopup, JLayeredPane.POPUP_LAYER);
+        //frame.getLayeredPane().add(newPopup, JLayeredPane.POPUP_LAYER);
+        //frame.getLayeredPane().add(newPopup,1);//, JLayeredPane.POPUP_LAYER);
+        //frame.getLayeredPane().setEnabled(true);
+        //frame.getLayeredPane().add(newPopup, );
+        //frame.setContentPane(newPopup);
+        frame.setContentPane(newPopup);
         popup = newPopup;
     }
 
     public void hidePopup() {
-        if (popup!=null) frame.getLayeredPane().remove(popup);
+        if (popup!=null) frame.setContentPane(contentPane);
         popup = null;
     }
 

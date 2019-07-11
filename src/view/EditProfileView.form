@@ -4,7 +4,9 @@
     <constraints>
       <xy x="20" y="20" width="500" height="452"/>
     </constraints>
-    <properties/>
+    <properties>
+      <opaque value="false"/>
+    </properties>
     <border type="none"/>
     <children>
       <grid id="7c71b" binding="editProfilePanel" custom-create="true" layout-manager="GridLayoutManager" row-count="10" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
