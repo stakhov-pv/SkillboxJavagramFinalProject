@@ -23,7 +23,7 @@ public class EditProfileView {
     }
 
     private void createUIComponents() {
-        editProfilePanel = new JImage(Res.getImage("transpareent.png"),new Dimension(200,100));
+        editProfilePanel = new JImage(Res.getImage("transparent.png"),new Dimension(200,100));
 
         profileLabel = new JLabel();
         firstNameField = new JTextField();

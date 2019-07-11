@@ -1,9 +1,24 @@
+import provider.Gui;
+import view.EditProfileView;
 import view.LoginView;
+import view.MessengerView;
 
 public class TestGfx {
     public static void main(String[] params) {
-        LoginView view = new LoginView();
+        MessengerView view = new MessengerView();
         view.show();
-        view.showState(LoginView.LoginState.AskNewProfile);
+        view.showState(MessengerView.MessengerState.Messenger);
+
+        EditProfileView editProfileView = new EditProfileView();
+        Gui.getInstance().showPopup(editProfileView.getEditProfilePanel());
+
+        /*
+        layeredPanel = new JPanel();
+        //JLayeredPane jLayeredPane = rootPanel.getRootPane().getLayeredPane();
+        EditProfileView editProfileView = new EditProfileView();
+        //jLayeredPane.add(editProfileView.getEditProfilePanel(), JLayeredPane.POPUP_LAYER);
+        layeredPanel.add(editProfileView.getEditProfilePanel(), JLayeredPane.POPUP_LAYER);
+
+         */
     }
 }

@@ -10,6 +10,7 @@ public class Gui {
 
     private JFrame frame;
     private static Gui instance;
+    private Component popup;
 
     public static Gui getInstance() {
         if (instance == null) {
@@ -35,6 +36,17 @@ public class Gui {
 
     public void changePane(Container container) {
         frame.setContentPane(container);
+    }
+
+    public void showPopup(Component newPopup) {
+        if (popup!=null) hidePopup();
+        frame.getLayeredPane().add(newPopup, JLayeredPane.POPUP_LAYER);
+        popup = newPopup;
+    }
+
+    public void hidePopup() {
+        if (popup!=null) frame.getLayeredPane().remove(popup);
+        popup = null;
     }
 
     public void validate() {
