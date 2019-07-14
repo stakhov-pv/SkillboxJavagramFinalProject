@@ -142,7 +142,7 @@ public class MessengerView {
         importContactPanel = new JImage(Res.getImage("icon-plus.png"));
         importContactPanel.addMouseListener(new PanelClickListener( ()->listener.onImportContactPressed() ));
 
-        Border chatPartnerBottomBorder = BorderFactory.createMatteBorder(0,0,1,0,new Color(237,237,227));
+        Border chatPartnerBottomBorder = BorderFactory.createMatteBorder(0,0,1,0,new Color(237,237,237));
         chatPartnerPanel = new JPanel();
         chatPartnerPanel.setBorder(chatPartnerBottomBorder);
         chatPartnerPanel.addMouseListener(new PanelClickListener( () -> listener.onEditUserButtonPressed() ));
