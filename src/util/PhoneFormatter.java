@@ -14,6 +14,9 @@ public class PhoneFormatter {
 
     public static String humanReadable(String source) {
         String cleanNumber = cutSymbols(source);
+        if (cleanNumber.length()>0 && !cleanNumber.startsWith("+")) {
+            cleanNumber = "+"+cleanNumber;
+        }
         String countryCode = null;
         for (String code: countryCodes) {
             if (cleanNumber.startsWith(code)) {

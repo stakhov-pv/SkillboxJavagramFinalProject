@@ -10,6 +10,7 @@ import org.javagram.response.object.inputs.InputContact;
 import org.telegram.api.TLMessage;
 import org.telegram.api.TLPeerUser;
 import provider.TelegramProvider;
+import util.PhoneFormatter;
 import view.LoginView;
 import view.MessengerView;
 
@@ -111,7 +112,7 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
 
     @Override
     public void onProfileButtonPressed() {
-        view.showProfileEdit(model.getUserFirstName(), model.getUserLastName(), model.getUserPhone());
+        view.showProfileEdit(model.getUserFirstName(), model.getUserLastName(), PhoneFormatter.humanReadable(model.getUserPhone()));
     }
 
     @Override
@@ -202,18 +203,51 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
 
     @Override
     public void onImportContactFilled(String firstName, String lastName, String phone) {
-        long client_id = 0;
-        InputContact inputContact = new InputContact(client_id, phone, firstName, lastName);
-        Integer newUserId = model.contactsImportContact(inputContact,false);
-        if (newUserId==null) return;
-        User newUser = TelegramProvider.getInstance().getUser(newUserId);
-        if (newUser==null) return;
-        //model.getSelectedConversation().setUser(newUser);
-        model.getConversations().add(0,new ConversationTopic(newUserId,newUser,
-                createMessage(model.getUserId(), newUserId,  "Новый контакт")));
-        view.showConversationTopics(model.getConversations());
-        onSelectConversation(0);
+        AsyncImportContact asyncImportContact = new AsyncImportContact(firstName,lastName,phone);
+        asyncImportContact.execute();
     }
+
+    class AsyncImportContact extends SwingWorker<Boolean, Void> {
+        String firstName;
+        String lastName;
+        String phone;
+
+        public AsyncImportContact(String firstName, String lastName, String phone) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.phone = phone;
+        }
+
+        @Override
+        protected Boolean doInBackground() {
+            long client_id = 0;
+            InputContact inputContact = new InputContact(client_id, phone, firstName, lastName);
+            Integer newUserId = model.contactsImportContact(inputContact,false);
+            if (newUserId==null) return false;
+            User newUser = TelegramProvider.getInstance().getUser(newUserId);
+            if (newUser==null) return false;
+            //model.getSelectedConversation().setUser(newUser);
+            model.getConversations().add(0,new ConversationTopic(newUserId,newUser,
+                    createMessage(model.getUserId(), newUserId,  "Новый контакт")));
+            return true;
+        }
+
+        @Override
+        protected void done() {
+            try {
+                if (this.get()) {
+                    view.showConversationTopics(model.getConversations());
+                    onSelectConversation(0);
+                } else {
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            view.hideImportUser();
+        }
+    }
+
 
     @Override
     public void onLogoff() {

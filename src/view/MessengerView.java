@@ -330,32 +330,23 @@ public class MessengerView {
     }
 
     public void showImportUser() {
-        JPanel inputPanel = new JPanel();
-        JTextField firstNameTextField = new JTextField();
-        JTextField lastNameTextField = new JTextField();
-        JTextField phoneTextField = new JTextField();
+        AddContactView addContactView = new AddContactView();
+        addContactView.attachListener(new AddContactView.Listener() {
+            @Override
+            public void onBackPressed() {
+                hideImportUser();
+            }
 
-        inputPanel.add(new JLabel("First name:"));
-        inputPanel.add(firstNameTextField);
-        inputPanel.add(new JLabel("Last name:"));
-        inputPanel.add(lastNameTextField);
-        inputPanel.add(new JLabel("Phone:"));
-        inputPanel.add(phoneTextField);
+            @Override
+            public void onAddContactPressed(String firstName, String lastName, String phone) {
+                if (listener!=null) listener.onImportContactFilled(firstName, lastName, phone);
+            }
+        });
+        Gui.getInstance().showPopup(addContactView.getAddContactPanel());
+    }
 
-        if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(
-                rootPanel, inputPanel, "Import contact", JOptionPane.OK_CANCEL_OPTION)) {
-
-            String firstName = firstNameTextField.getText();
-            String lastName = lastNameTextField.getText();
-            String phone = phoneTextField.getText();
-            if (listener!=null) listener.onImportContactFilled(firstName, lastName, phone);
-
-        } else {
-
-            //TODO:
-
-        }
-        //listener.onCloseProfileEditor();
+    public void hideImportUser() {
+        Gui.getInstance().hidePopup();
     }
 
     public void showNoRealisation() {

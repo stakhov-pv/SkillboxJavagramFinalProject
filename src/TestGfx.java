@@ -21,12 +21,22 @@ public class TestGfx {
         addContactView.attachListener(new AddContactView.Listener() {
             @Override
             public void onBackPressed() {
-
+                JOptionPane.showMessageDialog(
+                        addContactView.getAddContactPanel(),
+                        "Back pressed!",
+                        "info",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
             }
 
             @Override
             public void onAddContactPressed(String firstName, String lastName, String phone) {
-
+                JOptionPane.showMessageDialog(
+                        addContactView.getAddContactPanel(),
+                        "Add pressed with phone="+phone+", first name="+firstName+" and last name="+lastName,
+                        "info",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
             }
         });
         Gui.getInstance().showPopup(addContactView.getAddContactPanel());
