@@ -232,6 +232,13 @@ public class MessengerView {
             partnerLabel.setText("User deleted");
         }
 
+        BufferedImage image = getUserPic(user);
+        JImage avatar = (JImage)partnerIconPanel;
+        avatar.replaceImage(image, new Dimension(29,29));
+
+    }
+
+    private BufferedImage getUserPic(User user) {
         BufferedImage image = null;
         if (user!=null) {
             image = TelegramProvider.getInstance().getUserPic(user,true);
@@ -239,10 +246,7 @@ public class MessengerView {
         if (image==null) {
             image = Res.getImage("your-face.png");
         }
-
-        JImage avatar = (JImage)partnerIconPanel;
-        avatar.replaceImage(image, new Dimension(29,29));
-
+        return image;
     }
 
     public void showConversationMessages(List<Message> messages) {
@@ -293,7 +297,7 @@ public class MessengerView {
         listener.onCloseProfileEditor();
     }
 
-
+    /*
     public void showEditUser(int userId, String firstName, String lastName, String phone) {
         JPanel inputPanel = new JPanel();
         JTextField nameTextField = new JTextField(firstName+" "+lastName);
@@ -327,6 +331,42 @@ public class MessengerView {
 
         }
         listener.onCloseUserEditor();
+    }
+     */
+    public void showEditUser(User user, String firstName, String lastName, String phone) {
+        if (user==null) return;
+        BufferedImage avatar = getUserPic(user);
+        EditContactView editContactView = new EditContactView(firstName+" "+lastName,phone,avatar);
+        editContactView.attachListener(new EditContactView.Listener() {
+            @Override
+            public void onBackPressed() {
+                hideEditUser();
+            }
+
+            @Override
+            public void onEditContactPressed(String name, String phone) {
+                String[] splittedName = name.trim().split("[ ]+");
+                String updatedFirstName="";
+                String updatedLastName="";
+                if (splittedName.length>0) updatedFirstName=splittedName[0];
+                if (splittedName.length>1) updatedLastName=splittedName[splittedName.length-1];
+                if (updatedFirstName.length()==0 && updatedLastName.length()==0) {
+                    updatedFirstName="John";
+                    updatedLastName="Doe";
+                }
+                if (listener!=null) listener.onSaveUserEditor(user.getId(), phone, updatedFirstName, updatedLastName);
+            }
+
+            @Override
+            public void onDeleteContactPressed(String phone) {
+                if (listener!=null) listener.onDeleteUserPressed(user.getId());
+            }
+        });
+        Gui.getInstance().showPopup(editContactView.getEditContactPanel());
+    }
+
+    public void hideEditUser() {
+        Gui.getInstance().hidePopup();
     }
 
     public void showImportUser() {

@@ -75,7 +75,12 @@ public class EditContactView {
 
         deleteUserLabel = new JLabel();
         deleteUserLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,18f));
-        deleteUserLabel.addMouseListener(new PanelClickListener( ()->listener.onDeleteContactPressed(phone) ));
+        deleteUserLabel.addMouseListener(new PanelClickListener( ()-> {
+            if (listener!=null) {
+                showProcessingState();
+                listener.onDeleteContactPressed(phone);
+            }
+        } ));
         Border deleteUserBorder = BorderFactory.createMatteBorder(2,2,2,2,Color.RED);
         deleteUserLabel.setIcon(new ImageIcon("res/icon-trash.png"));
         deleteUserPanel = new JPanel();
