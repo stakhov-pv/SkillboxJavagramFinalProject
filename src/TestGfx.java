@@ -1,4 +1,5 @@
 import provider.Gui;
+import view.AddContactView;
 import view.EditProfileView;
 import view.LoginView;
 import view.MessengerView;
@@ -7,6 +8,33 @@ import javax.swing.*;
 
 public class TestGfx {
     public static void main(String[] params) {
+        //testProfileEditor();
+        testAddContact();
+    }
+
+    private static void testAddContact() {
+        MessengerView view = new MessengerView();
+        view.show();
+        view.showState(MessengerView.MessengerState.Messenger);
+
+        AddContactView addContactView = new AddContactView();
+        addContactView.attachListener(new AddContactView.Listener() {
+            @Override
+            public void onBackPressed() {
+
+            }
+
+            @Override
+            public void onAddContactPressed(String firstName, String lastName, String phone) {
+
+            }
+        });
+        Gui.getInstance().showPopup(addContactView.getAddContactPanel());
+
+    }
+
+
+    private static void testProfileEditor() {
         MessengerView view = new MessengerView();
         view.show();
         view.showState(MessengerView.MessengerState.Messenger);
