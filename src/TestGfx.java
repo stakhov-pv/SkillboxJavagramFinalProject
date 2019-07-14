@@ -1,3 +1,6 @@
+import model.ConversationTopic;
+import org.javagram.response.object.*;
+import org.telegram.api.*;
 import provider.Gui;
 import provider.Res;
 import view.*;
@@ -5,6 +8,8 @@ import view.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class TestGfx {
     public static void main(String[] params) {
@@ -14,11 +19,27 @@ public class TestGfx {
         testMessenger();
     }
 
+
+
+
     private static void testMessenger() {
         MessengerView view = new MessengerView();
         view.show();
         view.showState(MessengerView.MessengerState.Messenger);
         view.showSelectConversation(false);
+
+        User user1 = new UserContact(new TLUserContact(1,"Paul","Stakhov",0,"+79221112233",null,null));
+        User user2 = new UserContact(new TLUserContact(2,"Eugene","Stakhov",0,"+79334445566",null,null));
+
+        TLMessage msg1_2 = new TLMessage(1,2,new TLPeerUser(1),false,false,0,"some text",null);
+        TLMessage msg2_1 = new TLMessage(2,1,new TLPeerUser(2),false,false,0,"some text",null);
+
+        ArrayList<ConversationTopic> conversations = new ArrayList<>();
+        conversations.add(new ConversationTopic(1, user1,new Message(msg1_2)));
+        conversations.add(new ConversationTopic(2, user2,new Message(msg2_1)));
+        view.showConversationTopics(conversations);
+        view.repaintConversationTopics();
+
     }
 
     private static void testEditContact() {
