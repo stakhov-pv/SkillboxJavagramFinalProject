@@ -135,6 +135,10 @@ public class TelegramProvider {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getUserFirstName() {
         return user.getFirstName();
     }

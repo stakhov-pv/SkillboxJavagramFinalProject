@@ -3,6 +3,7 @@ import org.javagram.response.object.*;
 import org.telegram.api.*;
 import provider.Gui;
 import provider.Res;
+import provider.TelegramProvider;
 import view.*;
 
 import javax.swing.*;
@@ -19,26 +20,34 @@ public class TestGfx {
         testMessenger();
     }
 
-
-
-
     private static void testMessenger() {
         MessengerView view = new MessengerView();
         view.show();
         view.showState(MessengerView.MessengerState.Messenger);
         view.showSelectConversation(false);
 
+
         User user1 = new UserContact(new TLUserContact(1,"Paul","Stakhov",0,"+79221112233",null,null));
         User user2 = new UserContact(new TLUserContact(2,"Eugene","Stakhov",0,"+79334445566",null,null));
+
+        TelegramProvider.getInstance().setUser(user1);
 
         TLMessage msg1_2 = new TLMessage(1,2,new TLPeerUser(1),false,false,0,"some text",null);
         TLMessage msg2_1 = new TLMessage(2,1,new TLPeerUser(2),false,false,0,"some text",null);
 
+        Message m1_2 = new Message(msg1_2);
+        Message m2_1 = new Message(msg2_1);
+
         ArrayList<ConversationTopic> conversations = new ArrayList<>();
-        conversations.add(new ConversationTopic(1, user1,new Message(msg1_2)));
-        conversations.add(new ConversationTopic(2, user2,new Message(msg2_1)));
+        conversations.add(new ConversationTopic(1, user1,m1_2));
+        conversations.add(new ConversationTopic(2, user2,m2_1));
         view.showConversationTopics(conversations);
         view.repaintConversationTopics();
+
+        ArrayList<Message> messages = new ArrayList<>();
+        messages.add(m1_2);
+        messages.add(m2_1);
+        view.showConversationMessages(messages);
 
     }
 
