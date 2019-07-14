@@ -119,7 +119,7 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
     public void onEditUserButtonPressed() {
         ConversationTopic conversationTopic = model.getSelectedConversation();
         if (conversationTopic!=null) {
-            view.showEditUser(conversationTopic.getUserId(),
+            view.showEditUser(conversationTopic.getUser(),
                     conversationTopic.getUser().getFirstName(), conversationTopic.getUser().getLastName(),
                     conversationTopic.getUser().getPhone());
         }
@@ -165,7 +165,6 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
         }
     }
 
-
     @Override
     public void onCloseUserEditor() {
         //TODO: realy need this method?
@@ -173,27 +172,85 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
 
     @Override
     public void onSaveUserEditor(int userId, String phone, String firstName, String lastName) {
-        long client_id = 0;
-        InputContact inputContact = new InputContact(client_id, phone, firstName, lastName);
-        Integer newUserId = model.contactsImportContact(inputContact,true);
-        if (newUserId==null) return;
-        User newUser = TelegramProvider.getInstance().getUser(userId);
-        if (newUser==null) return;
-        model.getSelectedConversation().setUser(newUser);
-        view.repaintConversationTopics();
-        view.showChatPartner(newUser);
+        AsyncUpdateUser asyncUpdateUser = new AsyncUpdateUser(userId, firstName, lastName, phone);
+        asyncUpdateUser.execute();
     }
+
+    private class AsyncUpdateUser extends SwingWorker<User, Void> {
+        int userId;
+        String phone;
+        String firstName;
+        String lastName;
+
+        public AsyncUpdateUser(int userId, String firstName, String lastName, String phone) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.userId = userId;
+            this.phone = phone;
+        }
+
+        @Override
+        protected User doInBackground() {
+            long client_id = 0;
+            InputContact inputContact = new InputContact(client_id, phone, firstName, lastName);
+            Integer newUserId = model.contactsImportContact(inputContact,true);
+            if (newUserId==null) return null;
+            User newUser = TelegramProvider.getInstance().getUser(userId);
+            return newUser;
+        }
+
+        @Override
+        protected void done() {
+            view.hideEditUser();
+            try {
+                User user = get();
+                model.getSelectedConversation().setUser(user);
+                view.repaintConversationTopics();
+                view.showChatPartner(user);
+                view.setProfile(model.getUserName(),model.getUserSmallPic());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     @Override
     public void onDeleteUserPressed(int userId) {
-        if (model.contactsDeleteContact(userId)) {
-            if (model.getSelectedConversation().getUserId()==userId) {
-                model.getConversations().remove(model.getSelectedConversation());
-            }
-            view.showConversationTopics(model.getConversations());
-            //TODO: сменить текущего пользователя
+        AsyncDeleteUser asyncDeleteUser = new AsyncDeleteUser(userId);
+        asyncDeleteUser.execute();
+    }
+
+    private class AsyncDeleteUser extends SwingWorker<Boolean, Void> {
+        int userId;
+
+        public AsyncDeleteUser(int userId) {
+            this.userId = userId;
         }
 
+        @Override
+        protected Boolean doInBackground() {
+            if (model.contactsDeleteContact(userId)) {
+                if (model.getSelectedConversation().getUserId()==userId) {
+                    model.getConversations().remove(model.getSelectedConversation());
+                }
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        protected void done() {
+            view.hideEditUser();
+            try {
+                if (get()) {
+                    //TODO: сменить текущего пользователя
+                    view.showConversationTopics(model.getConversations());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
