@@ -13,6 +13,7 @@ import provider.TelegramProvider;
 import view.LoginView;
 import view.MessengerView;
 
+import javax.swing.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -137,9 +138,32 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
 
     @Override
     public void onSaveProfileEditor(String firstName, String lastName) {
-        model.updateUserProfile(firstName,lastName);
-        view.setProfile(model.getUserName(),model.getUserSmallPic());
+        AsyncUpdateProfile asyncUpdateProfile = new AsyncUpdateProfile(firstName, lastName);
+        asyncUpdateProfile.execute();
     }
+
+    class AsyncUpdateProfile extends SwingWorker<Boolean, Void> {
+        String firstName;
+        String lastName;
+
+        public AsyncUpdateProfile(String firstName, String lastName) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
+
+        @Override
+        protected Boolean doInBackground() {
+            model.updateUserProfile(firstName,lastName);
+            return true;
+        }
+
+        @Override
+        protected void done() {
+            view.setProfile(model.getUserName(),model.getUserSmallPic());
+            view.hideProfileEdit();
+        }
+    }
+
 
     @Override
     public void onCloseUserEditor() {

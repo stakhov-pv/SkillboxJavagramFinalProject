@@ -31,6 +31,7 @@ public class EditProfileView {
     private JButton backButton;
     private JLabel exitButtonLabel;
     private JLabel phoneLabel;
+    private JPanel backExitPhonePanel;
 
     public EditProfileView(String firstName, String lastName, String phone) {
         this.firstName = firstName;
@@ -116,6 +117,8 @@ public class EditProfileView {
             }
         });
 
+        backExitPhonePanel = new JPanel();
+
         showWaitForActionsState();
     }
 
@@ -125,6 +128,7 @@ public class EditProfileView {
         saveButton.setVisible(false);
         saveButtonBackground.setVisible(false);
         profileProcessLabel.setVisible(true);
+        backExitPhonePanel.setVisible(false);
     }
 
     private void showWaitForActionsState() {
@@ -133,5 +137,6 @@ public class EditProfileView {
         saveButton.setVisible(true);
         saveButtonBackground.setVisible(true);
         profileProcessLabel.setVisible(false);
+        backExitPhonePanel.setVisible(true);
     }
 }

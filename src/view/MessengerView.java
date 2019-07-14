@@ -271,25 +271,28 @@ public class MessengerView {
         editProfileView.attachListener(new EditProfileView.Listener() {
             @Override
             public void onBackPressed() {
-                Gui.getInstance().hidePopup();
-                listener.onCloseProfileEditor();
+                hideProfileEdit();
             }
 
             @Override
             public void onExitPressed() {
-                Gui.getInstance().hidePopup();
+                hideProfileEdit();
                 listener.onLogoff();
             }
 
             @Override
             public void onSaveChangesPressed(String firstName, String lastName) {
                 listener.onSaveProfileEditor(firstName, lastName);
-                Gui.getInstance().hidePopup();
-                listener.onCloseProfileEditor();
             }
         });
         Gui.getInstance().showPopup(editProfileView.getEditProfilePanel());
     }
+
+    public void hideProfileEdit() {
+        Gui.getInstance().hidePopup();
+        listener.onCloseProfileEditor();
+    }
+
 
     public void showEditUser(int userId, String firstName, String lastName, String phone) {
         JPanel inputPanel = new JPanel();
