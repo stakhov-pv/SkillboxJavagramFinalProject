@@ -103,6 +103,7 @@ public class EditProfileView {
 
         exitButtonLabel = new JLabel();
         exitButtonLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,18f));
+        exitButtonLabel.addMouseListener(new PanelClickListener( ()->listener.onExitPressed() ));
 
         backButton = new JButton();
         backButton.setBorderPainted(false);
