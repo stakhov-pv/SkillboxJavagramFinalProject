@@ -13,8 +13,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -266,37 +264,6 @@ public class MessengerView {
 
     public void closeApp() {
         Gui.getInstance().doClose();
-    }
-
-    class PanelClickListener implements MouseListener {
-        PanelListener listener;
-
-        public PanelClickListener(PanelListener listener) {
-            this.listener = listener;
-        }
-
-        @Override
-        public void mouseClicked(MouseEvent mouseEvent) {
-            if (listener!=null) listener.onPanelClicked();
-        }
-
-        @Override
-        public void mousePressed(MouseEvent mouseEvent) { }
-
-        @Override
-        public void mouseReleased(MouseEvent mouseEvent) { }
-
-        @Override
-        public void mouseEntered(MouseEvent mouseEvent) { }
-
-        @Override
-        public void mouseExited(MouseEvent mouseEvent) { }
-
-
-    }
-
-    public interface PanelListener {
-        void onPanelClicked();
     }
 
     public void showProfileEdit(String firstName, String lastName, String phone) {
