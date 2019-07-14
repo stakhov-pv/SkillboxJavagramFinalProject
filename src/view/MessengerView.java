@@ -267,44 +267,28 @@ public class MessengerView {
     }
 
     public void showProfileEdit(String firstName, String lastName, String phone) {
-        JLayeredPane jLayeredPane = rootPanel.getRootPane().getLayeredPane();
         EditProfileView editProfileView = new EditProfileView(firstName, lastName, phone);
-        jLayeredPane.add(editProfileView.getEditProfilePanel(), JLayeredPane.POPUP_LAYER);
-
-        if (true) return;
-
-        JPanel inputPanel = new JPanel();
-        //inputPanel.setLayout(new );
-        JTextField firstNameTextField = new JTextField(firstName);
-        JTextField lastNameTextField = new JTextField(lastName);
-        JButton logoffButton = new JButton();
-        logoffButton.setAction(new AbstractAction() {
+        editProfileView.attachListener(new EditProfileView.Listener() {
             @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                //TODO: how to close dialog?
-                if (listener!=null) listener.onLogoff();
+            public void onBackPressed() {
+                Gui.getInstance().hidePopup();
+                listener.onCloseProfileEditor();
+            }
+
+            @Override
+            public void onExitPressed() {
+                Gui.getInstance().hidePopup();
+                listener.onLogoff();
+            }
+
+            @Override
+            public void onSaveChangesPressed(String firstName, String lastName) {
+                listener.onSaveProfileEditor(firstName, lastName);
+                Gui.getInstance().hidePopup();
+                listener.onCloseProfileEditor();
             }
         });
-        logoffButton.setText("Logoff from "+phone);
-        inputPanel.add(new JLabel("First name:"));
-        inputPanel.add(firstNameTextField);
-        inputPanel.add(new JLabel("Last name:"));
-        inputPanel.add(lastNameTextField);
-        inputPanel.add(logoffButton);
-
-        if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(
-                rootPanel, inputPanel, "Enter your data", JOptionPane.OK_CANCEL_OPTION)) {
-
-            String updatedFirstName = firstNameTextField.getText();
-            String updatedLastName = lastNameTextField.getText();
-            if (listener!=null) listener.onSaveProfileEditor(updatedFirstName, updatedLastName);
-
-        } else {
-
-            //TODO:
-
-        }
-        listener.onCloseProfileEditor();
+        Gui.getInstance().showPopup(editProfileView.getEditProfilePanel());
     }
 
     public void showEditUser(int userId, String firstName, String lastName, String phone) {

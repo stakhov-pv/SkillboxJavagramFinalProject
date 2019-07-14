@@ -46,6 +46,7 @@ public class Gui {
         contentPane = container;
         //layeredPane.setLayer(container,JLayeredPane.DEFAULT_LAYER);
         frame.setContentPane(contentPane);
+        frame.validate();
     }
 
     public void showPopup(Container newPopup) {
@@ -57,12 +58,14 @@ public class Gui {
         //frame.getLayeredPane().add(newPopup, );
         //frame.setContentPane(newPopup);
         frame.setContentPane(newPopup);
+        frame.validate();
         popup = newPopup;
     }
 
     public void hidePopup() {
         if (popup!=null) frame.setContentPane(contentPane);
         popup = null;
+        frame.validate();
     }
 
     public void validate() {
