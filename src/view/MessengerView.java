@@ -301,7 +301,7 @@ public class MessengerView {
 
     public void showProfileEdit(String firstName, String lastName, String phone) {
         JLayeredPane jLayeredPane = rootPanel.getRootPane().getLayeredPane();
-        EditProfileView editProfileView = new EditProfileView();
+        EditProfileView editProfileView = new EditProfileView(firstName, lastName, phone);
         jLayeredPane.add(editProfileView.getEditProfilePanel(), JLayeredPane.POPUP_LAYER);
 
         if (true) return;

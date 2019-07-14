@@ -165,32 +165,38 @@
             <constraints>
               <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <opaque value="false"/>
+            </properties>
             <border type="none"/>
             <children>
               <grid id="7e8b5" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints border-constraint="East"/>
-                <properties/>
+                <properties>
+                  <opaque value="false"/>
+                </properties>
                 <border type="none"/>
                 <children>
-                  <component id="6a804" class="javax.swing.JLabel" binding="phoneLabel">
+                  <component id="6a804" class="javax.swing.JLabel" binding="phoneLabel" custom-create="true">
                     <constraints border-constraint="West"/>
                     <properties>
                       <foreground color="-1"/>
-                      <text value="+7 915 000-00-00"/>
                     </properties>
                   </component>
                   <grid id="920a6" layout-manager="BorderLayout" hgap="0" vgap="0">
                     <constraints border-constraint="East"/>
-                    <properties/>
+                    <properties>
+                      <opaque value="false"/>
+                    </properties>
                     <border type="empty">
                       <size top="0" left="16" bottom="0" right="16"/>
                     </border>
                     <children>
-                      <component id="e0e2e" class="javax.swing.JLabel" binding="exitButtonLabel">
+                      <component id="e0e2e" class="javax.swing.JLabel" binding="exitButtonLabel" custom-create="true">
                         <constraints border-constraint="Center"/>
                         <properties>
-                          <text value="выйти"/>
+                          <foreground color="-14046505"/>
+                          <text value="&lt;html&gt;&lt;u&gt;выйти&lt;/u&gt;&lt;/html&gt;"/>
                         </properties>
                       </component>
                     </children>
@@ -199,15 +205,17 @@
               </grid>
               <grid id="1a904" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints border-constraint="West"/>
-                <properties/>
+                <properties>
+                  <opaque value="false"/>
+                </properties>
                 <border type="empty">
                   <size top="0" left="16" bottom="0" right="0"/>
                 </border>
                 <children>
-                  <component id="ea2c3" class="javax.swing.JButton" binding="backButton">
+                  <component id="ea2c3" class="javax.swing.JButton" binding="backButton" custom-create="true">
                     <constraints border-constraint="Center"/>
                     <properties>
-                      <text value="Button"/>
+                      <text value=""/>
                     </properties>
                   </component>
                 </children>

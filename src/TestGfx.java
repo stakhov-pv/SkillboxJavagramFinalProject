@@ -9,10 +9,10 @@ public class TestGfx {
         view.show();
         view.showState(MessengerView.MessengerState.Messenger);
 
-        EditProfileView editProfileView = new EditProfileView();
+        EditProfileView editProfileView = new EditProfileView("Павел", "Стахов", "+7-912-345-66-77");
         //Gui.getInstance().changePane(editProfileView.getEditProfilePanel());
         Gui.getInstance().showPopup(editProfileView.getEditProfilePanel());
-        Gui.getInstance().hidePopup();
+        //Gui.getInstance().hidePopup();
 
         /*
         layeredPanel = new JPanel();
