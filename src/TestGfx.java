@@ -1,15 +1,58 @@
 import provider.Gui;
-import view.AddContactView;
-import view.EditProfileView;
-import view.LoginView;
-import view.MessengerView;
+import provider.Res;
+import view.*;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class TestGfx {
     public static void main(String[] params) {
         //testProfileEditor();
-        testAddContact();
+        //testAddContact();
+        testEditContact();
+    }
+
+    private static void testEditContact() {
+        MessengerView view = new MessengerView();
+        view.show();
+        view.showState(MessengerView.MessengerState.Messenger);
+
+        BufferedImage image = Res.getImage("your-face.png");
+
+        EditContactView editContactView = new EditContactView("Павел Стахов", "9221123344", image);
+        editContactView.attachListener(new EditContactView.Listener() {
+            @Override
+            public void onBackPressed() {
+                JOptionPane.showMessageDialog(
+                        editContactView.getEditContactPanel(),
+                        "Back pressed!",
+                        "info",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+
+            @Override
+            public void onEditContactPressed(String name, String phone) {
+                JOptionPane.showMessageDialog(
+                        editContactView.getEditContactPanel(),
+                        "Edit pressed with name="+name,
+                        "info",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+
+            @Override
+            public void onDeleteContactPressed(String phone) {
+                JOptionPane.showMessageDialog(
+                        editContactView.getEditContactPanel(),
+                        "Delete contact pressed!",
+                        "info",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+        });
+        Gui.getInstance().showPopup(editContactView.getEditContactPanel());
     }
 
     private static void testAddContact() {

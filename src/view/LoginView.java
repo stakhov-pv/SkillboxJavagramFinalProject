@@ -208,7 +208,7 @@ public class LoginView {
 
         firstNameField = new JTextField();
         firstNameField.setBorder(phoneBorder);
-        firstNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,42f));
+        firstNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,32f));
 
         TextPrompt firstNameTextPrompt = new TextPrompt("Имя", firstNameField);
         firstNameTextPrompt.setForeground( Color.WHITE );
@@ -216,7 +216,7 @@ public class LoginView {
 
         lastNameField = new JTextField();
         lastNameField.setBorder(phoneBorder);
-        lastNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,42f));
+        lastNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,32f));
 
         TextPrompt lastNameTextPrompt = new TextPrompt("Фамилия", lastNameField);
         lastNameTextPrompt.setForeground( Color.WHITE );

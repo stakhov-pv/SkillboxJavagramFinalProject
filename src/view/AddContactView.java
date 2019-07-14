@@ -62,7 +62,7 @@ public class AddContactView {
 
         firstNameField = new JTextField();
         firstNameField.setBorder(textFieldBorder);
-        firstNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,42f));
+        firstNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,32f));
 
         TextPrompt firstNameTextPrompt = new TextPrompt("Имя", firstNameField);
         firstNameTextPrompt.setForeground( Color.WHITE );
@@ -70,7 +70,7 @@ public class AddContactView {
 
         lastNameField = new JTextField();
         lastNameField.setBorder(textFieldBorder);
-        lastNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,42f));
+        lastNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,32f));
 
         TextPrompt lastNameTextPrompt = new TextPrompt("Фамилия", lastNameField);
         lastNameTextPrompt.setForeground( Color.WHITE );

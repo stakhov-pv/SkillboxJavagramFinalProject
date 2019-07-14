@@ -62,7 +62,7 @@ public class EditProfileView {
 
         firstNameField = new JTextField(firstName);
         firstNameField.setBorder(textFieldBorder);
-        firstNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,42f));
+        firstNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,32f));
 
         TextPrompt firstNameTextPrompt = new TextPrompt("Имя", firstNameField);
         firstNameTextPrompt.setForeground( Color.WHITE );
@@ -70,7 +70,7 @@ public class EditProfileView {
 
         lastNameField = new JTextField(lastName);
         lastNameField.setBorder(textFieldBorder);
-        lastNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,42f));
+        lastNameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,32f));
 
         TextPrompt lastNameTextPrompt = new TextPrompt("Фамилия", lastNameField);
         lastNameTextPrompt.setForeground( Color.WHITE );
