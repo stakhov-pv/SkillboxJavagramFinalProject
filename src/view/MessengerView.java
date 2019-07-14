@@ -64,12 +64,6 @@ public class MessengerView {
     private JPanel partnerIconPanel;
     private JLabel partnerLabel;
     private JPanel editPartnerPanel;
-    private JPanel user1;
-    private JPanel user1AvatarPanel;
-    private JPanel user2;
-    private JLabel user1when;
-    private JLabel user1Name;
-    private JLabel user1LastMessage;
     private JLabel searchLabel;
     private JTextArea messageTextField;
     private JPanel messageButtonPanel;
@@ -79,6 +73,7 @@ public class MessengerView {
     private JList messagesList;
     private JPanel importContactPanel;
     private JPanel layeredPanel;
+    private JPanel emptyChatPanel;
 
 
     public JPanel getRootPanel() {
@@ -128,7 +123,7 @@ public class MessengerView {
         partnerIconPanel = new JImage(Res.getImage("current-user.png"), new Dimension(29,29));
         editPartnerPanel = new JImage(Res.getImage("icon-edit.png"));
 
-        user1AvatarPanel = new JImage(Res.getImage("user-avatar.png"));
+        //user1AvatarPanel = new JImage(Res.getImage("user-avatar.png"));
 
         Border conversationsRightBorder = BorderFactory.createMatteBorder(0,0,0,1,new Color(219,219,219));
         conversationsListPanel = new JPanel();
@@ -150,18 +145,6 @@ public class MessengerView {
         chatPartnerPanel.addMouseListener(new PanelClickListener( () -> listener.onEditUserButtonPressed() ));
 
         Border conversationsBottomBorder = BorderFactory.createMatteBorder(0,0,1,0,new Color(219,219,219));
-        user1 = new JPanel();
-        user1.setBorder(conversationsBottomBorder);
-        user2 = new JPanel();
-        user2.setBorder(conversationsBottomBorder);
-
-        user1Name = new JLabel();
-        user1Name.setFont(Res.getFont(Res.FONT_TYPE.SEMIBOLD_FONT,16f));
-
-        user1LastMessage = new JLabel();
-        user1LastMessage.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,12f));
-        user1when = new JLabel();
-        user1when.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,10f));
 
         partnerLabel = new JLabel();
         partnerLabel.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,14f));
@@ -184,6 +167,9 @@ public class MessengerView {
         messagesList = new JList<Message>();
         messagesList.setCellRenderer(new MessageRenderer());
         messagesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        emptyChatPanel = new JPanel();
+        emptyChatPanel.setVisible(false);
 
     }
 
@@ -226,11 +212,14 @@ public class MessengerView {
     }
 
     public void showChatPartner(User user) {
+        boolean showSelectConversationMessage = (user==null);
         if (user!=null) {
             partnerLabel.setText(user.getFirstName() + " " + user.getLastName());
         } else {
             partnerLabel.setText("User deleted");
         }
+
+        showSelectConversation(showSelectConversationMessage);
 
         BufferedImage image = getUserPic(user);
         JImage avatar = (JImage)partnerIconPanel;
@@ -247,6 +236,13 @@ public class MessengerView {
             image = Res.getImage("your-face.png");
         }
         return image;
+    }
+
+    public void showSelectConversation(boolean selectConversation) {
+        emptyChatPanel.setVisible(selectConversation);
+        chatPartnerPanel.setVisible(!selectConversation);
+        chatMessagesPanel.setVisible(!selectConversation);
+        messageEditorPanel.setVisible(!selectConversation);
     }
 
     public void showConversationMessages(List<Message> messages) {
@@ -297,42 +293,6 @@ public class MessengerView {
         listener.onCloseProfileEditor();
     }
 
-    /*
-    public void showEditUser(int userId, String firstName, String lastName, String phone) {
-        JPanel inputPanel = new JPanel();
-        JTextField nameTextField = new JTextField(firstName+" "+lastName);
-        JButton deleteUserButton = new JButton();
-        deleteUserButton.setAction(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                //TODO: how to close dialog?
-                if (listener!=null) listener.onDeleteUserPressed(userId);
-            }
-        });
-        deleteUserButton.setText("Delete user: "+phone);
-        inputPanel.add(new JLabel("Name:"));
-        inputPanel.add(nameTextField);
-        inputPanel.add(deleteUserButton);
-
-        if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(
-                rootPanel, inputPanel, "Change user", JOptionPane.OK_CANCEL_OPTION)) {
-
-            String updatedName = nameTextField.getText();
-            String[] splittedName = updatedName.trim().split("[ ]+");
-            String updatedFirstName="";
-            String updatedLastName="";
-            if (splittedName.length>0) updatedFirstName=splittedName[0];
-            if (splittedName.length>1) updatedLastName=splittedName[splittedName.length-1];
-            if (listener!=null) listener.onSaveUserEditor(userId, phone, updatedFirstName, updatedLastName);
-
-        } else {
-
-            //TODO:
-
-        }
-        listener.onCloseUserEditor();
-    }
-     */
     public void showEditUser(User user, String firstName, String lastName, String phone) {
         if (user==null) return;
         BufferedImage avatar = getUserPic(user);
