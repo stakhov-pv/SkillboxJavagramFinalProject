@@ -10,7 +10,15 @@ public class TestGfx {
     public static void main(String[] params) {
         //testProfileEditor();
         //testAddContact();
-        testEditContact();
+        //testEditContact();
+        testMessenger();
+    }
+
+    private static void testMessenger() {
+        MessengerView view = new MessengerView();
+        view.show();
+        view.showState(MessengerView.MessengerState.Messenger);
+        view.showSelectConversation(false);
     }
 
     private static void testEditContact() {

@@ -9,6 +9,7 @@ import provider.TelegramProvider;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
@@ -74,6 +75,8 @@ public class MessengerView {
     private JPanel importContactPanel;
     private JPanel layeredPanel;
     private JPanel emptyChatPanel;
+    private JPanel messageTextPanel;
+    private JPanel messageFieldPanel;
 
 
     public JPanel getRootPanel() {
@@ -152,6 +155,12 @@ public class MessengerView {
         messageButtonPanel = new JImage(Res.getImage("button-send.png"));
         messageButtonPanel.addMouseListener(new PanelClickListener( () -> listener.onSendButtonPressed(messageTextField.getText()) ));
 
+        messageTextPanel = new JPanel();
+        messageTextField = new JTextArea();
+        messageTextPanel.setBorder(new LineBorder(new Color(224,224,224), 10, true));
+        messageTextField.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,18f));
+
+        //messageFieldPanel.setBorder(messageBorder);
         conversationsList = new JList<ConversationTopic>();
         conversationsList.setCellRenderer(new ConversationTopicRenderer());
         conversationsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
