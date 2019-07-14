@@ -54,6 +54,7 @@ public class EditProfileView {
         editProfilePanel = new JImage(Res.getImage("transparent.png"),new Dimension(900,630));
 
         profileLabel = new JLabel();
+        profileLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,43f));
 
         Border textFieldBorder = BorderFactory.createMatteBorder(0,0,2,0,Color.WHITE);
 
