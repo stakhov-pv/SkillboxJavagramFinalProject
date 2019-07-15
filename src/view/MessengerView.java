@@ -43,6 +43,7 @@ public class MessengerView {
         void onImportContactPressed();
         void onImportContactFilled(String firstName, String lastName, String phone);
         void onLogoff();
+        void onSearchQueryEntered(String query);
     }
 
     private JPanel rootPanel;
@@ -65,7 +66,6 @@ public class MessengerView {
     private JPanel partnerIconPanel;
     private JLabel partnerLabel;
     private JPanel editPartnerPanel;
-    private JLabel searchLabel;
     private JTextArea messageTextField;
     private JPanel messageButtonPanel;
     private JList conversationsList;
@@ -77,6 +77,7 @@ public class MessengerView {
     private JPanel emptyChatPanel;
     private JPanel messageTextPanel;
     private JPanel messageFieldPanel;
+    private JTextField searchTextField;
 
 
     public JPanel getRootPanel() {
@@ -136,8 +137,17 @@ public class MessengerView {
         searchPanel = new JPanel();
         searchPanel.setBorder(searchPanelRightBottomBorder);
 
-        searchLabel = new JLabel();
-        searchLabel.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,16f));
+        searchTextField = new JTextField();
+        searchTextField.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,16f));
+        searchTextField.setBorder(null);
+        searchTextField.addActionListener(e->{
+            String query = searchTextField.getText();
+            if (listener!=null) listener.onSearchQueryEntered(query);
+        });
+
+        TextPrompt searchTextPrompt = new TextPrompt("Поиск", searchTextField);
+        searchTextPrompt.setForeground( Color.GRAY );
+        searchTextPrompt.changeAlpha(0.5f);
 
         importContactPanel = new JImage(Res.getImage("icon-plus.png"));
         importContactPanel.addMouseListener(new PanelClickListener( ()->listener.onImportContactPressed() ));

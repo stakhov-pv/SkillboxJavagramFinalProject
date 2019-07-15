@@ -5,6 +5,7 @@ import org.javagram.core.StaticContainer;
 import org.javagram.handlers.IncomingMessageHandler;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
+import org.javagram.response.MessagesMessages;
 import org.javagram.response.MessagesSentMessage;
 import org.javagram.response.object.*;
 import org.javagram.response.object.inputs.InputContact;
@@ -290,6 +291,28 @@ public class TelegramProvider {
         for (;;) {
             try {
                 return bridge.contactsDeleteContact(userId);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            waitBeforeRepeat();
+        }
+    }
+
+    public ArrayList<UserContact> contactsGetContacts() {
+        for (;;) {
+            try {
+                return bridge.contactsGetContacts();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            waitBeforeRepeat();
+        }
+    }
+
+    public MessagesMessages messagesSearch(String query) {
+        for (;;) {
+            try {
+                return bridge.messagesSearch(query,0,Integer.MAX_VALUE,Integer.MAX_VALUE);
             } catch (IOException e) {
                 e.printStackTrace();
             }

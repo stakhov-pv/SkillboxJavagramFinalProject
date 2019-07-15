@@ -1,8 +1,10 @@
 package model;
 
+import org.javagram.response.MessagesMessages;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.MessagesDialog;
 import org.javagram.response.object.User;
+import org.javagram.response.object.UserContact;
 import org.javagram.response.object.inputs.InputContact;
 import provider.TelegramProvider;
 import view.MessengerView;
@@ -123,4 +125,12 @@ public class MessengerModel {
         return TelegramProvider.getInstance().contactsDeleteContact(userId);
     }
 
+    public ArrayList<UserContact> contactsGetContacts() {
+        return TelegramProvider.getInstance().contactsGetContacts();
     }
+
+    public MessagesMessages messagesSearch(String query) {
+        return TelegramProvider.getInstance().messagesSearch(query);
+    }
+
+}

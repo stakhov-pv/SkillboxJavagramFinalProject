@@ -2,10 +2,7 @@ package presenter;
 
 import model.ConversationTopic;
 import model.MessengerModel;
-import org.javagram.response.object.Message;
-import org.javagram.response.object.MessagesDialog;
-import org.javagram.response.object.MessagesMessage;
-import org.javagram.response.object.User;
+import org.javagram.response.object.*;
 import org.javagram.response.object.inputs.InputContact;
 import org.telegram.api.TLMessage;
 import org.telegram.api.TLPeerUser;
@@ -316,6 +313,16 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
     }
 
     @Override
+    public void onSearchQueryEntered(String query) {
+        if (query==null || query.trim().length()==0) {
+            showDialogs();
+        } else {
+            searchContactsAndDialogs(query);
+            view.showConversationTopics(model.getConversations());
+        }
+    }
+
+    @Override
     public void onMinimiseButtonPressed() {
         view.minimiseApp();
     }
@@ -349,6 +356,20 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
         ArrayList<ConversationTopic> conversations = new ArrayList<>();
         for(int i=0;i<dialogs.size();i++) {
             conversations.add(new ConversationTopic(userIds.get(i), users.get(userIds.get(i)),messages.get(i)));
+        }
+        model.setConversations(conversations);
+    }
+
+    public void searchContactsAndDialogs(String criteria) {
+        String upperCaseCriteria = criteria.toUpperCase();
+        ArrayList<UserContact> contacts = model.contactsGetContacts();
+        ArrayList<UserContact> filteredContacts = contacts.stream()
+            .filter(
+                userContact -> (userContact.getFirstName()+" "+userContact.getLastName()+" "+userContact.getPhone()).toUpperCase().contains(upperCaseCriteria)
+            ).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<ConversationTopic> conversations = new ArrayList<>();
+        for(int i=0;i<filteredContacts.size();i++) {
+            conversations.add(new ConversationTopic(filteredContacts.get(i).getId(), filteredContacts.get(i),null));
         }
         model.setConversations(conversations);
     }

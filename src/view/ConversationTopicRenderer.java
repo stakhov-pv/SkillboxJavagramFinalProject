@@ -25,7 +25,12 @@ public class ConversationTopicRenderer implements ListCellRenderer<ConversationT
                                                   int i, boolean isSelected, boolean cellHasFocus) {
         User user = conversationTopic.getUser();
         Message messageData = conversationTopic.getTopMessage();
-        String date = DateFormatter.shortRelativeToString(messageData.getDate());
+        String date;
+        if (messageData != null) {
+            date = DateFormatter.shortRelativeToString(messageData.getDate());
+        } else {
+            date = "";
+        }
 
         if (isSelected) {
             conversationTopicPanel.setBackground(new Color(255, 255, 255));
@@ -47,9 +52,13 @@ public class ConversationTopicRenderer implements ListCellRenderer<ConversationT
                 user==null? "User deleted"
                         :user.getFirstName()+" "+user.getLastName()
         );
-        conversationTopicView.getConversationLastMessage().setText(
-                (messageData.isOut()?"Вы: ":"")+
-                conversationTopic.getTopMessage().getMessage());
+        if (messageData!=null) {
+            conversationTopicView.getConversationLastMessage().setText(
+                    (messageData.isOut() ? "Вы: " : "") +
+                            conversationTopic.getTopMessage().getMessage());
+        } else {
+            conversationTopicView.getConversationLastMessage().setText("");
+        }
         conversationTopicView.getConversationLastMessageDate().setText(date);
         return conversationTopicPanel;
     }
