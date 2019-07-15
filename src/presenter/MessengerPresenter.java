@@ -315,8 +315,10 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
     @Override
     public void onSearchQueryEntered(String query) {
         if (query==null || query.trim().length()==0) {
+            view.setSearchText("");
             showDialogs();
         } else {
+            view.setSearchText(query);
             searchContactsAndDialogs(query);
             view.showConversationTopics(model.getConversations());
         }

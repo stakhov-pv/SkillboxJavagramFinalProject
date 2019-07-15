@@ -78,6 +78,7 @@ public class MessengerView {
     private JPanel messageTextPanel;
     private JPanel messageFieldPanel;
     private JTextField searchTextField;
+    private JPanel clearSearchPanel;
 
 
     public JPanel getRootPanel() {
@@ -149,6 +150,9 @@ public class MessengerView {
         searchTextPrompt.setForeground( Color.GRAY );
         searchTextPrompt.changeAlpha(0.5f);
 
+        clearSearchPanel = new JImage(Res.getImage("icon-close.png"));
+        clearSearchPanel.addMouseListener(new PanelClickListener( ()->listener.onSearchQueryEntered("") ));
+
         importContactPanel = new JImage(Res.getImage("icon-plus.png"));
         importContactPanel.addMouseListener(new PanelClickListener( ()->listener.onImportContactPressed() ));
 
@@ -190,6 +194,17 @@ public class MessengerView {
         emptyChatPanel = new JPanel();
         emptyChatPanel.setVisible(false);
 
+    }
+
+    public void setSearchText(String query) {
+        searchTextField.setText(query);
+        if (query.length()==0) {
+            searchIconPanel.setVisible(true);
+            clearSearchPanel.setVisible(false);
+        } else {
+            searchIconPanel.setVisible(false);
+            clearSearchPanel.setVisible(true);
+        }
     }
 
     public void attachListener(Listener listener) {
