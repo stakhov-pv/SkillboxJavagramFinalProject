@@ -150,7 +150,7 @@ public class MessengerView {
         searchTextPrompt.setForeground( Color.GRAY );
         searchTextPrompt.changeAlpha(0.5f);
 
-        clearSearchPanel = new JImage(Res.getImage("icon-close.png"));
+        clearSearchPanel = new JImage(Res.getImage("icon-close-white.png"));
         clearSearchPanel.addMouseListener(new PanelClickListener( ()->listener.onSearchQueryEntered("") ));
 
         importContactPanel = new JImage(Res.getImage("icon-plus.png"));
