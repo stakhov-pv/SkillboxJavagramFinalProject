@@ -368,12 +368,16 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
                 .collect(Collectors.toMap(User::getId, c -> c));
         ArrayList<ConversationTopic> conversations = new ArrayList<>();
         for(int i=0;i<dialogs.size();i++) {
-            conversations.add(new ConversationTopic(userIds.get(i), users.get(userIds.get(i)),messages.get(i)));
+            User user = users.get(userIds.get(i));
+            if (user!=null) {
+                conversations.add(new ConversationTopic(userIds.get(i), user, messages.get(i)));
+            }
         }
         model.setConversations(conversations);
     }
 
     public void searchContactsAndDialogs(String criteria) {
+        //search for contacts
         String upperCaseCriteria = criteria.toUpperCase();
         ArrayList<UserContact> contacts = model.contactsGetContacts();
         ArrayList<UserContact> filteredContacts = contacts.stream()
@@ -385,11 +389,10 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
             conversations.add(new ConversationTopic(filteredContacts.get(i).getId(), filteredContacts.get(i),null));
         }
 
+        //search for messages
         MessagesMessages messagesMessages = model.messagesSearch(criteria);
         ArrayList<MessagesMessage> messages = messagesMessages.getMessages();
         for (MessagesMessage message:messages) {
-            //User userTo = message.getToPeerUser();
-            //String text = message.getMessage();
             int userId;
             User user;
             if (message.getFromId()!=model.getUserId()) {
