@@ -2,6 +2,7 @@ package presenter;
 
 import model.ConversationTopic;
 import model.MessengerModel;
+import org.javagram.response.MessagesMessages;
 import org.javagram.response.object.*;
 import org.javagram.response.object.inputs.InputContact;
 import org.telegram.api.TLMessage;
@@ -373,6 +374,25 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
         for(int i=0;i<filteredContacts.size();i++) {
             conversations.add(new ConversationTopic(filteredContacts.get(i).getId(), filteredContacts.get(i),null));
         }
+
+        MessagesMessages messagesMessages = model.messagesSearch(criteria);
+        ArrayList<MessagesMessage> messages = messagesMessages.getMessages();
+        for (MessagesMessage message:messages) {
+            //User userTo = message.getToPeerUser();
+            //String text = message.getMessage();
+            int userId;
+            User user;
+            if (message.getFromId()!=model.getUserId()) {
+                userId = message.getFromId();
+                user = message.getFrom();
+            } else {
+                userId = message.getToPeerUserId();
+                user = message.getToPeerUser();
+            }
+            conversations.add(new ConversationTopic(userId,user,message));
+        }
+
+
         model.setConversations(conversations);
     }
 }
