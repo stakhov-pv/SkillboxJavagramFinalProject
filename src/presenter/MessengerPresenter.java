@@ -342,10 +342,14 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
             model.setSelectedConversation(conversationTopic);
             view.showChatPartner(conversationTopic.getUser());
             List<Message> messages = model.loadConversationMessages(conversationTopic);
-            int showMessageIndex = 0;
+            int showMessageIndex;
             Message searchMessage = conversationTopic.getTopMessage();
-            for (showMessageIndex=0;showMessageIndex<messages.size();showMessageIndex++) {
-                if (messages.get(showMessageIndex).getId()==searchMessage.getId()) break;
+            if (searchMessage!=null) {
+                for (showMessageIndex = 0; showMessageIndex < messages.size(); showMessageIndex++) {
+                    if (messages.get(showMessageIndex).getId() == searchMessage.getId()) break;
+                }
+            } else {
+                showMessageIndex=messages.size()-1;
             }
             view.showConversationMessages(messages,showMessageIndex);
         }
