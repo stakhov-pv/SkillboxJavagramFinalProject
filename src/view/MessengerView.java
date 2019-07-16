@@ -280,11 +280,15 @@ public class MessengerView {
     }
 
     public void showConversationMessages(List<Message> messages) {
+        showConversationMessages(messages,messages.size()-1);
+    }
+
+    public void showConversationMessages(List<Message> messages, int showMessageIndex) {
         DefaultListModel<Message> messageModel = new DefaultListModel<>();
         messageModel.addAll(messages);
         messagesList.setModel(messageModel);
         if (messages.size()>0) {
-            messagesList.ensureIndexIsVisible(messages.size() - 1);
+            messagesList.ensureIndexIsVisible(showMessageIndex);
         }
     }
 
