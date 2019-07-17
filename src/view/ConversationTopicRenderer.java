@@ -37,6 +37,9 @@ public class ConversationTopicRenderer implements ListCellRenderer<ConversationT
         } else {
             conversationTopicPanel.setBackground(new Color(230, 230, 230));
         }
+        //TODO: isOnline
+        boolean isOnline = true;
+        conversationTopicView.replaceAvatarMask(isSelected,isOnline);
         conversationTopicView.getConversationSelected().setVisible(isSelected);
         BufferedImage image = null;
         if (user!=null) {

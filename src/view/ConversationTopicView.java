@@ -14,6 +14,7 @@ public class ConversationTopicView {
     private JLabel conversationLastMessage;
     private JLabel conversationLastMessageDate;
     private JPanel conversationSelected;
+    private JPanel conversationAvatarMaskPanel;
 
     public JPanel getConversationPanel() {
         return conversationPanel;
@@ -39,9 +40,13 @@ public class ConversationTopicView {
         return conversationSelected;
     }
 
+    public JPanel getConversationAvatarMaskPanel() {
+        return conversationAvatarMaskPanel;
+    }
+
     private void createUIComponents() {
         replaceAvatarPanel(Res.getImage("user-avatar.png"));
-
+        conversationAvatarMaskPanel = new JImage(Res.getImage("mask-white.png"), new Dimension(41,41));
 
         Border conversationsBottomBorder = BorderFactory.createMatteBorder(0,0,1,0,new Color(219,219,219));
         conversationPanel = new JPanel();
@@ -58,5 +63,24 @@ public class ConversationTopicView {
 
     public void replaceAvatarPanel(BufferedImage image) {
         conversationAvatarPanel = new JImage(image, new Dimension(41,41));
+    }
+
+    public void replaceAvatarMask(boolean selected, boolean online) {
+        BufferedImage mask;
+        if (selected) {
+            if (online) {
+                mask = Res.getImage("mask-white-online.png");
+            } else {
+                mask = Res.getImage("mask-white.png");
+            }
+        } else {
+            if (online) {
+                mask = Res.getImage("mask-gray-online.png");
+            } else {
+                mask = Res.getImage("mask-gray.png");
+            }
+        }
+        JImage avatarMask = (JImage)conversationAvatarMaskPanel;
+        avatarMask.replaceImage(mask, new Dimension(41,41));
     }
 }
