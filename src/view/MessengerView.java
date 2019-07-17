@@ -63,7 +63,9 @@ public class MessengerView {
     private JPanel accountSettingsIconPanel;
     private JLabel accountNameLabel;
     private JPanel accountIconPanel;
+    private JPanel accountMaskIconPanel;
     private JPanel partnerIconPanel;
+    private JPanel partnerMaskIconPanel;
     private JLabel partnerLabel;
     private JPanel editPartnerPanel;
     private JTextArea messageTextField;
@@ -122,10 +124,14 @@ public class MessengerView {
         accountPanel.addMouseListener(new PanelClickListener( ()->listener.onProfileButtonPressed() ));
 
         accountIconPanel = new JImage(Res.getImage("your-face.png"), new Dimension(29,29));
+        accountMaskIconPanel = new JImage(Res.getImage("mask-blue-mini.png"), new Dimension(29, 29));
+
         accountSettingsIconPanel = new JImage(Res.getImage("icon-settings.png"));
         accountNameLabel = new JLabel();
         accountNameLabel.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,14f));
         partnerIconPanel = new JImage(Res.getImage("current-user.png"), new Dimension(29,29));
+        partnerMaskIconPanel = new JImage(Res.getImage("mask-white-mini.png"), new Dimension(29, 29));
+
         editPartnerPanel = new JImage(Res.getImage("icon-edit.png"));
 
         //user1AvatarPanel = new JImage(Res.getImage("user-avatar.png"));
