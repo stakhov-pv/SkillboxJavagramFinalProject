@@ -71,7 +71,7 @@ public class TestGfx {
             }
 
             @Override
-            public void onEditContactPressed(String name, String phone) {
+            public void onEditContactPressed(String name) {
                 JOptionPane.showMessageDialog(
                         editContactView.getEditContactPanel(),
                         "Edit pressed with name="+name,
@@ -81,7 +81,7 @@ public class TestGfx {
             }
 
             @Override
-            public void onDeleteContactPressed(String phone) {
+            public void onDeleteContactPressed() {
                 JOptionPane.showMessageDialog(
                         editContactView.getEditContactPanel(),
                         "Delete contact pressed!",

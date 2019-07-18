@@ -11,8 +11,8 @@ import java.awt.image.BufferedImage;
 public class EditContactView {
     public interface Listener {
         void onBackPressed();
-        void onEditContactPressed(String name, String phone);
-        void onDeleteContactPressed(String phone);
+        void onEditContactPressed(String name);
+        void onDeleteContactPressed();
     }
 
     String name;
@@ -78,7 +78,7 @@ public class EditContactView {
         deleteUserLabel.addMouseListener(new PanelClickListener( ()-> {
             if (listener!=null) {
                 showProcessingState();
-                listener.onDeleteContactPressed(phone);
+                listener.onDeleteContactPressed();
             }
         } ));
         Border deleteUserBorder = BorderFactory.createMatteBorder(2,2,2,2,Color.RED);
@@ -99,7 +99,7 @@ public class EditContactView {
                 if (name.length()==0) return;
                 if (listener!=null) {
                     showProcessingState();
-                    listener.onEditContactPressed(name,phone);
+                    listener.onEditContactPressed(name);
                 }
             }
         });

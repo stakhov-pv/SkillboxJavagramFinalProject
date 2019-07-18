@@ -347,7 +347,7 @@ public class MessengerView {
             }
 
             @Override
-            public void onEditContactPressed(String name, String phone) {
+            public void onEditContactPressed(String name) {
                 String[] splittedName = name.trim().split("[ ]+");
                 String updatedFirstName="";
                 String updatedLastName="";
@@ -361,7 +361,7 @@ public class MessengerView {
             }
 
             @Override
-            public void onDeleteContactPressed(String phone) {
+            public void onDeleteContactPressed() {
                 if (listener!=null) listener.onDeleteUserPressed(user.getId());
             }
         });
