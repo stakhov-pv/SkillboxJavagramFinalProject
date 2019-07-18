@@ -46,7 +46,7 @@ public class ConversationTopicRenderer implements ListCellRenderer<ConversationT
             image = TelegramProvider.getInstance().getUserPic(user,true);
         }
         if (image==null) {
-            image = Res.getImage("current-user.png");
+            image = Res.getImage("user-avatar.png");
         }
 
         JImage avatar = (JImage)conversationTopicView.getConversationAvatarPanel();

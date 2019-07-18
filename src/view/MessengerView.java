@@ -121,13 +121,13 @@ public class MessengerView {
         accountPanel = new JPanel();
         accountPanel.addMouseListener(new PanelClickListener( ()->listener.onProfileButtonPressed() ));
 
-        accountIconPanel = new JImage(Res.getImage("your-face.png"), new Dimension(29,29));
+        accountIconPanel = new JImage(Res.getImage("user-avatar.png"), new Dimension(29,29));
         accountMaskIconPanel = new JImage(Res.getImage("mask-blue-mini.png"), new Dimension(29, 29));
 
         accountSettingsIconPanel = new JImage(Res.getImage("icon-settings.png"));
         accountNameLabel = new JLabel();
         accountNameLabel.setFont(Res.getFont(Res.FONT_TYPE.REGULAR_FONT,14f));
-        partnerIconPanel = new JImage(Res.getImage("current-user.png"), new Dimension(29,29));
+        partnerIconPanel = new JImage(Res.getImage("user-avatar.png"), new Dimension(29,29));
         partnerMaskIconPanel = new JImage(Res.getImage("mask-white-mini.png"), new Dimension(29, 29));
 
         editPartnerPanel = new JImage(Res.getImage("icon-edit.png"));
@@ -272,7 +272,7 @@ public class MessengerView {
             image = TelegramProvider.getInstance().getUserPic(user,true);
         }
         if (image==null) {
-            image = Res.getImage("your-face.png");
+            image = Res.getImage("user-avatar.png");
         }
         return image;
     }
