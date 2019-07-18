@@ -268,6 +268,7 @@ public class LoginView {
                 phoneButton.setVisible(true);
                 phoneButtonBackground.setVisible(true);
                 phoneProcessLabel.setVisible(false);
+                phoneValue.requestFocusInWindow();
                 break;
             case ProcessingPhone:
                 phoneValue.setEnabled(false);
@@ -285,6 +286,7 @@ public class LoginView {
                 codeButton.setVisible(true);
                 codeButtonBackground.setVisible(true);
                 codeProcessLabel.setVisible(false);
+                codeValue.requestFocusInWindow();
                 break;
             case ProcessingCode:
                 codeState.setVisible(true);
@@ -302,6 +304,7 @@ public class LoginView {
                 nameButton.setVisible(true);
                 nameButtonBackground.setVisible(true);
                 nameProcessLabel.setVisible(false);
+                firstNameField.requestFocusInWindow();
                 break;
             case ProcessingNewProfile:
                 nameState.setVisible(true);

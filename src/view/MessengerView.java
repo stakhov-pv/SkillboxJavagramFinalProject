@@ -295,6 +295,7 @@ public class MessengerView {
         if (messages.size()>0) {
             messagesList.ensureIndexIsVisible(showMessageIndex);
         }
+        messageTextField.requestFocusInWindow();
     }
 
     public void emptyMessageTextField() {
