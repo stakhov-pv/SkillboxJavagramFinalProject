@@ -81,6 +81,7 @@ public class MessengerView {
     private JPanel messageFieldPanel;
     private JTextField searchTextField;
     private JPanel clearSearchPanel;
+    private JScrollPane chatScrollPane;
 
 
     public JPanel getRootPanel() {
@@ -112,10 +113,6 @@ public class MessengerView {
         });
 
         layeredPanel = new JPanel();
-        //JLayeredPane jLayeredPane = rootPanel.getRootPane().getLayeredPane();
-        //EditProfileView editProfileView = new EditProfileView();
-        //jLayeredPane.add(editProfileView.getEditProfilePanel(), JLayeredPane.POPUP_LAYER);
-        //layeredPanel.add(editProfileView.getEditProfilePanel(), JLayeredPane.POPUP_LAYER);
 
         logoPanel = new JImage(Res.getImage("logo-micro.png"));
         searchIconPanel = new JImage(Res.getImage("icon-search.png"));
@@ -192,10 +189,11 @@ public class MessengerView {
             }
         });
 
-        //TODO: show small list from bottom
         messagesList = new JList<Message>();
         messagesList.setCellRenderer(new MessageRenderer());
         messagesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        chatScrollPane = new JScrollPane();
 
         emptyChatPanel = new JPanel();
         emptyChatPanel.setVisible(false);
