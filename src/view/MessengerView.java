@@ -6,6 +6,7 @@ import org.javagram.response.object.User;
 import provider.Gui;
 import provider.Res;
 import provider.TelegramProvider;
+import util.PhoneFormatter;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -338,7 +339,7 @@ public class MessengerView {
     public void showEditUser(User user, String firstName, String lastName, String phone) {
         if (user==null) return;
         BufferedImage avatar = getUserPic(user);
-        EditContactView editContactView = new EditContactView(firstName+" "+lastName,phone,avatar);
+        EditContactView editContactView = new EditContactView(firstName+" "+lastName, PhoneFormatter.humanReadable(phone),avatar);
         editContactView.attachListener(new EditContactView.Listener() {
             @Override
             public void onBackPressed() {
