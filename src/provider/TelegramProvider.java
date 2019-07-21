@@ -32,6 +32,7 @@ public class TelegramProvider {
     private User user;
     private BufferedImage userSmallPic;
     private BufferedImage userPic;
+    private HashMap<Integer, BufferedImage> cachedUsersSmallPics = new HashMap<>();
     private IncomingMessageListener incomingMessageListener;
 
     public static TelegramProvider getInstance() {
@@ -164,8 +165,6 @@ public class TelegramProvider {
     public BufferedImage getUserSmallPic() {
         return userSmallPic;
     }
-
-    HashMap<Integer, BufferedImage> cachedUsersSmallPics = new HashMap<>();
 
     public BufferedImage getUserPic(User user, boolean small) {
         BufferedImage image = cachedUsersSmallPics.get(user.getId());
