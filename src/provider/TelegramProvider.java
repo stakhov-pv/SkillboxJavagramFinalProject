@@ -209,6 +209,18 @@ public class TelegramProvider {
 
     }
 
+    public ArrayList<ContactStatus> contactsGetStatuses() {
+        for (;;) {
+            try {
+                ArrayList<ContactStatus> statuses = bridge.contactsGetStatuses();
+                return statuses;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            waitBeforeRepeat();
+        }
+    }
+
     public ArrayList<Message> getMessages(ArrayList<Integer> messageIds) {
         for (;;) {
             try {

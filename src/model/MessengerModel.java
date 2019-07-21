@@ -1,10 +1,7 @@
 package model;
 
 import org.javagram.response.MessagesMessages;
-import org.javagram.response.object.Message;
-import org.javagram.response.object.MessagesDialog;
-import org.javagram.response.object.User;
-import org.javagram.response.object.UserContact;
+import org.javagram.response.object.*;
 import org.javagram.response.object.inputs.InputContact;
 import provider.TelegramProvider;
 import view.MessengerView;
@@ -71,6 +68,10 @@ public class MessengerModel {
     public List<MessagesDialog> getDialogs() {
         List<MessagesDialog> dialogs = TelegramProvider.getInstance().getDialogs();
         return dialogs;
+    }
+
+    public List<ContactStatus> contactsGetStatuses() {
+        return TelegramProvider.getInstance().contactsGetStatuses();
     }
 
     public ArrayList<Message> getMessages(ArrayList<Integer> messageIds) {

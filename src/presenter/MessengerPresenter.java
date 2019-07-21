@@ -283,7 +283,7 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
             if (newUser==null) return false;
             //model.getSelectedConversation().setUser(newUser);
             model.getConversations().add(0,new ConversationTopic(newUserId,newUser,
-                    createMessage(model.getUserId(), newUserId,  "Новый контакт")));
+                    createMessage(model.getUserId(), newUserId,  "Новый контакт"), false));
             return true;
         }
 
@@ -368,11 +368,19 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
         ArrayList<User> usersList = model.getUsers(userIds);
         Map<Integer,User> users = usersList.stream()
                 .collect(Collectors.toMap(User::getId, c -> c));
+
+        Date now=new Date();
+        List<ContactStatus> statuses = model.contactsGetStatuses();
+        Map<Integer,Boolean> userStatuses = statuses.stream()
+                .collect(Collectors.toMap(ContactStatus::getUserId, c->c.getExpires().getTime()>now.getTime()));
+
         ArrayList<ConversationTopic> conversations = new ArrayList<>();
         for(int i=0;i<dialogs.size();i++) {
             User user = users.get(userIds.get(i));
+            Boolean online = userStatuses.get(userIds.get(i));
+            if (online==null) online=Boolean.TRUE;
             if (user!=null) {
-                conversations.add(new ConversationTopic(userIds.get(i), user, messages.get(i)));
+                conversations.add(new ConversationTopic(userIds.get(i), user, messages.get(i), online));
             }
         }
         model.setConversations(conversations);
@@ -388,7 +396,7 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
             ).collect(Collectors.toCollection(ArrayList::new));
         ArrayList<ConversationTopic> conversations = new ArrayList<>();
         for(int i=0;i<filteredContacts.size();i++) {
-            conversations.add(new ConversationTopic(filteredContacts.get(i).getId(), filteredContacts.get(i),null));
+            conversations.add(new ConversationTopic(filteredContacts.get(i).getId(), filteredContacts.get(i),null, false));
         }
 
         //search for messages
@@ -404,7 +412,7 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
                 userId = message.getToPeerUserId();
                 user = message.getToPeerUser();
             }
-            conversations.add(new ConversationTopic(userId,user,message));
+            conversations.add(new ConversationTopic(userId,user,message, false));
         }
 
 

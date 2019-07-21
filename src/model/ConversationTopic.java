@@ -6,12 +6,14 @@ import org.javagram.response.object.User;
 public class ConversationTopic {
     private int userId;
     private User user;
+    private boolean online;
     private Message topMessage;
 
-    public ConversationTopic(int userId, User user, Message topMessage) {
+    public ConversationTopic(int userId, User user, Message topMessage, boolean online) {
         this.userId = userId;
         this.user = user;
         this.topMessage = topMessage;
+        this.online = online;
     }
 
     public int getUserId() {
@@ -28,6 +30,14 @@ public class ConversationTopic {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
     }
 
     public Message getTopMessage() {

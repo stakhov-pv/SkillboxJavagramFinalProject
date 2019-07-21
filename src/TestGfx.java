@@ -39,8 +39,8 @@ public class TestGfx {
         Message m2_1 = new Message(msg2_1);
 
         ArrayList<ConversationTopic> conversations = new ArrayList<>();
-        conversations.add(new ConversationTopic(1, user1,m1_2));
-        conversations.add(new ConversationTopic(2, user2,m2_1));
+        conversations.add(new ConversationTopic(1, user1,m1_2,false));
+        conversations.add(new ConversationTopic(2, user2,m2_1, true));
         view.showConversationTopics(conversations);
         view.repaintConversationTopics();
 
