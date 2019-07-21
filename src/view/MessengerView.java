@@ -267,6 +267,8 @@ public class MessengerView {
         avatar.replaceImage(image, new Dimension(29,29));
         partnerIconPanel.setVisible(true);
         partnerMaskIconPanel.setVisible(true);
+        partnerIconPanel.revalidate();
+        partnerMaskIconPanel.revalidate();
 
     }
 
@@ -298,6 +300,7 @@ public class MessengerView {
         messagesList.setModel(messageModel);
         if (messages.size()>0) {
             messagesList.ensureIndexIsVisible(showMessageIndex);
+            messagesList.revalidate();
         }
         messageTextField.requestFocusInWindow();
     }
