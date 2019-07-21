@@ -21,6 +21,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,7 +62,7 @@ public class TelegramProvider {
 
     private TelegramApiBridge initBridge() {
 
-        boolean workOnTestServer = true;
+        boolean workOnTestServer = false;
 
         String testAddr = "149.154.167.40:443";
         String workAddr = "149.154.167.50:443";
@@ -164,8 +165,15 @@ public class TelegramProvider {
         return userSmallPic;
     }
 
+    HashMap<Integer, BufferedImage> cachedUsersSmallPics = new HashMap<>();
+
     public BufferedImage getUserPic(User user, boolean small) {
-        return user.getPhoto(bridge, small);
+        BufferedImage image = cachedUsersSmallPics.get(user.getId());
+        if (image==null) {
+            image = user.getPhoto(bridge, small);
+            cachedUsersSmallPics.put(user.getId(), image);
+        }
+        return image;
     }
 
     public void attachIncomingMessageListener(IncomingMessageListener incomingMessageListener) {
