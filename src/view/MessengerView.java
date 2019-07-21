@@ -261,8 +261,12 @@ public class MessengerView {
         showSelectConversation(showSelectConversationMessage);
 
         BufferedImage image = getUserPic(user);
+        partnerIconPanel.setVisible(false);
+        partnerMaskIconPanel.setVisible(false);
         JImage avatar = (JImage)partnerIconPanel;
         avatar.replaceImage(image, new Dimension(29,29));
+        partnerIconPanel.setVisible(true);
+        partnerMaskIconPanel.setVisible(true);
 
     }
 

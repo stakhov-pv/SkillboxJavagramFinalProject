@@ -46,6 +46,6 @@ public class JImage extends JPanel {
 
     public void replaceImage(BufferedImage image, Dimension size) {
         init(image,size);
-        validate();
+        revalidate();
     }
 }

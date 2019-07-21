@@ -339,19 +339,21 @@ public class MessengerPresenter implements MessengerView.Listener, TelegramProvi
     public void onSelectConversation(int index) {
         if (model.getConversations()!=null && index<model.getConversations().size()) {
             ConversationTopic conversationTopic = model.getConversations().get(index);
-            model.setSelectedConversation(conversationTopic);
-            view.showChatPartner(conversationTopic.getUser());
-            List<Message> messages = model.loadConversationMessages(conversationTopic);
-            int showMessageIndex;
-            Message searchMessage = conversationTopic.getTopMessage();
-            if (searchMessage!=null) {
-                for (showMessageIndex = 0; showMessageIndex < messages.size(); showMessageIndex++) {
-                    if (messages.get(showMessageIndex).getId() == searchMessage.getId()) break;
+            if (model.getSelectedConversation()!=conversationTopic) {
+                model.setSelectedConversation(conversationTopic);
+                view.showChatPartner(conversationTopic.getUser());
+                List<Message> messages = model.loadConversationMessages(conversationTopic);
+                int showMessageIndex;
+                Message searchMessage = conversationTopic.getTopMessage();
+                if (searchMessage != null) {
+                    for (showMessageIndex = 0; showMessageIndex < messages.size(); showMessageIndex++) {
+                        if (messages.get(showMessageIndex).getId() == searchMessage.getId()) break;
+                    }
+                } else {
+                    showMessageIndex = messages.size() - 1;
                 }
-            } else {
-                showMessageIndex=messages.size()-1;
+                view.showConversationMessages(messages, showMessageIndex);
             }
-            view.showConversationMessages(messages,showMessageIndex);
         }
     }
 
