@@ -1,4 +1,5 @@
 import provider.Gui;
+import view.EditContactView;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -30,20 +31,30 @@ public class TestJLayeredPane {
         label.setVisible(false);
         layeredPane.add(label, JLayeredPane.POPUP_LAYER);//depth 300
 
+        EditContactView editContactView = new EditContactView("ss","phone",null);
+        JPanel panel = editContactView.getEditContactPanel();
+        panel.setOpaque(true);
+        panel.setSize(400,100);
+        panel.setVisible(false);
+        layeredPane.add(editContactView.getEditContactPanel(), JLayeredPane.POPUP_LAYER);
+
         //to make label visible
         button.addActionListener(e -> {
             JComponent source = (JComponent) e.getSource();
             //set the  popup label location at center of the source component
             label.setLocation(new Point(source.getX() + source.getWidth() / 2,
                     source.getY() + source.getHeight() / 2));
-            label.setVisible(true);
+            panel.setLocation(new Point(source.getX()+source.getWidth()/2, source.getY() + source.getHeight() / 2));
+            panel.setVisible(true);
+            //label.setVisible(true);
         });
 
         //to hide the label
         frame.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                label.setVisible(false);
+                panel.setVisible(false);
+                //label.setVisible(false);
             }
         });
 
