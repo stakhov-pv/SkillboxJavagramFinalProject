@@ -55,11 +55,10 @@ public class Gui {
     }
 
     public void hidePopup() {
-        if (layeredPane.getComponentsInLayer(JLayeredPane.POPUP_LAYER).length>0) {
-            layeredPane.remove(JLayeredPane.POPUP_LAYER);
-        }
+        if (popup!=null) layeredPane.remove(popup);
         popup = null;
-        frame.validate();
+        layeredPane.repaint();
+        //frame.validate();
     }
 
     public void validate() {
