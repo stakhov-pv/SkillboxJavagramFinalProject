@@ -15,10 +15,10 @@ public class EditContactView {
         void onDeleteContactPressed();
     }
 
-    String name;
-    String phone;
-    Listener listener;
-    BufferedImage image;
+    private String name;
+    private String phone;
+    private Listener listener;
+    private BufferedImage image;
 
     private JPanel editContactPanel;
     private JLabel editContactLabel;
@@ -54,6 +54,7 @@ public class EditContactView {
 
     private void createUIComponents() {
         editContactPanel = new JImage(Res.getImage("transparent.png"),new Dimension(900,630));
+        editContactPanel.addMouseListener(new PanelClickListener( ()->{} ));
 
         editContactLabel = new JLabel();
         editContactLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,43f));
@@ -63,6 +64,7 @@ public class EditContactView {
         nameField = new JTextField(name);
         nameField.setBorder(textFieldBorder);
         nameField.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,32f));
+        nameField.requestFocusInWindow();
 
         TextPrompt nameTextPrompt = new TextPrompt("Имя Фамилия", nameField);
         nameTextPrompt.setForeground( Color.WHITE );

@@ -53,6 +53,7 @@ public class EditProfileView {
 
     private void createUIComponents() {
         editProfilePanel = new JImage(Res.getImage("transparent.png"),new Dimension(900,630));
+        editProfilePanel.addMouseListener(new PanelClickListener( ()->{} ));
 
         profileLabel = new JLabel();
         profileLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,43f));

@@ -42,6 +42,7 @@ public class AddContactView {
 
     private void createUIComponents() {
         addContactPanel = new JImage(Res.getImage("transparent.png"),new Dimension(900,630));
+        addContactPanel.addMouseListener(new PanelClickListener( ()->{} ));
 
         addContactLabel = new JLabel();
         addContactLabel.setFont(Res.getFont(Res.FONT_TYPE.LIGHT_FONT,43f));
