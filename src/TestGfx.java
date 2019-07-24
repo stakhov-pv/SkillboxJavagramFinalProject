@@ -16,8 +16,8 @@ public class TestGfx {
     public static void main(String[] params) {
         //testProfileEditor();
         //testAddContact();
-        //testEditContact();
-        testMessenger();
+        testEditContact();
+        //testMessenger();
     }
 
     private static void testMessenger() {
@@ -30,7 +30,7 @@ public class TestGfx {
         User user1 = new UserContact(new TLUserContact(1,"Paul","Stakhov",0,"+79221112233",null,null));
         User user2 = new UserContact(new TLUserContact(2,"Eugene","Stakhov",0,"+79334445566",null,null));
 
-        TelegramProvider.getInstance().setUser(user1);
+        //TelegramProvider.getInstance().setUser(user1);
 
         TLMessage msg1_2 = new TLMessage(1,2,new TLPeerUser(1),false,false,0,"some text",null);
         TLMessage msg2_1 = new TLMessage(2,1,new TLPeerUser(2),false,false,0,"some text",null);
@@ -41,13 +41,13 @@ public class TestGfx {
         ArrayList<ConversationTopic> conversations = new ArrayList<>();
         conversations.add(new ConversationTopic(1, user1,m1_2,false));
         conversations.add(new ConversationTopic(2, user2,m2_1, true));
-        view.showConversationTopics(conversations);
-        view.repaintConversationTopics();
+        //view.showConversationTopics(conversations);
+        //view.repaintConversationTopics();
 
         ArrayList<Message> messages = new ArrayList<>();
         messages.add(m1_2);
         messages.add(m2_1);
-        view.showConversationMessages(messages);
+        //view.showConversationMessages(messages);
 
     }
 
