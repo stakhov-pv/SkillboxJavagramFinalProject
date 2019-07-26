@@ -317,6 +317,11 @@ public class MessengerView {
         Gui.getInstance().doClose();
     }
 
+    private void enableMessengerControls(boolean enabled) {
+        searchTextField.setEnabled(enabled);
+        messageTextField.setEnabled(enabled);
+    }
+
     public void showProfileEdit(String firstName, String lastName, String phone) {
         EditProfileView editProfileView = new EditProfileView(firstName, lastName, phone);
         editProfileView.attachListener(new EditProfileView.Listener() {
@@ -336,11 +341,13 @@ public class MessengerView {
                 listener.onSaveProfileEditor(firstName, lastName);
             }
         });
+        enableMessengerControls(false);
         Gui.getInstance().showPopup(editProfileView.getEditProfilePanel());
     }
 
     public void hideProfileEdit() {
         Gui.getInstance().hidePopup();
+        enableMessengerControls(true);
         listener.onCloseProfileEditor();
     }
 
@@ -373,11 +380,13 @@ public class MessengerView {
                 if (listener!=null) listener.onDeleteUserPressed(user.getId());
             }
         });
+        enableMessengerControls(false);
         Gui.getInstance().showPopup(editContactView.getEditContactPanel());
     }
 
     public void hideEditUser() {
         Gui.getInstance().hidePopup();
+        enableMessengerControls(true);
     }
 
     public void showImportUser() {
@@ -393,11 +402,13 @@ public class MessengerView {
                 if (listener!=null) listener.onImportContactFilled(firstName, lastName, phone);
             }
         });
+        enableMessengerControls(false);
         Gui.getInstance().showPopup(addContactView.getAddContactPanel());
     }
 
     public void hideImportUser() {
         Gui.getInstance().hidePopup();
+        enableMessengerControls(true);
     }
 
     public void showNoRealisation() {
