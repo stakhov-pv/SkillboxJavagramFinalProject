@@ -5,8 +5,12 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 
 public class Gui {
-    private static final int WIDTH = 900;
-    private static final int HEIGHT = 630;
+    public static final int WINDOW_WIDTH = 900;
+    public static final int WINDOW_HEIGHT = 630;
+    public static final int HEADER_HEIGHT = 34;
+    public static final int POPUP_WIDTH = WINDOW_WIDTH;
+    public static final int POPUP_HEIGHT = WINDOW_HEIGHT - HEADER_HEIGHT;
+
 
     private JFrame frame;
     private static Gui instance;
@@ -30,7 +34,7 @@ public class Gui {
     private void initGui() {
         frame = new JFrame();
         frame.setUndecorated(true);
-        frame.setSize(WIDTH,HEIGHT);
+        frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         frame.setVisible(true);
@@ -40,7 +44,7 @@ public class Gui {
 
     public void changePane(Container container) {
         contentPane = container;
-        contentPane.setBounds(0, 0, WIDTH, HEIGHT);
+        contentPane.setBounds(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
         if (layeredPane.getComponentsInLayer(JLayeredPane.DEFAULT_LAYER).length>0) {
             layeredPane.remove(JLayeredPane.DEFAULT_LAYER);
         }
@@ -49,7 +53,7 @@ public class Gui {
 
     public void showPopup(Container newPopup) {
         if (popup!=null) hidePopup();
-        newPopup.setBounds(0, 0, WIDTH, HEIGHT);
+        newPopup.setBounds(0, HEADER_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT - HEADER_HEIGHT);
         layeredPane.add(newPopup, JLayeredPane.POPUP_LAYER);
         popup = newPopup;
     }

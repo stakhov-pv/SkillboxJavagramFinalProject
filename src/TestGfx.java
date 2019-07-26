@@ -14,9 +14,9 @@ import java.util.Date;
 
 public class TestGfx {
     public static void main(String[] params) {
-        //testProfileEditor();
+        testProfileEditor();
         //testAddContact();
-        testEditContact();
+        //testEditContact();
         //testMessenger();
     }
 

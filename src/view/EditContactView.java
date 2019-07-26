@@ -1,5 +1,6 @@
 package view;
 
+import provider.Gui;
 import provider.Res;
 
 import javax.swing.*;
@@ -53,7 +54,7 @@ public class EditContactView {
     }
 
     private void createUIComponents() {
-        editContactPanel = new JImage(Res.getImage("transparent.png"),new Dimension(900,630));
+        editContactPanel = new JImage(Res.getImage("transparent.png"),new Dimension(Gui.POPUP_WIDTH,Gui.POPUP_HEIGHT));
         editContactPanel.addMouseListener(new PanelClickListener( ()->{} ));
 
         editContactLabel = new JLabel();

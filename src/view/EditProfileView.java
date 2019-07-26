@@ -1,5 +1,6 @@
 package view;
 
+import provider.Gui;
 import provider.Res;
 
 import javax.swing.*;
@@ -52,7 +53,7 @@ public class EditProfileView {
     }
 
     private void createUIComponents() {
-        editProfilePanel = new JImage(Res.getImage("transparent.png"),new Dimension(900,630));
+        editProfilePanel = new JImage(Res.getImage("transparent.png"),new Dimension(Gui.POPUP_WIDTH,Gui.POPUP_HEIGHT));
         editProfilePanel.addMouseListener(new PanelClickListener( ()->{} ));
 
         profileLabel = new JLabel();
