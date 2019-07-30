@@ -63,7 +63,7 @@ public class TelegramProvider {
 
     private TelegramApiBridge initBridge() {
 
-        boolean workOnTestServer = true;
+        boolean workOnTestServer = false;
 
         String testAddr = "149.154.167.40:443";
         String workAddr = "149.154.167.50:443";
